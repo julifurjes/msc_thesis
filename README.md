@@ -1,1 +1,1 @@
-# msc_thesis
+# Juli MSc Thesis
