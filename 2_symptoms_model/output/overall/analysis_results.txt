@@ -1,8 +1,8 @@
-Analysis Run: 2025-02-06 11:44:20
+Analysis Run: 2025-02-06 15:13:01
 ================================================================================
 
 Preparing data...
-Data shape after preprocessing: (5858, 1718)
+Data shape after preprocessing: (5649, 1720)
 
 Fitting mixed models...
 
@@ -10,19 +10,19 @@ Fitting model for HOTFLAS → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8734     
-Min. group size:  1       Log-Likelihood:     -11125.5787
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8773     
+Min. group size:  1       Log-Likelihood:     -10745.3887
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.553    0.073 144.289 0.000 10.410 10.697
-HOTFLAS       -0.008    0.021  -0.385 0.700 -0.049  0.033
-STATUS        -0.009    0.017  -0.509 0.611 -0.042  0.025
-LANGCOG       -0.157    0.039  -4.037 0.000 -0.233 -0.081
-SWANID Var     1.001    0.050                            
+Intercept     10.583    0.080 132.803 0.000 10.427 10.739
+HOTFLAS       -0.008    0.021  -0.359 0.720 -0.050  0.034
+STATUS        -0.020    0.021  -0.957 0.339 -0.062  0.021
+LANGCOG       -0.158    0.039  -4.020 0.000 -0.235 -0.081
+SWANID Var     1.010    0.052                            
 =========================================================
 
 
@@ -30,19 +30,19 @@ Fitting model for NUMHOTF → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8734     
-Min. group size:  1       Log-Likelihood:     -11125.2048
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8773     
+Min. group size:  1       Log-Likelihood:     -10744.9472
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.552    0.073 144.141 0.000 10.409 10.696
-NUMHOTF       -0.008    0.032  -0.258 0.797 -0.070  0.054
-STATUS        -0.008    0.017  -0.499 0.618 -0.042  0.025
-LANGCOG       -0.156    0.039  -4.026 0.000 -0.233 -0.080
-SWANID Var     1.001    0.050                            
+Intercept     10.584    0.080 132.757 0.000 10.427 10.740
+NUMHOTF       -0.014    0.033  -0.423 0.673 -0.078  0.050
+STATUS        -0.020    0.021  -0.956 0.339 -0.062  0.021
+LANGCOG       -0.158    0.039  -4.025 0.000 -0.235 -0.081
+SWANID Var     1.010    0.052                            
 =========================================================
 
 
@@ -50,19 +50,19 @@ Fitting model for BOTHOTF → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8729     
-Min. group size:  1       Log-Likelihood:     -11125.1179
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8770     
+Min. group size:  1       Log-Likelihood:     -10744.9263
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.547    0.074 143.308 0.000 10.402 10.691
-BOTHOTF        0.007    0.035   0.203 0.839 -0.061  0.076
-STATUS        -0.008    0.017  -0.475 0.635 -0.041  0.025
-LANGCOG       -0.155    0.039  -3.992 0.000 -0.231 -0.079
-SWANID Var     1.002    0.050                            
+Intercept     10.576    0.080 132.018 0.000 10.419 10.733
+BOTHOTF        0.006    0.036   0.175 0.861 -0.064  0.077
+STATUS        -0.020    0.021  -0.921 0.357 -0.061  0.022
+LANGCOG       -0.156    0.039  -3.980 0.000 -0.233 -0.079
+SWANID Var     1.011    0.052                            
 =========================================================
 
 
@@ -70,19 +70,19 @@ Fitting model for NITESWE → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8753     
-Min. group size:  1       Log-Likelihood:     -11124.8279
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8798     
+Min. group size:  1       Log-Likelihood:     -10744.2902
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.557    0.073 145.425 0.000 10.415 10.699
-NITESWE       -0.028    0.023  -1.218 0.223 -0.072  0.017
-STATUS        -0.009    0.017  -0.519 0.604 -0.042  0.024
-LANGCOG       -0.159    0.039  -4.103 0.000 -0.235 -0.083
-SWANID Var     0.996    0.050                            
+Intercept     10.589    0.079 134.000 0.000 10.434 10.744
+NITESWE       -0.035    0.024  -1.463 0.143 -0.081  0.012
+STATUS        -0.021    0.021  -0.980 0.327 -0.063  0.021
+LANGCOG       -0.161    0.039  -4.112 0.000 -0.238 -0.084
+SWANID Var     1.004    0.052                            
 =========================================================
 
 
@@ -90,19 +90,19 @@ Fitting model for NUMNITS → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8751     
-Min. group size:  1       Log-Likelihood:     -11123.2651
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8790     
+Min. group size:  1       Log-Likelihood:     -10742.4841
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.568    0.073 144.818 0.000 10.425 10.711
-NUMNITS       -0.075    0.040  -1.859 0.063 -0.155  0.004
-STATUS        -0.009    0.017  -0.506 0.613 -0.042  0.025
-LANGCOG       -0.160    0.039  -4.127 0.000 -0.236 -0.084
-SWANID Var     0.995    0.050                            
+Intercept     10.601    0.079 133.537 0.000 10.446 10.757
+NUMNITS       -0.089    0.042  -2.150 0.032 -0.171 -0.008
+STATUS        -0.021    0.021  -0.964 0.335 -0.062  0.021
+LANGCOG       -0.162    0.039  -4.134 0.000 -0.239 -0.085
+SWANID Var     1.004    0.052                            
 =========================================================
 
 
@@ -110,19 +110,19 @@ Fitting model for BOTNITS → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8741     
-Min. group size:  1       Log-Likelihood:     -11125.0321
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8784     
+Min. group size:  1       Log-Likelihood:     -10744.7204
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.555    0.073 144.102 0.000 10.411 10.698
-BOTNITS       -0.017    0.035  -0.480 0.631 -0.085  0.051
-STATUS        -0.008    0.017  -0.490 0.624 -0.041  0.025
-LANGCOG       -0.157    0.039  -4.044 0.000 -0.233 -0.081
-SWANID Var     1.000    0.050                            
+Intercept     10.587    0.080 132.880 0.000 10.431 10.743
+BOTNITS       -0.024    0.036  -0.682 0.495 -0.094  0.045
+STATUS        -0.020    0.021  -0.941 0.347 -0.062  0.022
+LANGCOG       -0.159    0.039  -4.047 0.000 -0.236 -0.082
+SWANID Var     1.008    0.052                            
 =========================================================
 
 
@@ -130,19 +130,19 @@ Fitting model for COLDSWE → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8770     
-Min. group size:  1       Log-Likelihood:     -11116.3231
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8816     
+Min. group size:  1       Log-Likelihood:     -10736.7672
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.593    0.073 145.432 0.000 10.450 10.735
-COLDSWE       -0.218    0.053  -4.102 0.000 -0.321 -0.114
-STATUS        -0.009    0.017  -0.534 0.593 -0.042  0.024
-LANGCOG       -0.161    0.039  -4.170 0.000 -0.236 -0.085
-SWANID Var     0.981    0.050                            
+Intercept     10.625    0.079 133.975 0.000 10.469 10.780
+COLDSWE       -0.214    0.054  -3.943 0.000 -0.320 -0.108
+STATUS        -0.022    0.021  -1.036 0.300 -0.064  0.020
+LANGCOG       -0.162    0.039  -4.152 0.000 -0.238 -0.085
+SWANID Var     0.990    0.051                            
 =========================================================
 
 
@@ -150,19 +150,19 @@ Fitting model for NUMCLDS → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8764     
-Min. group size:  1       Log-Likelihood:     -11120.0312
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8805     
+Min. group size:  1       Log-Likelihood:     -10739.4185
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.581    0.073 145.208 0.000 10.438 10.724
-NUMCLDS       -0.117    0.037  -3.181 0.001 -0.190 -0.045
-STATUS        -0.010    0.017  -0.571 0.568 -0.043  0.023
-LANGCOG       -0.157    0.039  -4.059 0.000 -0.232 -0.081
-SWANID Var     0.987    0.050                            
+Intercept     10.616    0.079 133.762 0.000 10.461 10.772
+NUMCLDS       -0.125    0.038  -3.310 0.001 -0.199 -0.051
+STATUS        -0.023    0.021  -1.071 0.284 -0.064  0.019
+LANGCOG       -0.158    0.039  -4.047 0.000 -0.234 -0.081
+SWANID Var     0.996    0.051                            
 =========================================================
 
 
@@ -170,19 +170,19 @@ Fitting model for BOTCLDS → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8787     
-Min. group size:  1       Log-Likelihood:     -11118.1957
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8831     
+Min. group size:  1       Log-Likelihood:     -10737.9778
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.588    0.073 145.365 0.000 10.445 10.731
-BOTCLDS       -0.147    0.040  -3.695 0.000 -0.225 -0.069
-STATUS        -0.009    0.017  -0.526 0.599 -0.042  0.024
-LANGCOG       -0.158    0.039  -4.093 0.000 -0.233 -0.082
-SWANID Var     0.980    0.050                            
+Intercept     10.623    0.079 133.878 0.000 10.468 10.779
+BOTCLDS       -0.151    0.041  -3.701 0.000 -0.231 -0.071
+STATUS        -0.022    0.021  -1.045 0.296 -0.064  0.019
+LANGCOG       -0.159    0.039  -4.081 0.000 -0.235 -0.083
+SWANID Var     0.989    0.051                            
 =========================================================
 
 
@@ -190,19 +190,19 @@ Fitting model for STIFF → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8731     
-Min. group size:  1       Log-Likelihood:     -11124.6485
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8772     
+Min. group size:  1       Log-Likelihood:     -10744.7420
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.543    0.072 145.458 0.000 10.401 10.685
-STIFF          0.031    0.022   1.367 0.172 -0.013  0.075
-STATUS        -0.007    0.017  -0.426 0.670 -0.040  0.026
-LANGCOG       -0.155    0.039  -3.999 0.000 -0.231 -0.079
-SWANID Var     1.000    0.050                            
+Intercept     10.572    0.079 133.804 0.000 10.417 10.727
+STIFF          0.026    0.023   1.134 0.257 -0.019  0.071
+STATUS        -0.018    0.021  -0.857 0.391 -0.060  0.024
+LANGCOG       -0.156    0.039  -3.988 0.000 -0.233 -0.079
+SWANID Var     1.010    0.052                            
 =========================================================
 
 
@@ -210,19 +210,19 @@ Fitting model for IRRITAB → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8731     
-Min. group size:  1       Log-Likelihood:     -11125.3861
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8769     
+Min. group size:  1       Log-Likelihood:     -10744.9157
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.550    0.072 145.719 0.000 10.408 10.692
-IRRITAB       -0.014    0.022  -0.637 0.524 -0.058  0.029
-STATUS        -0.008    0.017  -0.481 0.630 -0.041  0.025
-LANGCOG       -0.157    0.039  -4.046 0.000 -0.233 -0.081
-SWANID Var     1.001    0.050                            
+Intercept     10.581    0.079 134.225 0.000 10.426 10.735
+IRRITAB       -0.022    0.023  -0.970 0.332 -0.067  0.023
+STATUS        -0.020    0.021  -0.928 0.353 -0.062  0.022
+LANGCOG       -0.159    0.039  -4.052 0.000 -0.236 -0.082
+SWANID Var     1.010    0.052                            
 =========================================================
 
 
@@ -230,19 +230,19 @@ Fitting model for MOODCHG → TOTIDE1
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE1    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8772     
-Min. group size:  1       Log-Likelihood:     -11123.6244
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.8814     
+Min. group size:  1       Log-Likelihood:     -10743.4105
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.546    0.072 145.955 0.000 10.405 10.688
-MOODCHG       -0.048    0.025  -1.924 0.054 -0.097  0.001
-STATUS        -0.007    0.017  -0.424 0.671 -0.040  0.026
-LANGCOG       -0.157    0.039  -4.068 0.000 -0.233 -0.082
-SWANID Var     0.991    0.050                            
+Intercept     10.574    0.079 134.429 0.000 10.420 10.729
+MOODCHG       -0.049    0.025  -1.941 0.052 -0.099  0.000
+STATUS        -0.018    0.021  -0.852 0.394 -0.060  0.024
+LANGCOG       -0.158    0.039  -4.057 0.000 -0.235 -0.082
+SWANID Var     1.000    0.052                            
 =========================================================
 
 
@@ -250,19 +250,19 @@ Fitting model for HOTFLAS → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8803     
-Min. group size:  1       Log-Likelihood:     -11248.4353
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9067     
+Min. group size:  1       Log-Likelihood:     -10883.7054
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.346    0.076 135.448 0.000 10.196 10.496
-HOTFLAS        0.007    0.021   0.321 0.748 -0.035  0.049
-STATUS        -0.006    0.018  -0.364 0.716 -0.041  0.028
-LANGCOG       -0.132    0.041  -3.213 0.001 -0.212 -0.051
-SWANID Var     1.190    0.056                            
+Intercept     10.341    0.083 124.001 0.000 10.177 10.504
+HOTFLAS        0.012    0.022   0.566 0.572 -0.031  0.056
+STATUS        -0.007    0.022  -0.313 0.754 -0.051  0.037
+LANGCOG       -0.127    0.041  -3.073 0.002 -0.208 -0.046
+SWANID Var     1.188    0.057                            
 =========================================================
 
 
@@ -270,19 +270,19 @@ Fitting model for NUMHOTF → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8803     
-Min. group size:  1       Log-Likelihood:     -11247.9991
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9074     
+Min. group size:  1       Log-Likelihood:     -10883.4395
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.345    0.076 135.318 0.000 10.195 10.495
-NUMHOTF        0.012    0.032   0.382 0.703 -0.051  0.076
-STATUS        -0.006    0.017  -0.363 0.717 -0.041  0.028
-LANGCOG       -0.132    0.041  -3.216 0.001 -0.212 -0.051
-SWANID Var     1.190    0.056                            
+Intercept     10.346    0.083 124.033 0.000 10.182 10.509
+NUMHOTF        0.005    0.033   0.138 0.891 -0.061  0.070
+STATUS        -0.008    0.022  -0.347 0.729 -0.051  0.036
+LANGCOG       -0.129    0.041  -3.115 0.002 -0.210 -0.048
+SWANID Var     1.187    0.057                            
 =========================================================
 
 
@@ -290,19 +290,19 @@ Fitting model for BOTHOTF → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8810     
-Min. group size:  1       Log-Likelihood:     -11247.9435
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9080     
+Min. group size:  1       Log-Likelihood:     -10883.2856
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.353    0.077 134.793 0.000 10.202 10.503
-BOTHOTF       -0.009    0.036  -0.245 0.806 -0.079  0.061
-STATUS        -0.007    0.017  -0.395 0.693 -0.041  0.027
-LANGCOG       -0.133    0.041  -3.263 0.001 -0.214 -0.053
-SWANID Var     1.189    0.056                            
+Intercept     10.353    0.084 123.596 0.000 10.189 10.517
+BOTHOTF       -0.014    0.037  -0.373 0.709 -0.086  0.058
+STATUS        -0.008    0.022  -0.376 0.707 -0.052  0.035
+LANGCOG       -0.130    0.041  -3.155 0.002 -0.211 -0.049
+SWANID Var     1.185    0.057                            
 =========================================================
 
 
@@ -310,19 +310,19 @@ Fitting model for NITESWE → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8805     
-Min. group size:  1       Log-Likelihood:     -11248.4021
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9083     
+Min. group size:  1       Log-Likelihood:     -10883.7320
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.349    0.076 136.364 0.000 10.200 10.498
-NITESWE        0.001    0.023   0.056 0.956 -0.044  0.047
-STATUS        -0.007    0.017  -0.383 0.702 -0.041  0.028
-LANGCOG       -0.133    0.041  -3.241 0.001 -0.213 -0.052
-SWANID Var     1.190    0.056                            
+Intercept     10.350    0.083 125.036 0.000 10.188 10.512
+NITESWE       -0.007    0.024  -0.286 0.775 -0.055  0.041
+STATUS        -0.008    0.022  -0.364 0.716 -0.052  0.035
+LANGCOG       -0.130    0.041  -3.149 0.002 -0.211 -0.049
+SWANID Var     1.185    0.057                            
 =========================================================
 
 
@@ -330,19 +330,19 @@ Fitting model for NUMNITS → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8815     
-Min. group size:  1       Log-Likelihood:     -11247.6910
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9089     
+Min. group size:  1       Log-Likelihood:     -10882.8300
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.355    0.076 135.780 0.000 10.205 10.504
-NUMNITS       -0.022    0.041  -0.528 0.597 -0.103  0.059
-STATUS        -0.007    0.017  -0.389 0.697 -0.041  0.027
-LANGCOG       -0.134    0.041  -3.279 0.001 -0.214 -0.054
-SWANID Var     1.187    0.056                            
+Intercept     10.357    0.083 124.592 0.000 10.194 10.520
+NUMNITS       -0.037    0.043  -0.873 0.383 -0.121  0.046
+STATUS        -0.008    0.022  -0.367 0.713 -0.052  0.035
+LANGCOG       -0.131    0.041  -3.183 0.001 -0.212 -0.050
+SWANID Var     1.183    0.057                            
 =========================================================
 
 
@@ -350,19 +350,19 @@ Fitting model for BOTNITS → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8809     
-Min. group size:  1       Log-Likelihood:     -11247.9737
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9084     
+Min. group size:  1       Log-Likelihood:     -10883.2689
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.351    0.076 135.324 0.000 10.201 10.501
-BOTNITS       -0.004    0.036  -0.124 0.901 -0.074  0.065
-STATUS        -0.007    0.017  -0.385 0.700 -0.041  0.028
-LANGCOG       -0.133    0.041  -3.254 0.001 -0.213 -0.053
-SWANID Var     1.189    0.056                            
+Intercept     10.353    0.083 124.203 0.000 10.190 10.516
+BOTNITS       -0.016    0.036  -0.440 0.660 -0.088  0.055
+STATUS        -0.008    0.022  -0.361 0.718 -0.052  0.036
+LANGCOG       -0.130    0.041  -3.160 0.002 -0.211 -0.050
+SWANID Var     1.185    0.057                            
 =========================================================
 
 
@@ -370,19 +370,19 @@ Fitting model for COLDSWE → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8843     
-Min. group size:  1       Log-Likelihood:     -11241.2666
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9115     
+Min. group size:  1       Log-Likelihood:     -10877.1761
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.387    0.076 136.474 0.000 10.238 10.537
-COLDSWE       -0.192    0.054  -3.549 0.000 -0.298 -0.086
-STATUS        -0.007    0.017  -0.417 0.677 -0.041  0.027
-LANGCOG       -0.137    0.041  -3.376 0.001 -0.217 -0.058
-SWANID Var     1.171    0.055                            
+Intercept     10.388    0.083 125.098 0.000 10.225 10.551
+COLDSWE       -0.189    0.056  -3.398 0.001 -0.298 -0.080
+STATUS        -0.010    0.022  -0.439 0.660 -0.053  0.034
+LANGCOG       -0.133    0.041  -3.255 0.001 -0.214 -0.053
+SWANID Var     1.168    0.056                            
 =========================================================
 
 
@@ -390,19 +390,19 @@ Fitting model for NUMCLDS → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8828     
-Min. group size:  1       Log-Likelihood:     -11244.9917
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9098     
+Min. group size:  1       Log-Likelihood:     -10879.8660
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.374    0.076 136.200 0.000 10.225 10.523
-NUMCLDS       -0.091    0.038  -2.422 0.015 -0.165 -0.017
-STATUS        -0.008    0.017  -0.444 0.657 -0.042  0.026
-LANGCOG       -0.133    0.041  -3.278 0.001 -0.213 -0.054
-SWANID Var     1.180    0.055                            
+Intercept     10.378    0.083 124.854 0.000 10.215 10.541
+NUMCLDS       -0.101    0.039  -2.624 0.009 -0.177 -0.026
+STATUS        -0.010    0.022  -0.462 0.644 -0.054  0.033
+LANGCOG       -0.130    0.041  -3.163 0.002 -0.210 -0.049
+SWANID Var     1.176    0.056                            
 =========================================================
 
 
@@ -410,19 +410,19 @@ Fitting model for BOTCLDS → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8841     
-Min. group size:  1       Log-Likelihood:     -11241.3479
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9113     
+Min. group size:  1       Log-Likelihood:     -10876.2422
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.388    0.076 136.502 0.000 10.239 10.537
-BOTCLDS       -0.146    0.041  -3.608 0.000 -0.226 -0.067
-STATUS        -0.007    0.017  -0.414 0.679 -0.041  0.027
-LANGCOG       -0.135    0.041  -3.315 0.001 -0.214 -0.055
-SWANID Var     1.171    0.055                            
+Intercept     10.393    0.083 125.142 0.000 10.231 10.556
+BOTCLDS       -0.156    0.042  -3.741 0.000 -0.238 -0.074
+STATUS        -0.010    0.022  -0.463 0.643 -0.054  0.033
+LANGCOG       -0.131    0.041  -3.202 0.001 -0.211 -0.051
+SWANID Var     1.166    0.056                            
 =========================================================
 
 
@@ -430,19 +430,19 @@ Fitting model for STIFF → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8807     
-Min. group size:  1       Log-Likelihood:     -11247.8604
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9077     
+Min. group size:  1       Log-Likelihood:     -10883.4018
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.345    0.076 136.597 0.000 10.196 10.493
-STIFF          0.024    0.023   1.053 0.292 -0.021  0.069
-STATUS        -0.006    0.017  -0.338 0.736 -0.040  0.028
-LANGCOG       -0.132    0.041  -3.239 0.001 -0.212 -0.052
-SWANID Var     1.188    0.055                            
+Intercept     10.342    0.083 125.070 0.000 10.180 10.504
+STIFF          0.021    0.024   0.889 0.374 -0.025  0.067
+STATUS        -0.007    0.022  -0.297 0.766 -0.050  0.037
+LANGCOG       -0.129    0.041  -3.123 0.002 -0.209 -0.048
+SWANID Var     1.185    0.057                            
 =========================================================
 
 
@@ -450,19 +450,19 @@ Fitting model for IRRITAB → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8805     
-Min. group size:  1       Log-Likelihood:     -11247.7704
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9072     
+Min. group size:  1       Log-Likelihood:     -10882.9256
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.352    0.076 136.872 0.000 10.203 10.500
-IRRITAB       -0.026    0.023  -1.144 0.253 -0.071  0.019
-STATUS        -0.007    0.017  -0.377 0.706 -0.041  0.028
-LANGCOG       -0.135    0.041  -3.308 0.001 -0.215 -0.055
-SWANID Var     1.188    0.055                            
+Intercept     10.351    0.082 125.478 0.000 10.189 10.512
+IRRITAB       -0.031    0.024  -1.322 0.186 -0.077  0.015
+STATUS        -0.008    0.022  -0.350 0.727 -0.051  0.036
+LANGCOG       -0.132    0.041  -3.202 0.001 -0.213 -0.051
+SWANID Var     1.186    0.057                            
 =========================================================
 
 
@@ -470,19 +470,19 @@ Fitting model for MOODCHG → TOTIDE2
           Mixed Linear Model Regression Results
 =========================================================
 Model:            MixedLM Dependent Variable: TOTIDE2    
-No. Observations: 5858    Method:             REML       
-No. Groups:       2259    Scale:              1.8844     
-Min. group size:  1       Log-Likelihood:     -11244.1497
+No. Observations: 5649    Method:             REML       
+No. Groups:       2238    Scale:              1.9113     
+Min. group size:  1       Log-Likelihood:     -10879.8132
 Max. group size:  3       Converged:          Yes        
-Mean group size:  2.6                                    
+Mean group size:  2.5                                    
 ---------------------------------------------------------
               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
 ---------------------------------------------------------
-Intercept     10.345    0.075 137.130 0.000 10.197 10.492
-MOODCHG       -0.074    0.026  -2.886 0.004 -0.124 -0.024
-STATUS        -0.005    0.017  -0.289 0.773 -0.039  0.029
-LANGCOG       -0.135    0.041  -3.322 0.001 -0.215 -0.055
-SWANID Var     1.174    0.055                            
+Intercept     10.341    0.082 125.683 0.000 10.180 10.502
+MOODCHG       -0.072    0.026  -2.792 0.005 -0.123 -0.022
+STATUS        -0.005    0.022  -0.236 0.813 -0.049  0.038
+LANGCOG       -0.131    0.041  -3.205 0.001 -0.212 -0.051
+SWANID Var     1.172    0.056                            
 =========================================================
 
 
@@ -514,99 +514,99 @@ Fitting model for MOODCHG → TOTIDE1
 
 Model summary for HOTFLAS → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.553    0.073  144.289  0.000  10.410  10.697
-HOTFLAS     -0.008    0.021   -0.385  0.700  -0.049   0.033
-STATUS      -0.009    0.017   -0.509  0.611  -0.042   0.025
-LANGCOG     -0.157    0.039   -4.037  0.000  -0.233  -0.081
-SWANID Var   1.001    0.050                                
+Intercept   10.583    0.080  132.803  0.000  10.427  10.739
+HOTFLAS     -0.008    0.021   -0.359  0.720  -0.050   0.034
+STATUS      -0.020    0.021   -0.957  0.339  -0.062   0.021
+LANGCOG     -0.158    0.039   -4.020  0.000  -0.235  -0.081
+SWANID Var   1.010    0.052                                
 
 Model summary for NUMHOTF → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.552    0.073  144.141  0.000  10.409  10.696
-NUMHOTF     -0.008    0.032   -0.258  0.797  -0.070   0.054
-STATUS      -0.008    0.017   -0.499  0.618  -0.042   0.025
-LANGCOG     -0.156    0.039   -4.026  0.000  -0.233  -0.080
-SWANID Var   1.001    0.050                                
+Intercept   10.584    0.080  132.757  0.000  10.427  10.740
+NUMHOTF     -0.014    0.033   -0.423  0.673  -0.078   0.050
+STATUS      -0.020    0.021   -0.956  0.339  -0.062   0.021
+LANGCOG     -0.158    0.039   -4.025  0.000  -0.235  -0.081
+SWANID Var   1.010    0.052                                
 
 Model summary for BOTHOTF → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.547    0.074  143.308  0.000  10.402  10.691
-BOTHOTF      0.007    0.035    0.203  0.839  -0.061   0.076
-STATUS      -0.008    0.017   -0.475  0.635  -0.041   0.025
-LANGCOG     -0.155    0.039   -3.992  0.000  -0.231  -0.079
-SWANID Var   1.002    0.050                                
+Intercept   10.576    0.080  132.018  0.000  10.419  10.733
+BOTHOTF      0.006    0.036    0.175  0.861  -0.064   0.077
+STATUS      -0.020    0.021   -0.921  0.357  -0.061   0.022
+LANGCOG     -0.156    0.039   -3.980  0.000  -0.233  -0.079
+SWANID Var   1.011    0.052                                
 
 Model summary for NITESWE → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.557    0.073  145.425  0.000  10.415  10.699
-NITESWE     -0.028    0.023   -1.218  0.223  -0.072   0.017
-STATUS      -0.009    0.017   -0.519  0.604  -0.042   0.024
-LANGCOG     -0.159    0.039   -4.103  0.000  -0.235  -0.083
-SWANID Var   0.996    0.050                                
+Intercept   10.589    0.079  134.000  0.000  10.434  10.744
+NITESWE     -0.035    0.024   -1.463  0.143  -0.081   0.012
+STATUS      -0.021    0.021   -0.980  0.327  -0.063   0.021
+LANGCOG     -0.161    0.039   -4.112  0.000  -0.238  -0.084
+SWANID Var   1.004    0.052                                
 
 Model summary for NUMNITS → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.568    0.073  144.818  0.000  10.425  10.711
-NUMNITS     -0.075    0.040   -1.859  0.063  -0.155   0.004
-STATUS      -0.009    0.017   -0.506  0.613  -0.042   0.025
-LANGCOG     -0.160    0.039   -4.127  0.000  -0.236  -0.084
-SWANID Var   0.995    0.050                                
+Intercept   10.601    0.079  133.537  0.000  10.446  10.757
+NUMNITS     -0.089    0.042   -2.150  0.032  -0.171  -0.008
+STATUS      -0.021    0.021   -0.964  0.335  -0.062   0.021
+LANGCOG     -0.162    0.039   -4.134  0.000  -0.239  -0.085
+SWANID Var   1.004    0.052                                
 
 Model summary for BOTNITS → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.555    0.073  144.102  0.000  10.411  10.698
-BOTNITS     -0.017    0.035   -0.480  0.631  -0.085   0.051
-STATUS      -0.008    0.017   -0.490  0.624  -0.041   0.025
-LANGCOG     -0.157    0.039   -4.044  0.000  -0.233  -0.081
-SWANID Var   1.000    0.050                                
+Intercept   10.587    0.080  132.880  0.000  10.431  10.743
+BOTNITS     -0.024    0.036   -0.682  0.495  -0.094   0.045
+STATUS      -0.020    0.021   -0.941  0.347  -0.062   0.022
+LANGCOG     -0.159    0.039   -4.047  0.000  -0.236  -0.082
+SWANID Var   1.008    0.052                                
 
 Model summary for COLDSWE → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.593    0.073  145.432  0.000  10.450  10.735
-COLDSWE     -0.218    0.053   -4.102  0.000  -0.321  -0.114
-STATUS      -0.009    0.017   -0.534  0.593  -0.042   0.024
-LANGCOG     -0.161    0.039   -4.170  0.000  -0.236  -0.085
-SWANID Var   0.981    0.050                                
+Intercept   10.625    0.079  133.975  0.000  10.469  10.780
+COLDSWE     -0.214    0.054   -3.943  0.000  -0.320  -0.108
+STATUS      -0.022    0.021   -1.036  0.300  -0.064   0.020
+LANGCOG     -0.162    0.039   -4.152  0.000  -0.238  -0.085
+SWANID Var   0.990    0.051                                
 
 Model summary for NUMCLDS → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.581    0.073  145.208  0.000  10.438  10.724
-NUMCLDS     -0.117    0.037   -3.181  0.001  -0.190  -0.045
-STATUS      -0.010    0.017   -0.571  0.568  -0.043   0.023
-LANGCOG     -0.157    0.039   -4.059  0.000  -0.232  -0.081
-SWANID Var   0.987    0.050                                
+Intercept   10.616    0.079  133.762  0.000  10.461  10.772
+NUMCLDS     -0.125    0.038   -3.310  0.001  -0.199  -0.051
+STATUS      -0.023    0.021   -1.071  0.284  -0.064   0.019
+LANGCOG     -0.158    0.039   -4.047  0.000  -0.234  -0.081
+SWANID Var   0.996    0.051                                
 
 Model summary for BOTCLDS → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.588    0.073  145.365  0.000  10.445  10.731
-BOTCLDS     -0.147    0.040   -3.695  0.000  -0.225  -0.069
-STATUS      -0.009    0.017   -0.526  0.599  -0.042   0.024
-LANGCOG     -0.158    0.039   -4.093  0.000  -0.233  -0.082
-SWANID Var   0.980    0.050                                
+Intercept   10.623    0.079  133.878  0.000  10.468  10.779
+BOTCLDS     -0.151    0.041   -3.701  0.000  -0.231  -0.071
+STATUS      -0.022    0.021   -1.045  0.296  -0.064   0.019
+LANGCOG     -0.159    0.039   -4.081  0.000  -0.235  -0.083
+SWANID Var   0.989    0.051                                
 
 Model summary for STIFF → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.543    0.072  145.458  0.000  10.401  10.685
-STIFF        0.031    0.022    1.367  0.172  -0.013   0.075
-STATUS      -0.007    0.017   -0.426  0.670  -0.040   0.026
-LANGCOG     -0.155    0.039   -3.999  0.000  -0.231  -0.079
-SWANID Var   1.000    0.050                                
+Intercept   10.572    0.079  133.804  0.000  10.417  10.727
+STIFF        0.026    0.023    1.134  0.257  -0.019   0.071
+STATUS      -0.018    0.021   -0.857  0.391  -0.060   0.024
+LANGCOG     -0.156    0.039   -3.988  0.000  -0.233  -0.079
+SWANID Var   1.010    0.052                                
 
 Model summary for IRRITAB → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.550    0.072  145.719  0.000  10.408  10.692
-IRRITAB     -0.014    0.022   -0.637  0.524  -0.058   0.029
-STATUS      -0.008    0.017   -0.481  0.630  -0.041   0.025
-LANGCOG     -0.157    0.039   -4.046  0.000  -0.233  -0.081
-SWANID Var   1.001    0.050                                
+Intercept   10.581    0.079  134.225  0.000  10.426  10.735
+IRRITAB     -0.022    0.023   -0.970  0.332  -0.067   0.023
+STATUS      -0.020    0.021   -0.928  0.353  -0.062   0.022
+LANGCOG     -0.159    0.039   -4.052  0.000  -0.236  -0.082
+SWANID Var   1.010    0.052                                
 
 Model summary for MOODCHG → TOTIDE1:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.546    0.072  145.955  0.000  10.405  10.688
-MOODCHG     -0.048    0.025   -1.924  0.054  -0.097   0.001
-STATUS      -0.007    0.017   -0.424  0.671  -0.040   0.026
-LANGCOG     -0.157    0.039   -4.068  0.000  -0.233  -0.082
-SWANID Var   0.991    0.050                                
+Intercept   10.574    0.079  134.429  0.000  10.420  10.729
+MOODCHG     -0.049    0.025   -1.941  0.052  -0.099   0.000
+STATUS      -0.018    0.021   -0.852  0.394  -0.060   0.024
+LANGCOG     -0.158    0.039   -4.057  0.000  -0.235  -0.082
+SWANID Var   1.000    0.052                                
 
 Fitting model for HOTFLAS → TOTIDE2
 
@@ -634,99 +634,99 @@ Fitting model for MOODCHG → TOTIDE2
 
 Model summary for HOTFLAS → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.346    0.076  135.448  0.000  10.196  10.496
-HOTFLAS      0.007    0.021    0.321  0.748  -0.035   0.049
-STATUS      -0.006    0.018   -0.364  0.716  -0.041   0.028
-LANGCOG     -0.132    0.041   -3.213  0.001  -0.212  -0.051
-SWANID Var   1.190    0.056                                
+Intercept   10.341    0.083  124.001  0.000  10.177  10.504
+HOTFLAS      0.012    0.022    0.566  0.572  -0.031   0.056
+STATUS      -0.007    0.022   -0.313  0.754  -0.051   0.037
+LANGCOG     -0.127    0.041   -3.073  0.002  -0.208  -0.046
+SWANID Var   1.188    0.057                                
 
 Model summary for NUMHOTF → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.345    0.076  135.318  0.000  10.195  10.495
-NUMHOTF      0.012    0.032    0.382  0.703  -0.051   0.076
-STATUS      -0.006    0.017   -0.363  0.717  -0.041   0.028
-LANGCOG     -0.132    0.041   -3.216  0.001  -0.212  -0.051
-SWANID Var   1.190    0.056                                
+Intercept   10.346    0.083  124.033  0.000  10.182  10.509
+NUMHOTF      0.005    0.033    0.138  0.891  -0.061   0.070
+STATUS      -0.008    0.022   -0.347  0.729  -0.051   0.036
+LANGCOG     -0.129    0.041   -3.115  0.002  -0.210  -0.048
+SWANID Var   1.187    0.057                                
 
 Model summary for BOTHOTF → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.353    0.077  134.793  0.000  10.202  10.503
-BOTHOTF     -0.009    0.036   -0.245  0.806  -0.079   0.061
-STATUS      -0.007    0.017   -0.395  0.693  -0.041   0.027
-LANGCOG     -0.133    0.041   -3.263  0.001  -0.214  -0.053
-SWANID Var   1.189    0.056                                
+Intercept   10.353    0.084  123.596  0.000  10.189  10.517
+BOTHOTF     -0.014    0.037   -0.373  0.709  -0.086   0.058
+STATUS      -0.008    0.022   -0.376  0.707  -0.052   0.035
+LANGCOG     -0.130    0.041   -3.155  0.002  -0.211  -0.049
+SWANID Var   1.185    0.057                                
 
 Model summary for NITESWE → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.349    0.076  136.364  0.000  10.200  10.498
-NITESWE      0.001    0.023    0.056  0.956  -0.044   0.047
-STATUS      -0.007    0.017   -0.383  0.702  -0.041   0.028
-LANGCOG     -0.133    0.041   -3.241  0.001  -0.213  -0.052
-SWANID Var   1.190    0.056                                
+Intercept   10.350    0.083  125.036  0.000  10.188  10.512
+NITESWE     -0.007    0.024   -0.286  0.775  -0.055   0.041
+STATUS      -0.008    0.022   -0.364  0.716  -0.052   0.035
+LANGCOG     -0.130    0.041   -3.149  0.002  -0.211  -0.049
+SWANID Var   1.185    0.057                                
 
 Model summary for NUMNITS → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.355    0.076  135.780  0.000  10.205  10.504
-NUMNITS     -0.022    0.041   -0.528  0.597  -0.103   0.059
-STATUS      -0.007    0.017   -0.389  0.697  -0.041   0.027
-LANGCOG     -0.134    0.041   -3.279  0.001  -0.214  -0.054
-SWANID Var   1.187    0.056                                
+Intercept   10.357    0.083  124.592  0.000  10.194  10.520
+NUMNITS     -0.037    0.043   -0.873  0.383  -0.121   0.046
+STATUS      -0.008    0.022   -0.367  0.713  -0.052   0.035
+LANGCOG     -0.131    0.041   -3.183  0.001  -0.212  -0.050
+SWANID Var   1.183    0.057                                
 
 Model summary for BOTNITS → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.351    0.076  135.324  0.000  10.201  10.501
-BOTNITS     -0.004    0.036   -0.124  0.901  -0.074   0.065
-STATUS      -0.007    0.017   -0.385  0.700  -0.041   0.028
-LANGCOG     -0.133    0.041   -3.254  0.001  -0.213  -0.053
-SWANID Var   1.189    0.056                                
+Intercept   10.353    0.083  124.203  0.000  10.190  10.516
+BOTNITS     -0.016    0.036   -0.440  0.660  -0.088   0.055
+STATUS      -0.008    0.022   -0.361  0.718  -0.052   0.036
+LANGCOG     -0.130    0.041   -3.160  0.002  -0.211  -0.050
+SWANID Var   1.185    0.057                                
 
 Model summary for COLDSWE → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.387    0.076  136.474  0.000  10.238  10.537
-COLDSWE     -0.192    0.054   -3.549  0.000  -0.298  -0.086
-STATUS      -0.007    0.017   -0.417  0.677  -0.041   0.027
-LANGCOG     -0.137    0.041   -3.376  0.001  -0.217  -0.058
-SWANID Var   1.171    0.055                                
+Intercept   10.388    0.083  125.098  0.000  10.225  10.551
+COLDSWE     -0.189    0.056   -3.398  0.001  -0.298  -0.080
+STATUS      -0.010    0.022   -0.439  0.660  -0.053   0.034
+LANGCOG     -0.133    0.041   -3.255  0.001  -0.214  -0.053
+SWANID Var   1.168    0.056                                
 
 Model summary for NUMCLDS → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.374    0.076  136.200  0.000  10.225  10.523
-NUMCLDS     -0.091    0.038   -2.422  0.015  -0.165  -0.017
-STATUS      -0.008    0.017   -0.444  0.657  -0.042   0.026
-LANGCOG     -0.133    0.041   -3.278  0.001  -0.213  -0.054
-SWANID Var   1.180    0.055                                
+Intercept   10.378    0.083  124.854  0.000  10.215  10.541
+NUMCLDS     -0.101    0.039   -2.624  0.009  -0.177  -0.026
+STATUS      -0.010    0.022   -0.462  0.644  -0.054   0.033
+LANGCOG     -0.130    0.041   -3.163  0.002  -0.210  -0.049
+SWANID Var   1.176    0.056                                
 
 Model summary for BOTCLDS → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.388    0.076  136.502  0.000  10.239  10.537
-BOTCLDS     -0.146    0.041   -3.608  0.000  -0.226  -0.067
-STATUS      -0.007    0.017   -0.414  0.679  -0.041   0.027
-LANGCOG     -0.135    0.041   -3.315  0.001  -0.214  -0.055
-SWANID Var   1.171    0.055                                
+Intercept   10.393    0.083  125.142  0.000  10.231  10.556
+BOTCLDS     -0.156    0.042   -3.741  0.000  -0.238  -0.074
+STATUS      -0.010    0.022   -0.463  0.643  -0.054   0.033
+LANGCOG     -0.131    0.041   -3.202  0.001  -0.211  -0.051
+SWANID Var   1.166    0.056                                
 
 Model summary for STIFF → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.345    0.076  136.597  0.000  10.196  10.493
-STIFF        0.024    0.023    1.053  0.292  -0.021   0.069
-STATUS      -0.006    0.017   -0.338  0.736  -0.040   0.028
-LANGCOG     -0.132    0.041   -3.239  0.001  -0.212  -0.052
-SWANID Var   1.188    0.055                                
+Intercept   10.342    0.083  125.070  0.000  10.180  10.504
+STIFF        0.021    0.024    0.889  0.374  -0.025   0.067
+STATUS      -0.007    0.022   -0.297  0.766  -0.050   0.037
+LANGCOG     -0.129    0.041   -3.123  0.002  -0.209  -0.048
+SWANID Var   1.185    0.057                                
 
 Model summary for IRRITAB → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.352    0.076  136.872  0.000  10.203  10.500
-IRRITAB     -0.026    0.023   -1.144  0.253  -0.071   0.019
-STATUS      -0.007    0.017   -0.377  0.706  -0.041   0.028
-LANGCOG     -0.135    0.041   -3.308  0.001  -0.215  -0.055
-SWANID Var   1.188    0.055                                
+Intercept   10.351    0.082  125.478  0.000  10.189  10.512
+IRRITAB     -0.031    0.024   -1.322  0.186  -0.077   0.015
+STATUS      -0.008    0.022   -0.350  0.727  -0.051   0.036
+LANGCOG     -0.132    0.041   -3.202  0.001  -0.213  -0.051
+SWANID Var   1.186    0.057                                
 
 Model summary for MOODCHG → TOTIDE2:
              Coef. Std.Err.        z  P>|z|  [0.025  0.975]
-Intercept   10.345    0.075  137.130  0.000  10.197  10.492
-MOODCHG     -0.074    0.026   -2.886  0.004  -0.124  -0.024
-STATUS      -0.005    0.017   -0.289  0.773  -0.039   0.029
-LANGCOG     -0.135    0.041   -3.322  0.001  -0.215  -0.055
-SWANID Var   1.174    0.055                                
+Intercept   10.341    0.082  125.683  0.000  10.180  10.502
+MOODCHG     -0.072    0.026   -2.792  0.005  -0.123  -0.022
+STATUS      -0.005    0.022   -0.236  0.813  -0.049   0.038
+LANGCOG     -0.131    0.041   -3.205  0.001  -0.212  -0.051
+SWANID Var   1.172    0.056                                
 
 Generating mean trajectories...
 

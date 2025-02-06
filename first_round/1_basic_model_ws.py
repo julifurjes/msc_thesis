@@ -23,31 +23,24 @@ class MenopauseAnalysis:
         self.output_dir = get_output_dir('1_stages_model', 'within-subjects') 
     
     def filter_status(self):
-        """Include both natural and surgical menopause cases and create group labels."""
+        """Filter the dataset to include only subjects with STATUS 2-5."""
         self.data['STATUS'] = pd.to_numeric(self.data['STATUS'], errors='coerce')
-        # Keep only statuses of interest (surgical: 1, 8; natural: 2,3,4,5)
-        self.data = self.data[self.data['STATUS'].isin([1, 2, 3, 4, 5, 8])]
+        self.data = self.data[self.data['STATUS'].between(2, 5)]
         
-        # Map status to more descriptive labels for natural statuses and mark surgical statuses
+        # Map STATUS to more descriptive labels
         status_map = {
-            1: 'Surgical',
             2: 'Post-menopause',
             3: 'Late Peri',
             4: 'Early Peri',
-            5: 'Pre-menopause',
-            8: 'Surgical'
+            5: 'Pre-menopause'
         }
         self.data['STATUS_Label'] = self.data['STATUS'].map(status_map)
         
-        # Create a new variable to distinguish natural vs. surgical menopause
-        self.data['Menopause_Type'] = np.where(self.data['STATUS'].isin([1, 8]), 'Surgical', 'Natural')
-        
-        # If you still need an ordering for the natural stages, you can keep the categorical for STATUS_Label.
-        # For instance, you may want natural stages to appear in order and have “Surgical” as a separate category.
-        natural_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause']
+        # Create a categorical type with proper order for plotting
+        status_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause']
         self.data['STATUS_Label'] = pd.Categorical(
             self.data['STATUS_Label'],
-            categories=['Surgical'] + natural_order,
+            categories=status_order,
             ordered=True
         )
 
@@ -134,6 +127,7 @@ class MenopauseAnalysis:
                 print(f"Error in GEE analysis for {outcome}: {str(e)}")
                 print("Data shape:", analysis_data.shape)
                 print("Formula:", formula)
+                print("Columns in data:", analysis_data.columns.tolist())
     
     def plot_gee_results(self):
         """Create forest plots of GEE results for all cognitive variables."""
@@ -239,29 +233,36 @@ class MenopauseAnalysis:
         print(f"\nPlot saved as: {file_name}")
 
     def calculate_baseline_changes(self):
-        """Calculate changes from each subject's first available measurement as baseline."""
+        """Calculate changes from baseline for each subject."""
         cognitive_vars = ['TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
         
+        # Convert columns to numeric
         for col in cognitive_vars:
             self.data[col] = pd.to_numeric(self.data[col], errors='coerce')
         
         # Sort by subject ID and visit
         self.data = self.data.sort_values(['SWANID', 'VISIT'])
         
-        # Use the first visit for each subject as baseline, regardless of STATUS
-        baseline_data = self.data.groupby('SWANID').first().reset_index()
+        # For each subject, use their Pre-menopause measurement as baseline
+        baseline_data = (self.data[self.data['STATUS_Label'] == 'Pre-menopause']
+                        .groupby('SWANID')
+                        .first()
+                        .reset_index())
         
         baseline_cols = {col: f'{col}_baseline' for col in cognitive_vars}
         baseline_data = baseline_data[['SWANID'] + cognitive_vars].rename(columns=baseline_cols)
         
-        # Merge baseline data back into main DataFrame
+        # Merge baseline data back
         self.data = self.data.merge(baseline_data, on='SWANID', how='left')
         
         # Calculate changes from baseline
         for var in cognitive_vars:
             self.data[f'{var}_change'] = self.data[var] - self.data[f'{var}_baseline']
+            
+            # Calculate percentage change
             self.data[f'{var}_pct_change'] = (
-                (self.data[var] - self.data[f'{var}_baseline']) / self.data[f'{var}_baseline'] * 100
+                (self.data[var] - self.data[f'{var}_baseline']) / 
+                self.data[f'{var}_baseline'] * 100
             )
         
         return self.data
@@ -291,13 +292,13 @@ class MenopauseAnalysis:
             # Create violin plot with boxplot inside
             sns.violinplot(
                 data=self.data,
-                x='STATUS_Label',  # or another variable if you want to separate by VISIT/time
+                x='STATUS_Label',
                 y=var_change,
-                hue='Menopause_Type',
-                split=True,  # if appropriate
                 inner='box',
                 ax=axes[idx],
-                palette="coolwarm"
+                palette=colors,
+                hue='STATUS_Label',
+                legend=False
             )
             
             # Customize the plot

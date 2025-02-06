@@ -1,8 +1,8 @@
-Analysis Run: 2025-02-05 11:34:32
+Analysis Run: 2025-02-06 15:11:23
 ================================================================================
 
 Preparing data...
-Data shape after preprocessing: (5858, 1719)
+Data shape after preprocessing: (5649, 1720)
 
 Calculating baseline changes...
 
@@ -12,600 +12,624 @@ GEE Results for Hot Flashes → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.811
-Covariance type:                    robust   Time:                         11:34:33
+Date:                     Thu, 06 Feb 2025   Scale:                           2.866
+Covariance type:                    robust   Time:                         15:11:25
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4190      0.199     52.371      0.000      10.029      10.809
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0358      0.203     -0.176      0.860      -0.435       0.363
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0030      0.208      0.014      0.989      -0.406       0.411
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0654      0.201     -0.325      0.745      -0.460       0.329
-HOTFLAS                                                          -0.0056      0.024     -0.231      0.817      -0.053       0.042
+Intercept                                                        10.4239      0.199     52.393      0.000      10.034      10.814
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4138      0.228     -1.818      0.069      -0.860       0.032
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0351      0.203     -0.172      0.863      -0.434       0.364
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0037      0.208     -0.018      0.986      -0.412       0.405
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0717      0.201     -0.356      0.722      -0.466       0.323
+HOTFLAS                                                           0.0039      0.023      0.169      0.866      -0.041       0.049
 ==============================================================================
-Skew:                         -1.0303   Kurtosis:                       0.8809
-Centered skew:                -0.2472   Centered kurtosis:              1.2772
+Skew:                         -1.0608   Kurtosis:                       1.1588
+Centered skew:                -0.2547   Centered kurtosis:              1.3577
 ==============================================================================
 
 GEE Results for Number of Hot Flashes → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.811
-Covariance type:                    robust   Time:                         11:34:33
+Date:                     Thu, 06 Feb 2025   Scale:                           2.866
+Covariance type:                    robust   Time:                         15:11:26
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4176      0.199     52.391      0.000      10.028      10.807
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0330      0.203     -0.162      0.871      -0.432       0.366
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0073      0.209      0.035      0.972      -0.402       0.416
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0618      0.201     -0.307      0.759      -0.456       0.333
-NUMHOTF                                                          -0.0196      0.039     -0.498      0.619      -0.097       0.058
+Intercept                                                        10.4227      0.199     52.384      0.000      10.033      10.813
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4113      0.228     -1.807      0.071      -0.857       0.035
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0343      0.204     -0.169      0.866      -0.433       0.365
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0007      0.209     -0.003      0.997      -0.410       0.408
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0697      0.201     -0.346      0.729      -0.464       0.325
+NUMHOTF                                                          -0.0001      0.038     -0.003      0.998      -0.075       0.074
 ==============================================================================
-Skew:                         -1.0293   Kurtosis:                       0.8791
-Centered skew:                -0.2471   Centered kurtosis:              1.2788
+Skew:                         -1.0603   Kurtosis:                       1.1570
+Centered skew:                -0.2546   Centered kurtosis:              1.3572
 ==============================================================================
 
 GEE Results for Bothersomeness of Hot Flashes → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.811
-Covariance type:                    robust   Time:                         11:34:34
+Date:                     Thu, 06 Feb 2025   Scale:                           2.866
+Covariance type:                    robust   Time:                         15:11:27
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4207      0.199     52.423      0.000      10.031      10.810
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0366      0.203     -0.180      0.857      -0.435       0.362
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0003      0.208     -0.001      0.999      -0.408       0.408
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0675      0.201     -0.336      0.737      -0.462       0.327
-BOTHOTF                                                          -0.0026      0.039     -0.067      0.947      -0.079       0.074
+Intercept                                                        10.4231      0.199     52.436      0.000      10.033      10.813
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4165      0.227     -1.833      0.067      -0.862       0.029
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0365      0.203     -0.179      0.858      -0.435       0.362
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0071      0.208     -0.034      0.973      -0.415       0.401
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0742      0.201     -0.369      0.712      -0.468       0.320
+BOTHOTF                                                           0.0178      0.038      0.474      0.635      -0.056       0.091
 ==============================================================================
-Skew:                         -1.0309   Kurtosis:                       0.8833
-Centered skew:                -0.2472   Centered kurtosis:              1.2774
+Skew:                         -1.0615   Kurtosis:                       1.1625
+Centered skew:                -0.2545   Centered kurtosis:              1.3572
 ==============================================================================
 
 GEE Results for Night Sweats → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.808
-Covariance type:                    robust   Time:                         11:34:35
+Date:                     Thu, 06 Feb 2025   Scale:                           2.864
+Covariance type:                    robust   Time:                         15:11:28
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4146      0.198     52.514      0.000      10.026      10.803
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0327      0.203     -0.161      0.872      -0.430       0.365
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0133      0.208      0.064      0.949      -0.394       0.421
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0593      0.201     -0.296      0.768      -0.452       0.334
-NITESWE                                                          -0.0370      0.029     -1.277      0.202      -0.094       0.020
+Intercept                                                        10.4179      0.198     52.485      0.000      10.029      10.807
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4024      0.227     -1.772      0.076      -0.848       0.043
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0311      0.203     -0.153      0.878      -0.429       0.367
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0104      0.208      0.050      0.960      -0.397       0.418
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0629      0.201     -0.313      0.754      -0.456       0.330
+NITESWE                                                          -0.0285      0.027     -1.072      0.284      -0.081       0.024
 ==============================================================================
-Skew:                         -1.0274   Kurtosis:                       0.8724
-Centered skew:                -0.2463   Centered kurtosis:              1.2737
+Skew:                         -1.0580   Kurtosis:                       1.1522
+Centered skew:                -0.2541   Centered kurtosis:              1.3533
 ==============================================================================
 
 GEE Results for Number of Night Sweats → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.805
-Covariance type:                    robust   Time:                         11:34:35
+Date:                     Thu, 06 Feb 2025   Scale:                           2.862
+Covariance type:                    robust   Time:                         15:11:28
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4312      0.198     52.578      0.000      10.042      10.820
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0336      0.203     -0.165      0.869      -0.432       0.365
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0135      0.208      0.065      0.948      -0.394       0.421
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0606      0.201     -0.302      0.763      -0.454       0.333
-NUMNITS                                                          -0.1105      0.048     -2.324      0.020      -0.204      -0.017
+Intercept                                                        10.4307      0.199     52.544      0.000      10.042      10.820
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4038      0.227     -1.778      0.075      -0.849       0.041
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0319      0.203     -0.157      0.875      -0.430       0.366
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0100      0.208      0.048      0.962      -0.397       0.417
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0642      0.201     -0.320      0.749      -0.458       0.329
+NUMNITS                                                          -0.0816      0.048     -1.693      0.090      -0.176       0.013
 ==============================================================================
-Skew:                         -1.0275   Kurtosis:                       0.8783
-Centered skew:                -0.2461   Centered kurtosis:              1.2869
+Skew:                         -1.0580   Kurtosis:                       1.1544
+Centered skew:                -0.2538   Centered kurtosis:              1.3597
 ==============================================================================
 
 GEE Results for Bothersomeness of Night Sweats → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.809
-Covariance type:                    robust   Time:                         11:34:36
+Date:                     Thu, 06 Feb 2025   Scale:                           2.865
+Covariance type:                    robust   Time:                         15:11:29
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4237      0.198     52.564      0.000      10.035      10.812
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0330      0.203     -0.163      0.871      -0.431       0.365
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0081      0.208      0.039      0.969      -0.399       0.415
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0621      0.201     -0.309      0.757      -0.455       0.331
-BOTNITS                                                          -0.0427      0.039     -1.084      0.278      -0.120       0.034
+Intercept                                                        10.4239      0.199     52.485      0.000      10.035      10.813
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4085      0.227     -1.797      0.072      -0.854       0.037
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0329      0.203     -0.162      0.871      -0.432       0.366
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0027      0.208      0.013      0.990      -0.405       0.410
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0675      0.201     -0.336      0.737      -0.461       0.326
+BOTNITS                                                          -0.0159      0.038     -0.423      0.672      -0.090       0.058
 ==============================================================================
-Skew:                         -1.0300   Kurtosis:                       0.8819
-Centered skew:                -0.2478   Centered kurtosis:              1.2830
+Skew:                         -1.0600   Kurtosis:                       1.1570
+Centered skew:                -0.2549   Centered kurtosis:              1.3579
 ==============================================================================
 
 GEE Results for Cold Sweats → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.799
-Covariance type:                    robust   Time:                         11:34:36
+Date:                     Thu, 06 Feb 2025   Scale:                           2.853
+Covariance type:                    robust   Time:                         15:11:30
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4411      0.198     52.653      0.000      10.052      10.830
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0318      0.203     -0.157      0.875      -0.430       0.366
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0166      0.207      0.080      0.936      -0.390       0.423
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0543      0.201     -0.271      0.786      -0.447       0.339
-COLDSWE                                                          -0.2148      0.073     -2.956      0.003      -0.357      -0.072
+Intercept                                                        10.4430      0.198     52.644      0.000      10.054      10.832
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.3841      0.227     -1.695      0.090      -0.828       0.060
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0300      0.203     -0.148      0.883      -0.428       0.368
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0158      0.207      0.076      0.939      -0.391       0.422
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0569      0.201     -0.283      0.777      -0.450       0.336
+COLDSWE                                                          -0.2061      0.069     -2.992      0.003      -0.341      -0.071
 ==============================================================================
-Skew:                         -1.0209   Kurtosis:                       0.8528
-Centered skew:                -0.2489   Centered kurtosis:              1.2830
+Skew:                         -1.0521   Kurtosis:                       1.1361
+Centered skew:                -0.2552   Centered kurtosis:              1.3549
 ==============================================================================
 
 GEE Results for Number of Cold Sweats → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.799
-Covariance type:                    robust   Time:                         11:34:37
+Date:                     Thu, 06 Feb 2025   Scale:                           2.856
+Covariance type:                    robust   Time:                         15:11:31
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4440      0.198     52.661      0.000      10.055      10.833
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0348      0.203     -0.171      0.864      -0.433       0.363
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0076      0.207      0.037      0.971      -0.399       0.414
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0562      0.201     -0.280      0.779      -0.449       0.337
-NUMCLDS                                                          -0.1466      0.043     -3.438      0.001      -0.230      -0.063
+Intercept                                                        10.4432      0.198     52.628      0.000      10.054      10.832
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.3980      0.227     -1.755      0.079      -0.843       0.047
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0330      0.203     -0.162      0.871      -0.431       0.365
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0063      0.208      0.030      0.976      -0.400       0.413
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0598      0.201     -0.298      0.766      -0.453       0.333
+NUMCLDS                                                          -0.1246      0.041     -3.074      0.002      -0.204      -0.045
 ==============================================================================
-Skew:                         -1.0264   Kurtosis:                       0.8814
-Centered skew:                -0.2507   Centered kurtosis:              1.2873
+Skew:                         -1.0574   Kurtosis:                       1.1565
+Centered skew:                -0.2567   Centered kurtosis:              1.3582
 ==============================================================================
 
 GEE Results for Bothersomeness of Cold Sweats → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.796
-Covariance type:                    robust   Time:                         11:34:37
+Date:                     Thu, 06 Feb 2025   Scale:                           2.852
+Covariance type:                    robust   Time:                         15:11:32
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4498      0.198     52.847      0.000      10.062      10.837
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0328      0.203     -0.162      0.871      -0.430       0.364
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0068      0.207      0.033      0.974      -0.399       0.413
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0548      0.200     -0.274      0.784      -0.447       0.337
-BOTCLDS                                                          -0.1756      0.053     -3.311      0.001      -0.280      -0.072
+Intercept                                                        10.4487      0.198     52.791      0.000      10.061      10.837
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.3931      0.226     -1.736      0.082      -0.837       0.051
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0314      0.203     -0.155      0.877      -0.429       0.366
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0056      0.207      0.027      0.978      -0.400       0.412
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0586      0.200     -0.293      0.770      -0.451       0.334
+BOTCLDS                                                          -0.1501      0.050     -2.991      0.003      -0.248      -0.052
 ==============================================================================
-Skew:                         -1.0224   Kurtosis:                       0.8648
-Centered skew:                -0.2533   Centered kurtosis:              1.2867
+Skew:                         -1.0543   Kurtosis:                       1.1428
+Centered skew:                -0.2588   Centered kurtosis:              1.3516
 ==============================================================================
 
 GEE Results for Stiffness → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.809
-Covariance type:                    robust   Time:                         11:34:38
+Date:                     Thu, 06 Feb 2025   Scale:                           2.864
+Covariance type:                    robust   Time:                         15:11:32
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4341      0.198     52.792      0.000      10.047      10.821
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0481      0.202     -0.238      0.812      -0.445       0.348
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0166      0.207     -0.080      0.936      -0.422       0.389
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0848      0.200     -0.424      0.672      -0.477       0.307
-STIFF                                                             0.0347      0.025      1.374      0.169      -0.015       0.084
+Intercept                                                        10.4351      0.198     52.774      0.000      10.048      10.823
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4306      0.226     -1.902      0.057      -0.874       0.013
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0449      0.202     -0.222      0.824      -0.442       0.352
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0152      0.207     -0.073      0.942      -0.420       0.390
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0854      0.200     -0.427      0.669      -0.477       0.307
+STIFF                                                             0.0330      0.024      1.374      0.169      -0.014       0.080
 ==============================================================================
-Skew:                         -1.0322   Kurtosis:                       0.8961
-Centered skew:                -0.2476   Centered kurtosis:              1.2766
+Skew:                         -1.0612   Kurtosis:                       1.1674
+Centered skew:                -0.2548   Centered kurtosis:              1.3598
 ==============================================================================
 
 GEE Results for Irritability → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.812
-Covariance type:                    robust   Time:                         11:34:38
+Date:                     Thu, 06 Feb 2025   Scale:                           2.866
+Covariance type:                    robust   Time:                         15:11:33
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4222      0.199     52.356      0.000      10.032      10.812
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0376      0.204     -0.184      0.854      -0.437       0.362
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0030      0.208     -0.014      0.989      -0.411       0.405
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0703      0.201     -0.349      0.727      -0.465       0.324
-IRRITAB                                                          -0.0126      0.029     -0.430      0.668      -0.070       0.045
+Intercept                                                        10.4249      0.199     52.341      0.000      10.035      10.815
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4131      0.227     -1.817      0.069      -0.859       0.033
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0353      0.204     -0.173      0.863      -0.435       0.364
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0032      0.208     -0.015      0.988      -0.411       0.405
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0726      0.201     -0.361      0.718      -0.468       0.322
+IRRITAB                                                          -0.0169      0.028     -0.601      0.548      -0.072       0.038
 ==============================================================================
-Skew:                         -1.0293   Kurtosis:                       0.8761
-Centered skew:                -0.2474   Centered kurtosis:              1.2794
+Skew:                         -1.0583   Kurtosis:                       1.1467
+Centered skew:                -0.2549   Centered kurtosis:              1.3592
 ==============================================================================
 
 GEE Results for Mood Changes → Total IDE Score 1
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE1   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.809
-Covariance type:                    robust   Time:                         11:34:39
+Date:                     Thu, 06 Feb 2025   Scale:                           2.860
+Covariance type:                    robust   Time:                         15:11:34
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4186      0.199     52.400      0.000      10.029      10.808
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0343      0.203     -0.169      0.866      -0.433       0.365
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0008      0.208      0.004      0.997      -0.407       0.408
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0682      0.201     -0.339      0.734      -0.462       0.326
-MOODCHG                                                          -0.0235      0.031     -0.762      0.446      -0.084       0.037
+Intercept                                                        10.4187      0.199     52.388      0.000      10.029      10.808
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4006      0.227     -1.767      0.077      -0.845       0.044
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0289      0.204     -0.142      0.887      -0.428       0.370
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0036      0.208      0.017      0.986      -0.404       0.411
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0697      0.201     -0.347      0.729      -0.464       0.324
+MOODCHG                                                          -0.0492      0.031     -1.596      0.110      -0.110       0.011
 ==============================================================================
-Skew:                         -1.0309   Kurtosis:                       0.8843
-Centered skew:                -0.2476   Centered kurtosis:              1.2835
+Skew:                         -1.0594   Kurtosis:                       1.1538
+Centered skew:                -0.2562   Centered kurtosis:              1.3686
 ==============================================================================
 
 GEE Results for Hot Flashes → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.995
-Covariance type:                    robust   Time:                         11:34:40
+Date:                     Thu, 06 Feb 2025   Scale:                           3.058
+Covariance type:                    robust   Time:                         15:11:35
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5288      0.170     61.754      0.000      10.195      10.863
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2806      0.177     -1.589      0.112      -0.627       0.065
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3627      0.183     -1.984      0.047      -0.721      -0.004
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3431      0.173     -1.984      0.047      -0.682      -0.004
-HOTFLAS                                                           0.0222      0.024      0.933      0.351      -0.024       0.069
+Intercept                                                        10.5295      0.170     61.783      0.000      10.195      10.864
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7253      0.208     -3.482      0.000      -1.134      -0.317
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2770      0.177     -1.569      0.117      -0.623       0.069
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3632      0.183     -1.987      0.047      -0.721      -0.005
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3439      0.173     -1.989      0.047      -0.683      -0.005
+HOTFLAS                                                           0.0246      0.023      1.087      0.277      -0.020       0.069
 ==============================================================================
-Skew:                         -1.0322   Kurtosis:                       1.1322
-Centered skew:                -0.2710   Centered kurtosis:              1.2369
+Skew:                         -1.0792   Kurtosis:                       1.5170
+Centered skew:                -0.2795   Centered kurtosis:              1.4040
 ==============================================================================
 
 GEE Results for Number of Hot Flashes → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.995
-Covariance type:                    robust   Time:                         11:34:40
+Date:                     Thu, 06 Feb 2025   Scale:                           3.058
+Covariance type:                    robust   Time:                         15:11:35
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5230      0.171     61.556      0.000      10.188      10.858
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2775      0.177     -1.567      0.117      -0.624       0.069
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3483      0.184     -1.897      0.058      -0.708       0.012
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3336      0.174     -1.923      0.055      -0.674       0.006
-NUMHOTF                                                           0.0042      0.038      0.110      0.912      -0.071       0.079
+Intercept                                                        10.5252      0.171     61.603      0.000      10.190      10.860
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7170      0.209     -3.433      0.001      -1.126      -0.308
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2763      0.177     -1.562      0.118      -0.623       0.070
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3534      0.184     -1.926      0.054      -0.713       0.006
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3381      0.173     -1.950      0.051      -0.678       0.002
+NUMHOTF                                                           0.0189      0.037      0.512      0.609      -0.054       0.091
 ==============================================================================
-Skew:                         -1.0303   Kurtosis:                       1.1254
-Centered skew:                -0.2709   Centered kurtosis:              1.2376
+Skew:                         -1.0780   Kurtosis:                       1.5105
+Centered skew:                -0.2790   Centered kurtosis:              1.4055
 ==============================================================================
 
 GEE Results for Bothersomeness of Hot Flashes → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.995
-Covariance type:                    robust   Time:                         11:34:41
+Dependence structure:         Exchangeable   Num. iterations:                     6
+Date:                     Thu, 06 Feb 2025   Scale:                           3.058
+Covariance type:                    robust   Time:                         15:11:36
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5223      0.171     61.570      0.000      10.187      10.857
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2763      0.177     -1.560      0.119      -0.623       0.071
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3456      0.183     -1.886      0.059      -0.705       0.014
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3316      0.173     -1.912      0.056      -0.672       0.008
-BOTHOTF                                                          -0.0026      0.041     -0.062      0.950      -0.083       0.078
+Intercept                                                        10.5222      0.171     61.581      0.000      10.187      10.857
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7099      0.209     -3.400      0.001      -1.119      -0.301
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2726      0.177     -1.539      0.124      -0.620       0.075
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3451      0.183     -1.884      0.060      -0.704       0.014
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3318      0.173     -1.914      0.056      -0.672       0.008
+BOTHOTF                                                          -0.0005      0.040     -0.013      0.990      -0.078       0.077
 ==============================================================================
-Skew:                         -1.0300   Kurtosis:                       1.1242
-Centered skew:                -0.2708   Centered kurtosis:              1.2367
+Skew:                         -1.0772   Kurtosis:                       1.5101
+Centered skew:                -0.2787   Centered kurtosis:              1.4017
 ==============================================================================
 
 GEE Results for Night Sweats → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.994
-Covariance type:                    robust   Time:                         11:34:41
+Date:                     Thu, 06 Feb 2025   Scale:                           3.058
+Covariance type:                    robust   Time:                         15:11:37
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5202      0.171     61.582      0.000      10.185      10.855
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2751      0.177     -1.555      0.120      -0.622       0.072
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3410      0.183     -1.862      0.063      -0.700       0.018
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3290      0.173     -1.900      0.057      -0.668       0.010
-NITESWE                                                          -0.0147      0.030     -0.493      0.622      -0.073       0.044
+Intercept                                                        10.5220      0.171     61.577      0.000      10.187      10.857
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7097      0.208     -3.404      0.001      -1.118      -0.301
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2725      0.177     -1.540      0.124      -0.619       0.074
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3448      0.183     -1.883      0.060      -0.704       0.014
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3317      0.173     -1.915      0.055      -0.671       0.008
+NITESWE                                                          -0.0013      0.027     -0.047      0.963      -0.055       0.053
 ==============================================================================
-Skew:                         -1.0294   Kurtosis:                       1.1229
-Centered skew:                -0.2702   Centered kurtosis:              1.2348
+Skew:                         -1.0772   Kurtosis:                       1.5100
+Centered skew:                -0.2786   Centered kurtosis:              1.4016
 ==============================================================================
 
 GEE Results for Number of Night Sweats → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.992
-Covariance type:                    robust   Time:                         11:34:42
+Date:                     Thu, 06 Feb 2025   Scale:                           3.056
+Covariance type:                    robust   Time:                         15:11:37
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5281      0.171     61.516      0.000      10.193      10.864
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2751      0.177     -1.552      0.121      -0.622       0.072
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3392      0.183     -1.852      0.064      -0.698       0.020
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3287      0.173     -1.896      0.058      -0.669       0.011
-NUMNITS                                                          -0.0570      0.044     -1.295      0.195      -0.143       0.029
+Intercept                                                        10.5253      0.171     61.540      0.000      10.190      10.861
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7074      0.209     -3.390      0.001      -1.116      -0.298
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2718      0.177     -1.535      0.125      -0.619       0.075
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3414      0.183     -1.865      0.062      -0.700       0.017
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3301      0.173     -1.905      0.057      -0.670       0.010
+NUMNITS                                                          -0.0304      0.043     -0.707      0.479      -0.115       0.054
 ==============================================================================
-Skew:                         -1.0300   Kurtosis:                       1.1258
-Centered skew:                -0.2702   Centered kurtosis:              1.2357
+Skew:                         -1.0776   Kurtosis:                       1.5146
+Centered skew:                -0.2784   Centered kurtosis:              1.4008
 ==============================================================================
 
 GEE Results for Bothersomeness of Night Sweats → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.993
-Covariance type:                    robust   Time:                         11:34:43
+Date:                     Thu, 06 Feb 2025   Scale:                           3.057
+Covariance type:                    robust   Time:                         15:11:38
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5249      0.171     61.621      0.000      10.190      10.860
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2739      0.177     -1.548      0.122      -0.621       0.073
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3398      0.183     -1.857      0.063      -0.698       0.019
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3280      0.173     -1.895      0.058      -0.667       0.011
-BOTNITS                                                          -0.0319      0.041     -0.780      0.436      -0.112       0.048
+Intercept                                                        10.5229      0.171     61.586      0.000      10.188      10.858
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7087      0.209     -3.396      0.001      -1.118      -0.300
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2720      0.177     -1.537      0.124      -0.619       0.075
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3437      0.183     -1.878      0.060      -0.702       0.015
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3309      0.173     -1.911      0.056      -0.670       0.008
+BOTNITS                                                          -0.0078      0.039     -0.200      0.842      -0.084       0.069
 ==============================================================================
-Skew:                         -1.0293   Kurtosis:                       1.1211
-Centered skew:                -0.2710   Centered kurtosis:              1.2385
+Skew:                         -1.0772   Kurtosis:                       1.5106
+Centered skew:                -0.2787   Centered kurtosis:              1.4019
 ==============================================================================
 
 GEE Results for Cold Sweats → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.982
-Covariance type:                    robust   Time:                         11:34:43
+Date:                     Thu, 06 Feb 2025   Scale:                           3.047
+Covariance type:                    robust   Time:                         15:11:39
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5429      0.171     61.805      0.000      10.209      10.877
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2725      0.177     -1.542      0.123      -0.619       0.074
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3308      0.183     -1.811      0.070      -0.689       0.027
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3201      0.173     -1.851      0.064      -0.659       0.019
-COLDSWE                                                          -0.2049      0.070     -2.940      0.003      -0.341      -0.068
+Intercept                                                        10.5408      0.171     61.784      0.000      10.206      10.875
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.6867      0.208     -3.301      0.001      -1.094      -0.279
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2693      0.177     -1.524      0.128      -0.616       0.077
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3317      0.183     -1.816      0.069      -0.690       0.026
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3214      0.173     -1.859      0.063      -0.660       0.018
+COLDSWE                                                          -0.1810      0.065     -2.769      0.006      -0.309      -0.053
 ==============================================================================
-Skew:                         -1.0238   Kurtosis:                       1.1067
-Centered skew:                -0.2729   Centered kurtosis:              1.2388
+Skew:                         -1.0712   Kurtosis:                       1.4900
+Centered skew:                -0.2796   Centered kurtosis:              1.3989
 ==============================================================================
 
 GEE Results for Number of Cold Sweats → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.985
-Covariance type:                    robust   Time:                         11:34:44
+Date:                     Thu, 06 Feb 2025   Scale:                           3.050
+Covariance type:                    robust   Time:                         15:11:40
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5429      0.171     61.742      0.000      10.208      10.878
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2753      0.177     -1.557      0.119      -0.622       0.071
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3397      0.183     -1.858      0.063      -0.698       0.019
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3228      0.173     -1.866      0.062      -0.662       0.016
-NUMCLDS                                                          -0.1249      0.046     -2.742      0.006      -0.214      -0.036
+Intercept                                                        10.5392      0.171     61.712      0.000      10.204      10.874
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.6995      0.209     -3.353      0.001      -1.108      -0.291
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2717      0.177     -1.537      0.124      -0.618       0.075
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3400      0.183     -1.860      0.063      -0.698       0.018
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3243      0.173     -1.874      0.061      -0.663       0.015
+NUMCLDS                                                          -0.1008      0.042     -2.375      0.018      -0.184      -0.018
 ==============================================================================
-Skew:                         -1.0277   Kurtosis:                       1.1249
-Centered skew:                -0.2728   Centered kurtosis:              1.2378
+Skew:                         -1.0774   Kurtosis:                       1.5281
+Centered skew:                -0.2793   Centered kurtosis:              1.3997
 ==============================================================================
 
 GEE Results for Bothersomeness of Cold Sweats → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.978
-Covariance type:                    robust   Time:                         11:34:44
+Date:                     Thu, 06 Feb 2025   Scale:                           3.044
+Covariance type:                    robust   Time:                         15:11:40
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5534      0.170     62.063      0.000      10.220      10.887
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2729      0.176     -1.549      0.121      -0.618       0.072
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3391      0.182     -1.860      0.063      -0.696       0.018
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3193      0.172     -1.852      0.064      -0.657       0.019
-BOTCLDS                                                          -0.1824      0.053     -3.454      0.001      -0.286      -0.079
+Intercept                                                        10.5496      0.170     62.000      0.000      10.216      10.883
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.6916      0.208     -3.321      0.001      -1.100      -0.283
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2698      0.176     -1.530      0.126      -0.615       0.076
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3392      0.182     -1.860      0.063      -0.697       0.018
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3210      0.173     -1.861      0.063      -0.659       0.017
+BOTCLDS                                                          -0.1552      0.049     -3.159      0.002      -0.252      -0.059
 ==============================================================================
-Skew:                         -1.0219   Kurtosis:                       1.1010
-Centered skew:                -0.2754   Centered kurtosis:              1.2387
+Skew:                         -1.0730   Kurtosis:                       1.5133
+Centered skew:                -0.2811   Centered kurtosis:              1.3979
 ==============================================================================
 
 GEE Results for Stiffness → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.994
-Covariance type:                    robust   Time:                         11:34:45
+Date:                     Thu, 06 Feb 2025   Scale:                           3.056
+Covariance type:                    robust   Time:                         15:11:41
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5331      0.171     61.721      0.000      10.199      10.868
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2856      0.177     -1.617      0.106      -0.632       0.061
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3588      0.183     -1.964      0.050      -0.717      -0.001
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3456      0.173     -1.996      0.046      -0.685      -0.006
-STIFF                                                             0.0276      0.026      1.082      0.279      -0.022       0.078
+Intercept                                                        10.5332      0.171     61.740      0.000      10.199      10.868
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7271      0.208     -3.490      0.000      -1.136      -0.319
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2820      0.177     -1.597      0.110      -0.628       0.064
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3581      0.183     -1.961      0.050      -0.716      -0.000
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3459      0.173     -1.998      0.046      -0.685      -0.007
+STIFF                                                             0.0290      0.024      1.200      0.230      -0.018       0.076
 ==============================================================================
-Skew:                         -1.0317   Kurtosis:                       1.1385
-Centered skew:                -0.2718   Centered kurtosis:              1.2475
+Skew:                         -1.0787   Kurtosis:                       1.5221
+Centered skew:                -0.2797   Centered kurtosis:              1.4119
 ==============================================================================
 
 GEE Results for Irritability → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Wed, 05 Feb 2025   Scale:                           2.995
-Covariance type:                    robust   Time:                         11:34:45
+Date:                     Thu, 06 Feb 2025   Scale:                           3.057
+Covariance type:                    robust   Time:                         15:11:42
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5256      0.171     61.553      0.000      10.190      10.861
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2783      0.177     -1.572      0.116      -0.625       0.069
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3503      0.183     -1.911      0.056      -0.709       0.009
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3369      0.173     -1.942      0.052      -0.677       0.003
-IRRITAB                                                          -0.0260      0.032     -0.822      0.411      -0.088       0.036
+Intercept                                                        10.5261      0.171     61.556      0.000      10.191      10.861
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7132      0.208     -3.423      0.001      -1.122      -0.305
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2745      0.177     -1.550      0.121      -0.621       0.073
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3495      0.183     -1.907      0.056      -0.709       0.010
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3370      0.173     -1.943      0.052      -0.677       0.003
+IRRITAB                                                          -0.0278      0.030     -0.936      0.349      -0.086       0.030
 ==============================================================================
-Skew:                         -1.0258   Kurtosis:                       1.1004
-Centered skew:                -0.2708   Centered kurtosis:              1.2264
+Skew:                         -1.0730   Kurtosis:                       1.4842
+Centered skew:                -0.2783   Centered kurtosis:              1.3909
 ==============================================================================
 
 GEE Results for Mood Changes → Total IDE Score 2
 ==================================================
                                GEE Regression Results                              
 ===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5202
-Model:                                 GEE   No. clusters:                     2063
+Dep. Variable:                     TOTIDE2   No. Observations:                 5649
+Model:                                 GEE   No. clusters:                     2238
 Method:                        Generalized   Min. cluster size:                   1
                       Estimating Equations   Max. cluster size:                   3
 Family:                           Gaussian   Mean cluster size:                 2.5
 Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Wed, 05 Feb 2025   Scale:                           2.990
-Covariance type:                    robust   Time:                         11:34:46
+Date:                     Thu, 06 Feb 2025   Scale:                           3.048
+Covariance type:                    robust   Time:                         15:11:42
 =================================================================================================================================
                                                                     coef    std err          z      P>|z|      [0.025      0.975]
 ---------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5184      0.170     61.756      0.000      10.185      10.852
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2714      0.176     -1.538      0.124      -0.617       0.074
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3426      0.183     -1.877      0.061      -0.700       0.015
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3331      0.173     -1.929      0.054      -0.672       0.005
-MOODCHG                                                          -0.0527      0.033     -1.590      0.112      -0.118       0.012
+Intercept                                                        10.5174      0.170     61.817      0.000      10.184      10.851
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.6952      0.207     -3.357      0.001      -1.101      -0.289
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2655      0.176     -1.506      0.132      -0.611       0.080
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3400      0.182     -1.863      0.062      -0.698       0.018
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3331      0.172     -1.931      0.053      -0.671       0.005
+MOODCHG                                                          -0.0714      0.031     -2.268      0.023      -0.133      -0.010
 ==============================================================================
-Skew:                         -1.0272   Kurtosis:                       1.1143
-Centered skew:                -0.2669   Centered kurtosis:              1.2166
+Skew:                         -1.0730   Kurtosis:                       1.4907
+Centered skew:                -0.2738   Centered kurtosis:              1.3793
 ==============================================================================
 
 Creating distribution plots for absolute changes...
@@ -622,10 +646,17 @@ Total IDE Score 1:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median  min  max
 STATUS_Label                                         
+Surgical            0    NaN    NaN     NaN  NaN  NaN
 Pre-menopause      69 -0.101  0.910     0.0 -5.0  3.0
 Early Peri         33  0.424  1.542     0.0 -3.0  5.0
 Late Peri           9  0.444  1.236     0.0 -1.0  3.0
 Post-menopause      9  0.333  1.871     0.0 -1.0  5.0
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
 95% CI: [-0.320, 0.117]
@@ -656,10 +687,17 @@ Total IDE Score 2:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median  min  max
 STATUS_Label                                         
+Surgical            0    NaN    NaN     NaN  NaN  NaN
 Pre-menopause      69 -0.174  0.923     0.0 -4.0  3.0
 Early Peri         33  0.394  1.413     1.0 -3.0  3.0
 Late Peri           9  0.111  1.364     0.0 -2.0  2.0
 Post-menopause      9  0.222  0.972     0.0 -1.0  2.0
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
 95% CI: [-0.396, 0.048]
@@ -696,13 +734,20 @@ Hot Flashes:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median    min    max
 STATUS_Label                                             
-Pre-menopause      69 -0.054  0.267     0.0 -1.500  0.750
-Early Peri         33  0.273  0.792     0.0 -0.750  3.001
-Late Peri           9  0.333  1.000     0.0  0.000  3.001
-Post-menopause      9  0.167  1.582     0.0 -3.001  3.001
+Surgical            0    NaN    NaN     NaN    NaN    NaN
+Pre-menopause      69 -0.054  0.265     0.0 -1.490  0.745
+Early Peri         33  0.271  0.786     0.0 -0.745  2.979
+Late Peri           9  0.331  0.993     0.0  0.000  2.979
+Post-menopause      9  0.166  1.570     0.0 -2.979  2.979
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-0.119, 0.010]
+95% CI: [-0.118, 0.010]
 One-sample t-test (H0: mean = 0):
 t-statistic: -1.689
 p-value: 0.096
@@ -730,13 +775,20 @@ Number of Hot Flashes:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median    min    max
 STATUS_Label                                             
-Pre-menopause      69 -0.029  0.145   0.000 -0.658  0.439
-Early Peri         33  0.306  0.762   0.000 -0.439  3.510
-Late Peri           9  0.268  0.804   0.000  0.000  2.413
-Post-menopause      9  0.268  0.557   0.439 -0.878  0.878
+Surgical            0    NaN    NaN     NaN    NaN    NaN
+Pre-menopause      69 -0.028  0.144   0.000 -0.654  0.436
+Early Peri         33  0.304  0.757   0.000 -0.436  3.488
+Late Peri           9  0.266  0.799   0.000  0.000  2.398
+Post-menopause      9  0.266  0.553   0.436 -0.872  0.872
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-0.064, 0.006]
+95% CI: [-0.063, 0.006]
 One-sample t-test (H0: mean = 0):
 t-statistic: -1.636
 p-value: 0.106
@@ -764,13 +816,20 @@ Bothersomeness of Hot Flashes:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median    min    max
 STATUS_Label                                             
-Pre-menopause      69 -0.036  0.243     0.0 -0.938  0.626
-Early Peri         33  0.104  0.467     0.0 -0.938  1.251
-Late Peri           9  0.139  0.417     0.0  0.000  1.251
-Post-menopause      9  0.243  0.713     0.0 -1.251  0.938
+Surgical            0    NaN    NaN     NaN    NaN    NaN
+Pre-menopause      69 -0.036  0.242     0.0 -0.934  0.623
+Early Peri         33  0.104  0.465     0.0 -0.934  1.245
+Late Peri           9  0.138  0.415     0.0  0.000  1.245
+Post-menopause      9  0.242  0.710     0.0 -1.245  0.934
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-0.095, 0.022]
+95% CI: [-0.094, 0.022]
 One-sample t-test (H0: mean = 0):
 t-statistic: -1.239
 p-value: 0.220
@@ -798,13 +857,20 @@ Night Sweats:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median    min    max
 STATUS_Label                                             
-Pre-menopause      69  0.036  0.225     0.0  0.000  1.679
-Early Peri         33  0.203  1.131     0.0 -3.357  3.357
-Late Peri           9  0.373  1.119     0.0  0.000  3.357
-Post-menopause      9  0.000  1.028     0.0 -2.518  0.839
+Surgical            0    NaN    NaN     NaN    NaN    NaN
+Pre-menopause      69  0.037  0.225     0.0  0.000  1.682
+Early Peri         33  0.204  1.133     0.0 -3.364  3.364
+Late Peri           9  0.374  1.121     0.0  0.000  3.364
+Post-menopause      9 -0.000  1.030     0.0 -2.523  0.841
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-0.017, 0.090]
+95% CI: [-0.018, 0.091]
 One-sample t-test (H0: mean = 0):
 t-statistic: 1.350
 p-value: 0.182
@@ -832,13 +898,20 @@ Number of Night Sweats:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median    min    max
 STATUS_Label                                             
-Pre-menopause      69  0.012  0.188     0.0 -0.542  1.084
-Early Peri         33  0.123  0.475     0.0 -0.542  1.625
-Late Peri           9  0.181  0.542     0.0  0.000  1.625
-Post-menopause      9  0.120  0.239     0.0  0.000  0.542
+Surgical            0    NaN    NaN     NaN    NaN    NaN
+Pre-menopause      69  0.012  0.187     0.0 -0.537  1.073
+Early Peri         33  0.122  0.470     0.0 -0.537  1.610
+Late Peri           9  0.179  0.537     0.0  0.000  1.610
+Post-menopause      9  0.119  0.237     0.0  0.000  0.537
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-0.033, 0.057]
+95% CI: [-0.033, 0.056]
 One-sample t-test (H0: mean = 0):
 t-statistic: 0.519
 p-value: 0.605
@@ -866,13 +939,20 @@ Bothersomeness of Night Sweats:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median    min    max
 STATUS_Label                                             
-Pre-menopause      69  0.085  0.451     0.0 -0.324  3.244
-Early Peri         33  0.128  0.663     0.0 -0.973  1.622
-Late Peri           9  0.144  0.432     0.0  0.000  1.297
-Post-menopause      9  0.144  0.490     0.0 -0.324  0.973
+Surgical            0    NaN    NaN     NaN    NaN    NaN
+Pre-menopause      69  0.084  0.449     0.0 -0.323  3.231
+Early Peri         33  0.127  0.661     0.0 -0.969  1.616
+Late Peri           9  0.144  0.431     0.0  0.000  1.293
+Post-menopause      9  0.144  0.488     0.0 -0.323  0.969
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-0.024, 0.193]
+95% CI: [-0.024, 0.192]
 One-sample t-test (H0: mean = 0):
 t-statistic: 1.559
 p-value: 0.124
@@ -900,10 +980,17 @@ Cold Sweats:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median  min    max
 STATUS_Label                                           
-Pre-menopause      69  0.008  0.064     0.0  0.0  0.531
-Early Peri         33  0.032  0.129     0.0  0.0  0.531
-Late Peri           9  0.118  0.354     0.0  0.0  1.063
+Surgical            0    NaN    NaN     NaN  NaN    NaN
+Pre-menopause      69  0.008  0.064     0.0  0.0  0.529
+Early Peri         33  0.032  0.128     0.0  0.0  0.529
+Late Peri           9  0.118  0.353     0.0  0.0  1.058
 Post-menopause      9  0.000  0.000     0.0  0.0  0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
 95% CI: [-0.008, 0.023]
@@ -934,13 +1021,20 @@ Number of Cold Sweats:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median  min    max
 STATUS_Label                                           
-Pre-menopause      69  0.011  0.093     0.0  0.0  0.775
-Early Peri         33  0.047  0.188     0.0  0.0  0.775
-Late Peri           9  0.258  0.775     0.0  0.0  2.324
+Surgical            0    NaN    NaN     NaN  NaN    NaN
+Pre-menopause      69  0.011  0.093     0.0  0.0  0.771
+Early Peri         33  0.047  0.187     0.0  0.0  0.771
+Late Peri           9  0.257  0.771     0.0  0.0  2.314
 Post-menopause      9  0.000  0.000     0.0  0.0  0.000
 
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
+
 Pre-menopause:
-95% CI: [-0.011, 0.034]
+95% CI: [-0.011, 0.033]
 One-sample t-test (H0: mean = 0):
 t-statistic: 1.000
 p-value: 0.321
@@ -968,10 +1062,17 @@ Bothersomeness of Cold Sweats:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median  min    max
 STATUS_Label                                           
-Pre-menopause      69  0.023  0.191     0.0  0.0  1.583
-Early Peri         33  0.072  0.288     0.0  0.0  1.187
-Late Peri           9  0.176  0.528     0.0  0.0  1.583
+Surgical            0    NaN    NaN     NaN  NaN    NaN
+Pre-menopause      69  0.023  0.190     0.0  0.0  1.578
+Early Peri         33  0.072  0.287     0.0  0.0  1.184
+Late Peri           9  0.175  0.526     0.0  0.0  1.578
 Post-menopause      9  0.000  0.000     0.0  0.0  0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
 95% CI: [-0.023, 0.069]
@@ -1002,10 +1103,17 @@ Stiffness:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median    min    max
 STATUS_Label                                             
-Pre-menopause      69 -0.075  1.159   0.000 -7.068  2.570
-Early Peri         33  0.409  1.026   0.000 -1.928  2.570
-Late Peri           9  0.500  0.772   0.643 -0.643  1.928
-Post-menopause      9  0.785  1.055   0.643  0.000  2.570
+Surgical            0    NaN    NaN     NaN    NaN    NaN
+Pre-menopause      69 -0.074  1.158   0.000 -7.067  2.570
+Early Peri         33  0.409  1.026   0.000 -1.927  2.570
+Late Peri           9  0.500  0.772   0.642 -0.642  1.927
+Post-menopause      9  0.785  1.055   0.642  0.000  2.570
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
 95% CI: [-0.353, 0.204]
@@ -1036,10 +1144,17 @@ Irritability:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median    min    max
 STATUS_Label                                             
-Pre-menopause      69 -0.057  0.439     0.0 -1.952  0.976
-Early Peri         33 -0.384  0.769     0.0 -1.952  0.976
-Late Peri           9  0.108  0.325     0.0  0.000  0.976
-Post-menopause      9 -0.325  0.690     0.0 -1.952  0.000
+Surgical            0    NaN    NaN     NaN    NaN    NaN
+Pre-menopause      69 -0.057  0.439     0.0 -1.951  0.975
+Early Peri         33 -0.384  0.769     0.0 -1.951  0.975
+Late Peri           9  0.108  0.325     0.0  0.000  0.975
+Post-menopause      9 -0.325  0.690     0.0 -1.951  0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
 95% CI: [-0.162, 0.049]
@@ -1070,13 +1185,20 @@ Mood Changes:
 Detailed Statistics by Menopausal Stage:
                 count   mean    std  median    min    max
 STATUS_Label                                             
-Pre-menopause      69  0.060  0.243     0.0  0.000  1.033
-Early Peri         33 -0.125  0.922     0.0 -3.099  3.099
-Late Peri           9  0.230  0.456     0.0  0.000  1.033
-Post-menopause      9 -0.230  0.456     0.0 -1.033  0.000
+Surgical            0    NaN    NaN     NaN    NaN    NaN
+Pre-menopause      69  0.060  0.244     0.0  0.000  1.037
+Early Peri         33 -0.126  0.926     0.0 -3.112  3.112
+Late Peri           9  0.230  0.457     0.0  0.000  1.037
+Post-menopause      9 -0.230  0.457     0.0 -1.037  0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [0.001, 0.118]
+95% CI: [0.001, 0.119]
 One-sample t-test (H0: mean = 0):
 t-statistic: 2.046
 p-value: 0.045
@@ -1116,10 +1238,17 @@ Total IDE Score 1:
 Detailed Statistics by Menopausal Stage:
                 count   mean     std  median     min     max
 STATUS_Label                                                
+Surgical            0    NaN     NaN     NaN     NaN     NaN
 Pre-menopause      69 -0.681   9.535     0.0 -50.000  42.857
 Early Peri         33  5.789  17.300     0.0 -25.000  71.429
 Late Peri           9  6.459  15.715     0.0  -9.091  42.857
 Post-menopause      9  5.877  25.413     0.0 -11.111  71.429
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
 95% CI: [-2.972, 1.610]
@@ -1150,10 +1279,17 @@ Total IDE Score 2:
 Detailed Statistics by Menopausal Stage:
                 count   mean     std  median     min     max
 STATUS_Label                                                
+Surgical            0    NaN     NaN     NaN     NaN     NaN
 Pre-menopause      69 -1.329   8.904   0.000 -33.333  33.333
 Early Peri         33  5.043  13.959   9.091 -25.000  37.500
 Late Peri           9  2.685  13.843   0.000 -16.667  25.000
 Post-menopause      9  3.187  10.660   0.000  -9.091  25.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
 95% CI: [-3.467, 0.810]
@@ -1190,16 +1326,23 @@ Hot Flashes:
 Detailed Statistics by Menopausal Stage:
                 count     mean      std   median      min       max
 STATUS_Label                                                       
-Pre-menopause      69  -39.854  151.330    0.000 -642.029    -0.000
-Early Peri         33  -10.038  391.871    0.000 -642.029  1926.087
-Late Peri           9  -52.644  157.932   -0.000 -473.797    -0.000
-Post-menopause      9 -111.365  147.128 -118.449 -473.797    -0.000
+Surgical            0      NaN      NaN      NaN      NaN       NaN
+Pre-menopause      69  -41.648  158.616    0.000 -673.178    -0.000
+Early Peri         33   -8.811  409.232    0.000 -673.178  2019.534
+Late Peri           9  -52.198  156.595   -0.000 -469.786    -0.000
+Post-menopause      9 -110.635  145.871 -117.447 -469.786    -0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-76.208, -3.501]
+95% CI: [-79.751, -3.544]
 One-sample t-test (H0: mean = 0):
-t-statistic: -2.188
-p-value: 0.032
+t-statistic: -2.181
+p-value: 0.033
 
 Early Peri:
 95% CI: [nan, nan]
@@ -1222,18 +1365,25 @@ p-value: nan
 Number of Hot Flashes:
 
 Detailed Statistics by Menopausal Stage:
-                count    mean      std   median       min       max
-STATUS_Label                                                       
-Pre-menopause      69 -17.172   67.958    0.000  -288.538   144.269
-Early Peri         33  13.766  384.171    0.000 -1224.317  1298.423
-Late Peri           9 -93.524  280.573   -0.000  -841.718    -0.000
-Post-menopause      9 -94.972  189.613 -148.525  -306.079   288.538
+                count    mean      std  median       min       max
+STATUS_Label                                                      
+Surgical            0     NaN      NaN     NaN       NaN       NaN
+Pre-menopause      69 -17.139   67.788    0.00  -287.668   143.834
+Early Peri         33  13.425  383.707    0.00 -1226.284  1294.508
+Late Peri           9 -93.674  281.023   -0.00  -843.070    -0.000
+Post-menopause      9 -95.233  189.568 -148.41  -306.571   287.668
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-33.498, -0.847]
+95% CI: [-33.424, -0.855]
 One-sample t-test (H0: mean = 0):
-t-statistic: -2.099
-p-value: 0.040
+t-statistic: -2.100
+p-value: 0.039
 
 Early Peri:
 95% CI: [nan, nan]
@@ -1256,15 +1406,22 @@ p-value: nan
 Bothersomeness of Hot Flashes:
 
 Detailed Statistics by Menopausal Stage:
-                count     mean      std   median      min      max
-STATUS_Label                                                      
-Pre-menopause      69  -10.391   43.084   -0.000 -199.095   50.114
-Early Peri         33  -41.704  129.588    0.000 -398.190  200.913
-Late Peri           9  -44.243  132.730   -0.000 -398.190   -0.000
-Post-menopause      9 -136.506  140.235 -133.536 -298.642   -0.000
+                count     mean      std   median     min      max
+STATUS_Label                                                     
+Surgical            0      NaN      NaN      NaN     NaN      NaN
+Pre-menopause      69  -10.384   43.069   -0.000 -200.54   49.933
+Early Peri         33  -42.047  130.213    0.000 -401.08  199.463
+Late Peri           9  -44.564  133.693   -0.000 -401.08   -0.000
+Post-menopause      9 -137.354  141.257 -133.214 -300.81   -0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-20.741, -0.041]
+95% CI: [-20.730, -0.038]
 One-sample t-test (H0: mean = 0):
 t-statistic: -2.003
 p-value: 0.049
@@ -1292,13 +1449,20 @@ Night Sweats:
 Detailed Statistics by Menopausal Stage:
                 count     mean      std  median      min      max
 STATUS_Label                                                     
-Pre-menopause      69   -7.373   45.377    -0.0 -339.139   -0.000
-Early Peri         33 -102.790  178.730    -0.0 -678.278   -0.000
-Late Peri           9  -75.364  226.093    -0.0 -678.278   -0.000
-Post-menopause      9  -20.374  122.943    -0.0 -169.569  243.741
+Surgical            0      NaN      NaN     NaN      NaN      NaN
+Pre-menopause      69   -7.362   45.310    -0.0 -338.637   -0.000
+Early Peri         33 -102.724  178.532    -0.0 -677.275   -0.000
+Late Peri           9  -75.253  225.758    -0.0 -677.275   -0.000
+Post-menopause      9  -20.263  123.008    -0.0 -169.319  244.261
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-18.273, 3.528]
+95% CI: [-18.246, 3.523]
 One-sample t-test (H0: mean = 0):
 t-statistic: -1.350
 p-value: 0.182
@@ -1326,16 +1490,23 @@ Number of Night Sweats:
 Detailed Statistics by Menopausal Stage:
                 count     mean      std  median       min      max
 STATUS_Label                                                      
-Pre-menopause      69  -24.298  149.216     0.0 -1107.462  122.039
-Early Peri         33 -207.444  407.378    -0.0 -1661.193   37.896
-Late Peri           9 -184.577  553.731    -0.0 -1661.193   -0.000
-Post-menopause      9 -123.051  244.172    -0.0  -553.731   -0.000
+Surgical            0      NaN      NaN     NaN       NaN      NaN
+Pre-menopause      69  -25.129  154.244     0.0 -1145.408  121.155
+Early Peri         33 -213.951  421.459    -0.0 -1718.112   37.725
+Late Peri           9 -190.901  572.704    -0.0 -1718.112   -0.000
+Post-menopause      9 -127.268  252.539    -0.0  -572.704   -0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-60.144, 11.548]
+95% CI: [-62.183, 11.924]
 One-sample t-test (H0: mean = 0):
 t-statistic: -1.353
-p-value: 0.181
+p-value: 0.180
 
 Early Peri:
 95% CI: [nan, nan]
@@ -1360,16 +1531,23 @@ Bothersomeness of Night Sweats:
 Detailed Statistics by Menopausal Stage:
                 count     mean      std  median      min     max
 STATUS_Label                                                    
-Pre-menopause      69  -21.818  119.259     0.0 -846.062  41.511
-Early Peri         33 -149.672  264.873    -0.0 -846.062  -0.000
-Late Peri           9  -75.206  225.617    -0.0 -676.850  -0.000
-Post-menopause      9 -122.033  219.320    -0.0 -507.637  -0.000
+Surgical            0      NaN      NaN     NaN      NaN     NaN
+Pre-menopause      69  -22.393  122.643     0.0 -870.631  41.225
+Early Peri         33 -153.431  272.641    -0.0 -870.631  -0.000
+Late Peri           9  -77.389  232.168    -0.0 -696.505  -0.000
+Post-menopause      9 -125.245  225.826    -0.0 -522.378  -0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-50.467, 6.831]
+95% CI: [-51.855, 7.069]
 One-sample t-test (H0: mean = 0):
-t-statistic: -1.520
-p-value: 0.133
+t-statistic: -1.517
+p-value: 0.134
 
 Early Peri:
 95% CI: [nan, nan]
@@ -1394,13 +1572,20 @@ Cold Sweats:
 Detailed Statistics by Menopausal Stage:
                 count     mean      std  median  min       max
 STATUS_Label                                                  
-Pre-menopause      69   11.901   98.859     0.0  0.0   821.185
-Early Peri         33   49.769  198.978     0.0  0.0   821.185
-Late Peri           9  182.486  547.457     0.0  0.0  1642.370
+Surgical            0      NaN      NaN     NaN  NaN       NaN
+Pre-menopause      69   11.545   95.897     0.0  0.0   796.578
+Early Peri         33   48.277  193.016     0.0  0.0   796.578
+Late Peri           9  177.017  531.052     0.0  0.0  1593.156
 Post-menopause      9    0.000    0.000     0.0  0.0     0.000
 
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
+
 Pre-menopause:
-95% CI: [-11.847, 35.650]
+95% CI: [-11.492, 34.582]
 One-sample t-test (H0: mean = 0):
 t-statistic: 1.000
 p-value: 0.321
@@ -1428,13 +1613,20 @@ Number of Cold Sweats:
 Detailed Statistics by Menopausal Stage:
                 count     mean      std  median  min       max
 STATUS_Label                                                  
-Pre-menopause      69    8.812   73.198     0.0  0.0   608.029
-Early Peri         33   36.850  147.329     0.0  0.0   608.029
-Late Peri           9  202.676  608.029     0.0  0.0  1824.087
+Surgical            0      NaN      NaN     NaN  NaN       NaN
+Pre-menopause      69    8.480   70.438     0.0  0.0   585.105
+Early Peri         33   35.461  141.774     0.0  0.0   585.105
+Late Peri           9  195.035  585.105     0.0  0.0  1755.315
 Post-menopause      9    0.000    0.000     0.0  0.0     0.000
 
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
+
 Pre-menopause:
-95% CI: [-8.772, 26.396]
+95% CI: [-8.441, 25.401]
 One-sample t-test (H0: mean = 0):
 t-statistic: 1.000
 p-value: 0.321
@@ -1462,13 +1654,20 @@ Bothersomeness of Cold Sweats:
 Detailed Statistics by Menopausal Stage:
                 count     mean      std  median  min       max
 STATUS_Label                                                  
-Pre-menopause      69   20.373  169.227     0.0  0.0  1405.706
-Early Peri         33   63.896  255.458     0.0  0.0  1054.279
-Late Peri           9  156.190  468.569     0.0  0.0  1405.706
+Surgical            0      NaN      NaN     NaN  NaN       NaN
+Pre-menopause      69   19.317  160.460     0.0  0.0  1332.885
+Early Peri         33   60.586  242.224     0.0  0.0   999.664
+Late Peri           9  148.098  444.295     0.0  0.0  1332.885
 Post-menopause      9    0.000    0.000     0.0  0.0     0.000
 
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
+
 Pre-menopause:
-95% CI: [-20.280, 61.025]
+95% CI: [-19.230, 57.864]
 One-sample t-test (H0: mean = 0):
 t-statistic: 1.000
 p-value: 0.321
@@ -1496,16 +1695,23 @@ Stiffness:
 Detailed Statistics by Menopausal Stage:
                 count     mean      std  median      min       max
 STATUS_Label                                                      
-Pre-menopause      69   -2.274  269.877    0.00 -561.563  2059.066
-Early Peri         33  -74.502  173.451   -0.00 -561.563   429.390
-Late Peri           9 -133.300  197.797  -65.18 -561.563    -0.000
-Post-menopause      9  -79.664  106.991  -65.18 -260.718     0.000
+Surgical            0      NaN      NaN     NaN      NaN       NaN
+Pre-menopause      69   -1.902  274.115   0.000 -570.969  2093.551
+Early Peri         33  -75.578  174.076  -0.000 -570.969   421.428
+Late Peri           9 -135.122  201.267 -65.556 -570.969    -0.000
+Post-menopause      9  -80.123  107.608 -65.556 -262.222     0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-67.106, 62.557]
+95% CI: [-67.752, 63.947]
 One-sample t-test (H0: mean = 0):
-t-statistic: -0.070
-p-value: 0.944
+t-statistic: -0.058
+p-value: 0.954
 
 Early Peri:
 95% CI: [nan, nan]
@@ -1530,16 +1736,23 @@ Irritability:
 Detailed Statistics by Menopausal Stage:
                 count     mean      std  median      min      max
 STATUS_Label                                                     
-Pre-menopause      69  -23.925   87.231    -0.0 -485.574   -0.000
-Early Peri         33 -105.370  253.435    -0.0 -485.574  485.574
-Late Peri           9  -13.993   41.978    -0.0 -125.935    0.000
-Post-menopause      9  -64.027  160.899     0.0 -485.574   -0.000
+Surgical            0      NaN      NaN     NaN      NaN      NaN
+Pre-menopause      69  -23.410   84.332    -0.0 -466.639   -0.000
+Early Peri         33 -101.902  243.578    -0.0 -466.639  466.639
+Late Peri           9  -14.142   42.425    -0.0 -127.275    0.000
+Post-menopause      9  -61.885  154.694     0.0 -466.639   -0.000
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-44.880, -2.969]
+95% CI: [-43.669, -3.151]
 One-sample t-test (H0: mean = 0):
-t-statistic: -2.278
-p-value: 0.026
+t-statistic: -2.306
+p-value: 0.024
 
 Early Peri:
 95% CI: [nan, nan]
@@ -1564,13 +1777,20 @@ Mood Changes:
 Detailed Statistics by Menopausal Stage:
                 count    mean      std  median      min  max
 STATUS_Label                                                
-Pre-menopause      69 -10.773   43.744    -0.0 -185.828 -0.0
-Early Peri         33 -50.998  113.215    -0.0 -557.483 -0.0
-Late Peri           9 -41.295   81.942    -0.0 -185.828 -0.0
-Post-menopause      9 -31.658   72.919    -0.0 -216.512 -0.0
+Surgical            0     NaN      NaN     NaN      NaN  NaN
+Pre-menopause      69 -10.930   44.384    -0.0 -188.545 -0.0
+Early Peri         33 -51.152  114.234    -0.0 -565.636 -0.0
+Late Peri           9 -41.899   83.141    -0.0 -188.545 -0.0
+Post-menopause      9 -31.220   71.763    -0.0 -212.936 -0.0
+
+Surgical:
+95% CI: [nan, nan]
+One-sample t-test (H0: mean = 0):
+t-statistic: nan
+p-value: nan
 
 Pre-menopause:
-95% CI: [-21.281, -0.264]
+95% CI: [-21.592, -0.268]
 One-sample t-test (H0: mean = 0):
 t-statistic: -2.046
 p-value: 0.045

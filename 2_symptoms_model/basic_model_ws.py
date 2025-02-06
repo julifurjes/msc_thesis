@@ -45,25 +45,35 @@ class MenopauseCognitionAnalysis:
         
     def prepare_data(self):
         """Prepare data including menopausal status categorization."""
+        self.data['STATUS'] = pd.to_numeric(self.data['STATUS'], errors='coerce')
+        # Keep only statuses of interest (surgical: 1, 8; natural: 2,3,4,5)
+        self.data = self.data[self.data['STATUS'].isin([1, 2, 3, 4, 5, 8])]
+
         # Convert variables to numeric
         all_vars = self.symptom_vars + self.outcome_vars + self.control_vars + ['SWANID', 'VISIT']
         for var in all_vars:
             self.data[var] = pd.to_numeric(self.data[var], errors='coerce')
         
-        # Map STATUS to labels
+        # Map status to more descriptive labels for natural statuses and mark surgical statuses
         status_map = {
+            1: 'Surgical',
             2: 'Post-menopause',
             3: 'Late Peri',
             4: 'Early Peri',
-            5: 'Pre-menopause'
+            5: 'Pre-menopause',
+            8: 'Surgical'
         }
         self.data['STATUS_Label'] = self.data['STATUS'].map(status_map)
         
-        # Create ordered categorical for status
-        status_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause']
+        # Create a new variable to distinguish natural vs. surgical menopause
+        self.data['Menopause_Type'] = np.where(self.data['STATUS'].isin([1, 8]), 'Surgical', 'Natural')
+        
+        # If you still need an ordering for the natural stages, you can keep the categorical for STATUS_Label.
+        # For instance, you may want natural stages to appear in order and have “Surgical” as a separate category.
+        natural_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause']
         self.data['STATUS_Label'] = pd.Categorical(
             self.data['STATUS_Label'],
-            categories=status_order,
+            categories=['Surgical'] + natural_order,
             ordered=True
         )
         
@@ -256,8 +266,9 @@ class MenopauseCognitionAnalysis:
             )
             
             plt.tight_layout()
+            file_name = os.path.join(self.output_dir, f'{title.lower()}_changes_{"percent" if use_percentage else "absolute"}.png')
             plt.savefig(
-                f'{title.lower()}_changes_{"percent" if use_percentage else "absolute"}.png',
+                file_name,
                 dpi=300,
                 bbox_inches='tight'
             )

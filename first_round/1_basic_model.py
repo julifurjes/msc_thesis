@@ -22,33 +22,34 @@ class MenopauseScoreAnalysis:
         self.output_dir = get_output_dir('1_stages_model', 'overall') 
     
     def prepare_data(self):
-        """Include both natural and surgical menopause cases and create group labels."""
+        """Prepare the dataset with proper status labels and variable conversion."""
+        # Convert STATUS to numeric
         self.data['STATUS'] = pd.to_numeric(self.data['STATUS'], errors='coerce')
-        # Keep only statuses of interest (surgical: 1, 8; natural: 2,3,4,5)
-        self.data = self.data[self.data['STATUS'].isin([1, 2, 3, 4, 5, 8])]
+        self.data = self.data[self.data['STATUS'].between(2, 5)]
         
-        # Map status to more descriptive labels for natural statuses and mark surgical statuses
+        # Map STATUS to descriptive labels
         status_map = {
-            1: 'Surgical',
             2: 'Post-menopause',
             3: 'Late Peri',
             4: 'Early Peri',
-            5: 'Pre-menopause',
-            8: 'Surgical'
+            5: 'Pre-menopause'
         }
         self.data['STATUS_Label'] = self.data['STATUS'].map(status_map)
         
-        # Create a new variable to distinguish natural vs. surgical menopause
-        self.data['Menopause_Type'] = np.where(self.data['STATUS'].isin([1, 8]), 'Surgical', 'Natural')
-        
-        # If you still need an ordering for the natural stages, you can keep the categorical for STATUS_Label.
-        # For instance, you may want natural stages to appear in order and have “Surgical” as a separate category.
-        natural_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause']
+        # Create categorical order for plotting
+        status_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause']
         self.data['STATUS_Label'] = pd.Categorical(
             self.data['STATUS_Label'],
-            categories=['Surgical'] + natural_order,
+            categories=status_order,
             ordered=True
         )
+        
+        # Convert score variables to numeric and handle missing values
+        score_vars = ['TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
+        for var in score_vars:
+            self.data[var] = pd.to_numeric(self.data[var], errors='coerce')
+            # Remove NaN values for each variable
+            self.data[var] = self.data[var].fillna(self.data[var].mean())
 
     def perform_anova(self, variable):
         """Perform one-way ANOVA and Tukey's HSD test for a given variable."""
@@ -84,7 +85,6 @@ class MenopauseScoreAnalysis:
 
     def calculate_summary_stats(self, variable):
         """Calculate summary statistics for raw scores at each stage."""
-        self.data[variable] = pd.to_numeric(self.data[variable], errors='coerce')  # Forces conversion, NaNs for invalid values
         summary = self.data.groupby('STATUS_Label', observed=True)[variable].agg([
             'count',
             'mean',
