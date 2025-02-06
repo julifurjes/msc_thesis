@@ -1,0 +1,243 @@
+Analysis Run: 2025-02-05 11:12:24
+================================================================================
+
+Creating violin plots with box plots and performing ANOVA...
+
+Analysis for Total IDE Score 1:
+
+Summary Statistics:
+                   n    mean    std    sem  median      Q1      Q3
+STATUS_Label                                                      
+Pre-menopause   1975  10.287  0.621  0.014  10.256  10.256  10.256
+Early Peri      9058  10.236  0.984  0.010  10.256  10.256  10.256
+Late Peri       2155  10.276  1.164  0.025  10.256  10.256  10.256
+Post-menopause  8878  10.265  1.320  0.014  10.256  10.000  11.000
+
+One-way ANOVA results:
+F-statistic: 1.851
+p-value: 1.356e-01
+
+Tukey's HSD test results:
+        Multiple Comparison of Means - Tukey HSD, FWER=0.05        
+===================================================================
+    group1         group2     meandiff p-adj   lower  upper  reject
+-------------------------------------------------------------------
+    Early Peri      Late Peri   0.0393 0.4628 -0.0299 0.1086  False
+    Early Peri Post-menopause   0.0288 0.3157 -0.0143  0.072  False
+    Early Peri  Pre-menopause   0.0511 0.2599 -0.0207 0.1229  False
+     Late Peri Post-menopause  -0.0105   0.98 -0.0799 0.0589  False
+     Late Peri  Pre-menopause   0.0118  0.987 -0.0783 0.1018  False
+Post-menopause  Pre-menopause   0.0223 0.8565 -0.0496 0.0942  False
+-------------------------------------------------------------------
+
+Analysis for Total IDE Score 2:
+
+Summary Statistics:
+                   n    mean    std    sem  median      Q1      Q3
+STATUS_Label                                                      
+Pre-menopause   1975  10.126  0.629  0.014  10.093  10.093  10.093
+Early Peri      9058  10.084  1.006  0.011  10.093  10.093  10.093
+Late Peri       2155  10.094  1.255  0.027  10.093  10.093  10.093
+Post-menopause  8878  10.095  1.361  0.014  10.093  10.000  11.000
+
+One-way ANOVA results:
+F-statistic: 0.714
+p-value: 5.437e-01
+
+Tukey's HSD test results:
+        Multiple Comparison of Means - Tukey HSD, FWER=0.05        
+===================================================================
+    group1         group2     meandiff p-adj   lower  upper  reject
+-------------------------------------------------------------------
+    Early Peri      Late Peri   0.0103 0.9825 -0.0612 0.0819  False
+    Early Peri Post-menopause   0.0106 0.9293  -0.034 0.0552  False
+    Early Peri  Pre-menopause   0.0419  0.468 -0.0323  0.116  False
+     Late Peri Post-menopause   0.0002    1.0 -0.0715 0.0719  False
+     Late Peri  Pre-menopause   0.0315 0.8202 -0.0615 0.1245  False
+Post-menopause  Pre-menopause   0.0313 0.7006  -0.043 0.1056  False
+-------------------------------------------------------------------
+
+Analysis for Nervousness Score:
+
+Summary Statistics:
+                   n   mean    std    sem  median     Q1     Q3
+STATUS_Label                                                   
+Pre-menopause   1975  0.492  3.317  0.075   0.415  0.415  0.415
+Early Peri      9058  0.636  3.812  0.040   0.415  0.000  0.415
+Late Peri       2155  0.712  5.652  0.122   0.000  0.000  0.415
+Post-menopause  8878  0.100  6.637  0.070   0.000  0.000  0.000
+
+One-way ANOVA results:
+F-statistic: 18.301
+p-value: 7.445e-12
+
+Tukey's HSD test results:
+        Multiple Comparison of Means - Tukey HSD, FWER=0.05         
+====================================================================
+    group1         group2     meandiff p-adj   lower   upper  reject
+--------------------------------------------------------------------
+    Early Peri      Late Peri   0.0763  0.931 -0.2484  0.4009  False
+    Early Peri Post-menopause  -0.5361    0.0 -0.7383 -0.3338   True
+    Early Peri  Pre-menopause  -0.1437 0.6909 -0.4801  0.1927  False
+     Late Peri Post-menopause  -0.6123    0.0 -0.9376  -0.287   True
+     Late Peri  Pre-menopause    -0.22 0.5377 -0.6419   0.202  False
+Post-menopause  Pre-menopause   0.3923 0.0148  0.0554  0.7293   True
+--------------------------------------------------------------------
+
+Analysis for Sadness Score:
+
+Summary Statistics:
+                   n   mean    std    sem  median   Q1   Q3
+STATUS_Label                                               
+Pre-menopause   1975  1.415  0.790  0.018     1.0  1.0  2.0
+Early Peri      9058  1.492  0.790  0.008     1.0  1.0  2.0
+Late Peri       2155  1.453  0.760  0.016     1.0  1.0  2.0
+Post-menopause  8878  1.429  0.737  0.008     1.0  1.0  2.0
+
+One-way ANOVA results:
+F-statistic: 12.161
+p-value: 6.002e-08
+
+Tukey's HSD test results:
+        Multiple Comparison of Means - Tukey HSD, FWER=0.05         
+====================================================================
+    group1         group2     meandiff p-adj   lower   upper  reject
+--------------------------------------------------------------------
+    Early Peri      Late Peri  -0.0392 0.1423 -0.0864   0.008  False
+    Early Peri Post-menopause  -0.0629    0.0 -0.0923 -0.0334   True
+    Early Peri  Pre-menopause  -0.0767 0.0003 -0.1256 -0.0278   True
+     Late Peri Post-menopause  -0.0236 0.5725 -0.0709  0.0236  False
+     Late Peri  Pre-menopause  -0.0375 0.3965 -0.0988  0.0239  False
+Post-menopause  Pre-menopause  -0.0138 0.8875 -0.0628  0.0352  False
+--------------------------------------------------------------------
+
+Analysis for Fearfulness Score:
+
+Summary Statistics:
+                   n   mean    std    sem  median   Q1   Q3
+STATUS_Label                                               
+Pre-menopause   1975  1.011  1.313  0.030     1.0  1.0  1.0
+Early Peri      9058  1.051  1.447  0.015     1.0  1.0  1.0
+Late Peri       2155  0.939  1.861  0.040     1.0  1.0  1.0
+Post-menopause  8878  0.793  2.118  0.022     1.0  1.0  1.0
+
+One-way ANOVA results:
+F-statistic: 32.861
+p-value: 3.489e-21
+
+Tukey's HSD test results:
+        Multiple Comparison of Means - Tukey HSD, FWER=0.05         
+====================================================================
+    group1         group2     meandiff p-adj   lower   upper  reject
+--------------------------------------------------------------------
+    Early Peri      Late Peri  -0.1124 0.0413 -0.2219  -0.003   True
+    Early Peri Post-menopause  -0.2576    0.0 -0.3258 -0.1894   True
+    Early Peri  Pre-menopause    -0.04  0.801 -0.1534  0.0733  False
+     Late Peri Post-menopause  -0.1452 0.0037 -0.2548 -0.0355   True
+     Late Peri  Pre-menopause   0.0724 0.5576 -0.0698  0.2146  False
+Post-menopause  Pre-menopause   0.2176    0.0   0.104  0.3312   True
+--------------------------------------------------------------------
+
+Creating mean trend plots...
+
+Mean trend statistics for Total IDE Score 1:
+
+Stage-by-stage values:
+Pre-menopause:
+  Mean: 10.287
+  SEM: ±0.014
+  N: 1975
+Early Peri:
+  Mean: 10.236
+  SEM: ±0.010
+  N: 9058
+Late Peri:
+  Mean: 10.276
+  SEM: ±0.025
+  N: 2155
+Post-menopause:
+  Mean: 10.265
+  SEM: ±0.014
+  N: 8878
+
+Mean trend statistics for Total IDE Score 2:
+
+Stage-by-stage values:
+Pre-menopause:
+  Mean: 10.126
+  SEM: ±0.014
+  N: 1975
+Early Peri:
+  Mean: 10.084
+  SEM: ±0.011
+  N: 9058
+Late Peri:
+  Mean: 10.094
+  SEM: ±0.027
+  N: 2155
+Post-menopause:
+  Mean: 10.095
+  SEM: ±0.014
+  N: 8878
+
+Mean trend statistics for Nervousness Score:
+
+Stage-by-stage values:
+Pre-menopause:
+  Mean: 0.492
+  SEM: ±0.075
+  N: 1975
+Early Peri:
+  Mean: 0.636
+  SEM: ±0.040
+  N: 9058
+Late Peri:
+  Mean: 0.712
+  SEM: ±0.122
+  N: 2155
+Post-menopause:
+  Mean: 0.100
+  SEM: ±0.070
+  N: 8878
+
+Mean trend statistics for Sadness Score:
+
+Stage-by-stage values:
+Pre-menopause:
+  Mean: 1.415
+  SEM: ±0.018
+  N: 1975
+Early Peri:
+  Mean: 1.492
+  SEM: ±0.008
+  N: 9058
+Late Peri:
+  Mean: 1.453
+  SEM: ±0.016
+  N: 2155
+Post-menopause:
+  Mean: 1.429
+  SEM: ±0.008
+  N: 8878
+
+Mean trend statistics for Fearfulness Score:
+
+Stage-by-stage values:
+Pre-menopause:
+  Mean: 1.011
+  SEM: ±0.030
+  N: 1975
+Early Peri:
+  Mean: 1.051
+  SEM: ±0.015
+  N: 9058
+Late Peri:
+  Mean: 0.939
+  SEM: ±0.040
+  N: 2155
+Post-menopause:
+  Mean: 0.793
+  SEM: ±0.022
+  N: 8878
+
+Analysis complete.

@@ -1,0 +1,277 @@
+Analysis Run: 2025-02-05 11:14:45
+================================================================================
+
+Calculating baseline changes...
+
+Running GEE analysis...
+
+GEE Results for TOTIDE1
+==================================================
+                               GEE Regression Results                              
+===================================================================================
+Dep. Variable:                     TOTIDE1   No. Observations:                 9056
+Model:                                 GEE   No. clusters:                     2473
+Method:                        Generalized   Min. cluster size:                   1
+                      Estimating Equations   Max. cluster size:                   5
+Family:                           Gaussian   Mean cluster size:                 3.7
+Dependence structure:         Exchangeable   Num. iterations:                     7
+Date:                     Wed, 05 Feb 2025   Scale:                           3.077
+Covariance type:                    robust   Time:                         11:14:47
+=================================================================================================================================
+                                                                    coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                         9.9466      0.400     24.883      0.000       9.163      10.730
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]        -0.2220      0.101     -2.205      0.027      -0.419      -0.025
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]         -0.1481      0.115     -1.284      0.199      -0.374       0.078
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]    -0.2673      0.112     -2.383      0.017      -0.487      -0.047
+AGE[T.46]                                                        -0.0324      0.408     -0.080      0.937      -0.831       0.766
+AGE[T.47]                                                         0.3105      0.403      0.771      0.441      -0.479       1.100
+AGE[T.48]                                                         0.2154      0.395      0.546      0.585      -0.558       0.989
+AGE[T.49]                                                         0.3855      0.392      0.984      0.325      -0.382       1.153
+AGE[T.50]                                                         0.3693      0.392      0.942      0.346      -0.399       1.138
+AGE[T.51]                                                         0.4652      0.392      1.186      0.236      -0.304       1.234
+AGE[T.52]                                                         0.4521      0.393      1.150      0.250      -0.318       1.222
+AGE[T.53]                                                         0.5048      0.393      1.284      0.199      -0.266       1.275
+AGE[T.54]                                                         0.4615      0.394      1.172      0.241      -0.311       1.234
+AGE[T.55]                                                         0.5728      0.395      1.450      0.147      -0.202       1.347
+AGE[T.56]                                                         0.7118      0.395      1.800      0.072      -0.063       1.487
+AGE[T.57]                                                         0.6836      0.397      1.720      0.085      -0.095       1.463
+AGE[T.58]                                                         0.7267      0.400      1.816      0.069      -0.058       1.511
+AGE[T.59]                                                         0.6632      0.405      1.639      0.101      -0.130       1.456
+AGE[T.60]                                                         0.5905      0.413      1.428      0.153      -0.220       1.401
+AGE[T.61]                                                         0.4670      0.455      1.027      0.304      -0.424       1.358
+AGE[T.62]                                                         1.0325      0.437      2.361      0.018       0.175       1.890
+AGE[T.63]                                                         0.8605      0.597      1.442      0.149      -0.309       2.030
+==============================================================================
+Skew:                         -0.9982   Kurtosis:                       0.8858
+Centered skew:                -0.4147   Centered kurtosis:              0.8474
+==============================================================================
+Error in GEE analysis for TOTIDE1: 'None of [Index([\'Intercept\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]\',\n       \'AGE[T.46]\', \'AGE[T.47]\', \'AGE[T.48]\', \'AGE[T.49]\', \'AGE[T.50]\',\n       \'AGE[T.51]\', \'AGE[T.52]\', \'AGE[T.53]\', \'AGE[T.54]\', \'AGE[T.55]\',\n       \'AGE[T.56]\', \'AGE[T.57]\', \'AGE[T.58]\', \'AGE[T.59]\', \'AGE[T.60]\',\n       \'AGE[T.61]\', \'AGE[T.62]\', \'AGE[T.63]\'],\n      dtype=\'object\')] are in the [columns]'
+
+GEE Results for TOTIDE2
+==================================================
+                               GEE Regression Results                              
+===================================================================================
+Dep. Variable:                     TOTIDE2   No. Observations:                 9050
+Model:                                 GEE   No. clusters:                     2472
+Method:                        Generalized   Min. cluster size:                   1
+                      Estimating Equations   Max. cluster size:                   5
+Family:                           Gaussian   Mean cluster size:                 3.7
+Dependence structure:         Exchangeable   Num. iterations:                     7
+Date:                     Wed, 05 Feb 2025   Scale:                           3.289
+Covariance type:                    robust   Time:                         11:14:48
+=================================================================================================================================
+                                                                    coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                         9.5749      0.958      9.996      0.000       7.697      11.452
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]        -0.1743      0.101     -1.724      0.085      -0.372       0.024
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]         -0.1571      0.115     -1.363      0.173      -0.383       0.069
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]    -0.2496      0.112     -2.222      0.026      -0.470      -0.029
+AGE[T.46]                                                         0.1761      0.960      0.183      0.854      -1.705       2.057
+AGE[T.47]                                                         0.3681      0.959      0.384      0.701      -1.511       2.248
+AGE[T.48]                                                         0.4203      0.959      0.438      0.661      -1.458       2.299
+AGE[T.49]                                                         0.5867      0.956      0.614      0.539      -1.287       2.460
+AGE[T.50]                                                         0.5226      0.954      0.548      0.584      -1.347       2.392
+AGE[T.51]                                                         0.6721      0.954      0.705      0.481      -1.198       2.542
+AGE[T.52]                                                         0.5594      0.953      0.587      0.557      -1.309       2.428
+AGE[T.53]                                                         0.7068      0.954      0.741      0.459      -1.163       2.577
+AGE[T.54]                                                         0.6862      0.954      0.719      0.472      -1.184       2.557
+AGE[T.55]                                                         0.8037      0.955      0.842      0.400      -1.068       2.675
+AGE[T.56]                                                         0.8540      0.956      0.894      0.371      -1.019       2.727
+AGE[T.57]                                                         0.8868      0.956      0.927      0.354      -0.987       2.761
+AGE[T.58]                                                         0.8304      0.958      0.867      0.386      -1.047       2.708
+AGE[T.59]                                                         0.9409      0.959      0.982      0.326      -0.938       2.820
+AGE[T.60]                                                         0.7453      0.963      0.774      0.439      -1.141       2.632
+AGE[T.61]                                                         0.7038      0.978      0.719      0.472      -1.214       2.621
+AGE[T.62]                                                         0.9556      0.996      0.959      0.338      -0.998       2.909
+AGE[T.63]                                                         1.0071      0.965      1.044      0.297      -0.884       2.898
+==============================================================================
+Skew:                         -1.0049   Kurtosis:                       1.1557
+Centered skew:                -0.3627   Centered kurtosis:              1.1032
+==============================================================================
+Error in GEE analysis for TOTIDE2: 'None of [Index([\'Intercept\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]\',\n       \'AGE[T.46]\', \'AGE[T.47]\', \'AGE[T.48]\', \'AGE[T.49]\', \'AGE[T.50]\',\n       \'AGE[T.51]\', \'AGE[T.52]\', \'AGE[T.53]\', \'AGE[T.54]\', \'AGE[T.55]\',\n       \'AGE[T.56]\', \'AGE[T.57]\', \'AGE[T.58]\', \'AGE[T.59]\', \'AGE[T.60]\',\n       \'AGE[T.61]\', \'AGE[T.62]\', \'AGE[T.63]\'],\n      dtype=\'object\')] are in the [columns]'
+
+GEE Results for NERVES
+==================================================
+                               GEE Regression Results                              
+===================================================================================
+Dep. Variable:                      NERVES   No. Observations:                14387
+Model:                                 GEE   No. clusters:                     2665
+Method:                        Generalized   Min. cluster size:                   1
+                      Estimating Equations   Max. cluster size:                   7
+Family:                           Gaussian   Mean cluster size:                 5.4
+Dependence structure:         Exchangeable   Num. iterations:                     7
+Date:                     Wed, 05 Feb 2025   Scale:                          42.538
+Covariance type:                    robust   Time:                         11:14:49
+=================================================================================================================================
+                                                                    coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                         1.2206      0.337      3.618      0.000       0.559       1.882
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]         0.4836      0.335      1.442      0.149      -0.174       1.141
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]          0.5677      0.385      1.473      0.141      -0.187       1.323
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]     0.3925      0.388      1.012      0.311      -0.368       1.153
+AGE[T.46]                                                        -0.5343      0.319     -1.674      0.094      -1.160       0.091
+AGE[T.47]                                                        -0.5521      0.262     -2.104      0.035      -1.066      -0.038
+AGE[T.48]                                                        -0.2929      0.182     -1.609      0.108      -0.650       0.064
+AGE[T.49]                                                        -0.4672      0.163     -2.864      0.004      -0.787      -0.148
+AGE[T.50]                                                        -0.7298      0.155     -4.710      0.000      -1.034      -0.426
+AGE[T.51]                                                        -0.8927      0.172     -5.181      0.000      -1.230      -0.555
+AGE[T.52]                                                        -1.1189      0.187     -5.995      0.000      -1.485      -0.753
+AGE[T.53]                                                        -1.0855      0.236     -4.608      0.000      -1.547      -0.624
+AGE[T.54]                                                        -1.5249      0.253     -6.019      0.000      -2.021      -1.028
+AGE[T.55]                                                        -1.6405      0.267     -6.151      0.000      -2.163      -1.118
+AGE[T.56]                                                        -1.9754      0.297     -6.643      0.000      -2.558      -1.393
+AGE[T.57]                                                        -2.6001      0.295     -8.806      0.000      -3.179      -2.021
+AGE[T.58]                                                        -2.3351      0.342     -6.825      0.000      -3.006      -1.665
+AGE[T.59]                                                        -2.3827      0.439     -5.429      0.000      -3.243      -1.522
+AGE[T.60]                                                        -2.4622      0.475     -5.183      0.000      -3.393      -1.531
+AGE[T.61]                                                        -2.2369      0.483     -4.633      0.000      -3.183      -1.291
+AGE[T.62]                                                        -2.6576      0.597     -4.454      0.000      -3.827      -1.488
+AGE[T.63]                                                        -6.8155      1.617     -4.214      0.000      -9.985      -3.646
+AGE[T.64]                                                       -11.0127      0.849    -12.973      0.000     -12.676      -9.349
+==============================================================================
+Skew:                          4.8006   Kurtosis:                      35.9907
+Centered skew:                 1.3652   Centered kurtosis:             25.0493
+==============================================================================
+Error in GEE analysis for NERVES: 'None of [Index([\'Intercept\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]\',\n       \'AGE[T.46]\', \'AGE[T.47]\', \'AGE[T.48]\', \'AGE[T.49]\', \'AGE[T.50]\',\n       \'AGE[T.51]\', \'AGE[T.52]\', \'AGE[T.53]\', \'AGE[T.54]\', \'AGE[T.55]\',\n       \'AGE[T.56]\', \'AGE[T.57]\', \'AGE[T.58]\', \'AGE[T.59]\', \'AGE[T.60]\',\n       \'AGE[T.61]\', \'AGE[T.62]\', \'AGE[T.63]\', \'AGE[T.64]\'],\n      dtype=\'object\')] are in the [columns]'
+
+GEE Results for SAD
+==================================================
+                               GEE Regression Results                              
+===================================================================================
+Dep. Variable:                         SAD   No. Observations:                20800
+Model:                                 GEE   No. clusters:                     3006
+Method:                        Generalized   Min. cluster size:                   1
+                      Estimating Equations   Max. cluster size:                  10
+Family:                           Gaussian   Mean cluster size:                 6.9
+Dependence structure:         Exchangeable   Num. iterations:                     6
+Date:                     Wed, 05 Feb 2025   Scale:                           0.622
+Covariance type:                    robust   Time:                         11:14:51
+=================================================================================================================================
+                                                                    coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                         2.0255      0.335      6.041      0.000       1.368       2.683
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]         0.0469      0.021      2.201      0.028       0.005       0.089
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]          0.0507      0.027      1.867      0.062      -0.003       0.104
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]     0.0452      0.029      1.555      0.120      -0.012       0.102
+AGE[T.43]                                                        -0.5038      0.338     -1.490      0.136      -1.166       0.159
+AGE[T.44]                                                        -0.4974      0.337     -1.478      0.139      -1.157       0.162
+AGE[T.45]                                                        -0.5012      0.336     -1.492      0.136      -1.159       0.157
+AGE[T.46]                                                        -0.5820      0.336     -1.733      0.083      -1.240       0.076
+AGE[T.47]                                                        -0.5553      0.335     -1.656      0.098      -1.213       0.102
+AGE[T.48]                                                        -0.5581      0.336     -1.663      0.096      -1.216       0.100
+AGE[T.49]                                                        -0.5944      0.335     -1.772      0.076      -1.252       0.063
+AGE[T.50]                                                        -0.6100      0.336     -1.816      0.069      -1.268       0.048
+AGE[T.51]                                                        -0.6200      0.335     -1.850      0.064      -1.277       0.037
+AGE[T.52]                                                        -0.6516      0.336     -1.941      0.052      -1.310       0.006
+AGE[T.53]                                                        -0.6439      0.336     -1.916      0.055      -1.302       0.015
+AGE[T.54]                                                        -0.6392      0.336     -1.901      0.057      -1.298       0.020
+AGE[T.55]                                                        -0.6729      0.337     -1.999      0.046      -1.333      -0.013
+AGE[T.56]                                                        -0.6555      0.337     -1.947      0.052      -1.316       0.005
+AGE[T.57]                                                        -0.6654      0.337     -1.975      0.048      -1.326      -0.005
+AGE[T.58]                                                        -0.7169      0.337     -2.125      0.034      -1.378      -0.056
+AGE[T.59]                                                        -0.7065      0.339     -2.087      0.037      -1.370      -0.043
+AGE[T.60]                                                        -0.6103      0.340     -1.796      0.073      -1.276       0.056
+AGE[T.61]                                                        -0.5980      0.342     -1.749      0.080      -1.268       0.072
+AGE[T.62]                                                        -0.6261      0.346     -1.808      0.071      -1.305       0.053
+AGE[T.63]                                                        -1.0620      0.358     -2.969      0.003      -1.763      -0.361
+==============================================================================
+Skew:                          0.4559   Kurtosis:                       8.7208
+Centered skew:                -0.0527   Centered kurtosis:             10.9772
+==============================================================================
+Error in GEE analysis for SAD: 'None of [Index([\'Intercept\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]\',\n       \'AGE[T.43]\', \'AGE[T.44]\', \'AGE[T.45]\', \'AGE[T.46]\', \'AGE[T.47]\',\n       \'AGE[T.48]\', \'AGE[T.49]\', \'AGE[T.50]\', \'AGE[T.51]\', \'AGE[T.52]\',\n       \'AGE[T.53]\', \'AGE[T.54]\', \'AGE[T.55]\', \'AGE[T.56]\', \'AGE[T.57]\',\n       \'AGE[T.58]\', \'AGE[T.59]\', \'AGE[T.60]\', \'AGE[T.61]\', \'AGE[T.62]\',\n       \'AGE[T.63]\'],\n      dtype=\'object\')] are in the [columns]'
+
+GEE Results for FEARFULA
+==================================================
+                               GEE Regression Results                              
+===================================================================================
+Dep. Variable:                    FEARFULA   No. Observations:                21506
+Model:                                 GEE   No. clusters:                     3002
+Method:                        Generalized   Min. cluster size:                   1
+                      Estimating Equations   Max. cluster size:                  10
+Family:                           Gaussian   Mean cluster size:                 7.2
+Dependence structure:         Exchangeable   Num. iterations:                     7
+Date:                     Wed, 05 Feb 2025   Scale:                           3.237
+Covariance type:                    robust   Time:                         11:14:53
+=================================================================================================================================
+                                                                    coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------------------------------------------------
+Intercept                                                         1.5943      0.344      4.633      0.000       0.920       2.269
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]         0.0941      0.040      2.336      0.019       0.015       0.173
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]          0.1051      0.061      1.734      0.083      -0.014       0.224
+C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]     0.0443      0.060      0.737      0.461      -0.074       0.162
+AGE[T.43]                                                        -0.2790      0.339     -0.824      0.410      -0.943       0.385
+AGE[T.44]                                                        -0.3782      0.344     -1.099      0.272      -1.053       0.297
+AGE[T.45]                                                        -0.4397      0.341     -1.289      0.197      -1.108       0.229
+AGE[T.46]                                                        -0.4639      0.343     -1.353      0.176      -1.136       0.208
+AGE[T.47]                                                        -0.5942      0.343     -1.732      0.083      -1.267       0.078
+AGE[T.48]                                                        -0.6365      0.343     -1.856      0.063      -1.308       0.035
+AGE[T.49]                                                        -0.7018      0.346     -2.026      0.043      -1.381      -0.023
+AGE[T.50]                                                        -0.7196      0.343     -2.098      0.036      -1.392      -0.047
+AGE[T.51]                                                        -0.7435      0.342     -2.172      0.030      -1.414      -0.073
+AGE[T.52]                                                        -0.8167      0.347     -2.353      0.019      -1.497      -0.136
+AGE[T.53]                                                        -0.8237      0.345     -2.391      0.017      -1.499      -0.148
+AGE[T.54]                                                        -0.9157      0.346     -2.644      0.008      -1.594      -0.237
+AGE[T.55]                                                        -0.9565      0.348     -2.750      0.006      -1.638      -0.275
+AGE[T.56]                                                        -0.9725      0.349     -2.784      0.005      -1.657      -0.288
+AGE[T.57]                                                        -1.0861      0.352     -3.082      0.002      -1.777      -0.395
+AGE[T.58]                                                        -1.0814      0.356     -3.035      0.002      -1.780      -0.383
+AGE[T.59]                                                        -1.1229      0.363     -3.096      0.002      -1.834      -0.412
+AGE[T.60]                                                        -1.1662      0.370     -3.155      0.002      -1.891      -0.442
+AGE[T.61]                                                        -1.1490      0.393     -2.927      0.003      -1.919      -0.380
+AGE[T.62]                                                        -0.8511      0.386     -2.208      0.027      -1.607      -0.095
+AGE[T.63]                                                        -0.9501      0.362     -2.624      0.009      -1.660      -0.240
+AGE[T.64]                                                        -0.9732      0.364     -2.672      0.008      -1.687      -0.259
+==============================================================================
+Skew:                         -4.4857   Kurtosis:                      22.8518
+Centered skew:                -2.7558   Centered kurtosis:             20.0233
+==============================================================================
+Error in GEE analysis for FEARFULA: 'None of [Index([\'Intercept\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Early Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Late Peri]\',\n       \'C(STATUS_Label, Treatment("Pre-menopause"))[T.Post-menopause]\',\n       \'AGE[T.43]\', \'AGE[T.44]\', \'AGE[T.45]\', \'AGE[T.46]\', \'AGE[T.47]\',\n       \'AGE[T.48]\', \'AGE[T.49]\', \'AGE[T.50]\', \'AGE[T.51]\', \'AGE[T.52]\',\n       \'AGE[T.53]\', \'AGE[T.54]\', \'AGE[T.55]\', \'AGE[T.56]\', \'AGE[T.57]\',\n       \'AGE[T.58]\', \'AGE[T.59]\', \'AGE[T.60]\', \'AGE[T.61]\', \'AGE[T.62]\',\n       \'AGE[T.63]\', \'AGE[T.64]\'],\n      dtype=\'object\')] are in the [columns]'
+
+Plotting GEE results...
+
+Creating distribution plots for absolute changes...
+
+Creating distribution plots for percentage changes...
+
+Summary statistics for TOTIDE1:
+                count      mean       std  min  25%  50%  75%  max
+STATUS_Label                                                      
+Pre-menopause   303.0  0.052805  1.238397 -5.0  0.0  0.0  0.0  5.0
+Early Peri      225.0  0.111111  1.847080 -5.0 -1.0  0.0  1.0  5.0
+Late Peri        69.0  0.768116  1.948943 -5.0  0.0  1.0  2.0  5.0
+Post-menopause  118.0  0.161017  1.844235 -5.0 -1.0  0.0  1.0  5.0
+
+Summary statistics for TOTIDE2:
+                count      mean       std  min  25%  50%  75%  max
+STATUS_Label                                                      
+Pre-menopause   302.0  0.225166  1.082462 -3.0  0.0  0.0  0.0  5.0
+Early Peri      225.0  0.204444  2.027265 -7.0 -1.0  0.0  2.0  7.0
+Late Peri        69.0  0.710145  2.142713 -5.0  0.0  1.0  2.0  7.0
+Post-menopause  118.0  0.322034  1.857677 -5.0 -1.0  0.0  2.0  5.0
+
+Summary statistics for NERVES:
+                count      mean       std   min  25%  50%  75%   max
+STATUS_Label                                                        
+Pre-menopause   473.0  0.109937  5.559822 -52.0  0.0  0.0  0.0  48.0
+Early Peri      364.0  0.293956  6.713242 -52.0  0.0  0.0  0.0  48.0
+Late Peri       123.0  0.853659  6.425721 -37.0  0.0  0.0  0.0  45.0
+Post-menopause  199.0  0.150754  8.197523 -52.0  0.0  0.0  0.0  60.0
+
+Summary statistics for SAD:
+                 count      mean       std   min  25%  50%  75%  max
+STATUS_Label                                                        
+Pre-menopause   1972.0 -0.030426  0.697962  -5.0  0.0  0.0  0.0  3.0
+Early Peri      1869.0 -0.036918  0.906925  -4.0  0.0  0.0  0.0  8.0
+Late Peri        475.0 -0.044211  0.941396  -3.0  0.0  0.0  0.0  3.0
+Post-menopause  1235.0 -0.147368  0.993161 -10.0 -1.0  0.0  0.0  3.0
+
+Summary statistics for FEARFULA:
+                 count      mean       std   min  25%  50%  75%   max
+STATUS_Label                                                         
+Pre-menopause   1926.0 -0.121495  1.208105 -13.0  0.0  0.0  0.0  10.0
+Early Peri      1818.0 -0.176568  1.629449 -13.0  0.0  0.0  0.0  10.0
+Late Peri        482.0 -0.186722  2.200546 -12.0  0.0  0.0  0.0  10.0
+Post-menopause  1388.0 -0.270893  2.122789 -11.0  0.0  0.0  0.0  10.0
+
+Analysis complete.
