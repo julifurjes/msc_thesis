@@ -1,0 +1,68 @@
+Parameter Estimates (with standardized estimates):
+         lval  op       rval  Estimate  Est. Std  Std. Err    z-value   p-value
+0   cognitive   ~     social  0.097026  0.077033  0.037151   2.611688   0.00901
+1   cognitive   ~  emotional  0.092640  0.084939  0.033466    2.76817  0.005637
+2   cognitive   ~   symptoms -0.144099 -0.044665  0.103132  -1.397225  0.162346
+3   cognitive   ~     STATUS  0.012487  0.007496  0.036842   0.338942  0.734653
+4   cognitive   ~     INCOME  0.058596  0.067797  0.022481   2.606458  0.009148
+..        ...  ..        ...       ...       ...       ...        ...       ...
+64    PHYSPRO  ~~    PHYSPRO  0.967746  0.968141  0.029592  32.702895       0.0
+65     SOCIAL  ~~     SOCIAL  0.432749  0.446475  0.019562  22.122055       0.0
+66    TAKETOM  ~~    TAKETOM  0.547291  0.547515  0.038545  14.198942       0.0
+67    TOTIDE1  ~~    TOTIDE1  0.247690  0.249101  0.042636   5.809396       0.0
+68    TOTIDE2  ~~    TOTIDE2  0.217411  0.218715  0.044153   4.924009  0.000001
+
+[69 rows x 8 columns]
+
+Model Information:
+Number of observations: 2215
+
+Parameter Estimates Summary:
+Total number of parameters: 69
+
+Measurement Model:
+Empty DataFrame
+Columns: [lval, op, rval, Estimate, Est. Std, Std. Err, z-value, p-value]
+Index: []
+Structural Model (Main Relationships):
+             lval op           rval  Estimate  Est. Std  Std. Err    z-value   p-value
+0       cognitive  ~         social  0.097026  0.077033  0.037151   2.611688   0.00901
+1       cognitive  ~      emotional  0.092640  0.084939  0.033466    2.76817  0.005637
+2       cognitive  ~       symptoms -0.144099 -0.044665  0.103132  -1.397225  0.162346
+8       emotional  ~         social -0.050144 -0.043421  0.032961  -1.521297  0.128185
+9       emotional  ~       symptoms  1.474602  0.498510  0.146909  10.037519       0.0
+15  social_health  ~         social -0.174874 -0.145431  0.031559  -5.541174       0.0
+16  social_health  ~      emotional  0.542262  0.520784  0.030132  17.996212       0.0
+17  social_health  ~       symptoms  0.755205  0.245195  0.106414   7.096861       0.0
+23         LISTEN  ~         social  1.000000  0.686227         -          -         -
+24        TAKETOM  ~         social  0.980317  0.672670  0.078321  12.516725       0.0
+25        NOTSMAR  ~         social  0.320963  0.220238  0.040676   7.890676       0.0
+26        PHYSPRO  ~         social -0.260126 -0.178492  0.039837  -6.529786       0.0
+27        EMOCTDW  ~      emotional  1.000000  0.800852         -          -         -
+28        EMOACCO  ~      emotional  0.999383  0.800377  0.028947  34.524458       0.0
+29        EMOCARE  ~      emotional  0.833885  0.665682  0.028058  29.719663       0.0
+30        INTERFR  ~  social_health  1.000000  0.841441         -          -         -
+31         SOCIAL  ~  social_health -0.887920 -0.743993  0.030008  -29.58967       0.0
+32        TOTIDE1  ~      cognitive  1.000000  0.866544         -          -         -
+33        TOTIDE2  ~      cognitive  1.019881  0.883903  0.059431  17.160755       0.0
+34        NITESWE  ~       symptoms  1.000000  0.267889         -          -         -
+35        BOTCLDS  ~       symptoms  0.629759  0.168710  0.101551   6.201423       0.0
+36        IRRITAB  ~       symptoms  2.740275  0.734132   0.24126  11.358175       0.0
+37        MOODCHG  ~       symptoms  3.208162  0.859414  0.283864  11.301757       0.0
+Control Variable Effects:
+             lval op     rval  Estimate  Est. Std  Std. Err   z-value   p-value
+3       cognitive  ~   STATUS  0.012487  0.007496  0.036842  0.338942  0.734653
+4       cognitive  ~   INCOME  0.058596  0.067797  0.022481  2.606458  0.009148
+5       cognitive  ~  HOW_HAR  0.058463  0.067643  0.021337  2.740007  0.006144
+6       cognitive  ~  BCINCML -0.001762 -0.002039  0.019583  -0.08999  0.928295
+7       cognitive  ~   DEGREE  0.184382  0.213336  0.021683  8.503409       0.0
+10      emotional  ~   STATUS -0.014503 -0.009495  0.032654 -0.444146  0.656937
+11      emotional  ~   INCOME -0.044534 -0.056199  0.019828 -2.245957  0.024707
+12      emotional  ~  HOW_HAR -0.035001 -0.044169  0.018822  -1.85961  0.062941
+13      emotional  ~  BCINCML  0.051773  0.065334   0.01731  2.990954  0.002781
+14      emotional  ~   DEGREE -0.008964 -0.011313  0.018512  -0.48425  0.628208
+18  social_health  ~   STATUS  0.016862  0.010603  0.030384  0.554973  0.578913
+19  social_health  ~   INCOME -0.029122 -0.035295  0.018483 -1.575582  0.115122
+20  social_health  ~  HOW_HAR -0.052983 -0.064213  0.017543 -3.020145  0.002527
+21  social_health  ~  BCINCML  0.036867  0.044681   0.01616  2.281368  0.022527
+22  social_health  ~   DEGREE -0.013038 -0.015801  0.017226 -0.756875  0.449125

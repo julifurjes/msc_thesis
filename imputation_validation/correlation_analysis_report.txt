@@ -1,0 +1,36 @@
+Correlation Structure Analysis:
+
+Original Correlations:
+         TOTIDE1  TOTIDE2  VISIT
+TOTIDE1    1.000    0.769  0.051
+TOTIDE2    0.769    1.000  0.062
+VISIT      0.051    0.062  1.000
+
+Imputed Correlations:
+                 TOTIDE1_imputed  TOTIDE2_imputed  VISIT
+TOTIDE1_imputed            1.000            0.798  0.033
+TOTIDE2_imputed            0.798            1.000  0.036
+VISIT                      0.033            0.036  1.000
+
+Correlation Changes (Imputed - Original):
+         TOTIDE1  TOTIDE2
+TOTIDE1    0.000    0.029
+TOTIDE2    0.029    0.000
+
+Key Findings:
+
+- Correlation between TOTIDE1 and TOTIDE1:
+  Original: 1.000
+  Imputed:  1.000
+  Change:   0.000
+  Interpretation: Correlation well preserved
+- Correlation between TOTIDE1 and TOTIDE2:
+  Original: 0.769
+  Imputed:  0.798
+  Change:   0.029
+  Interpretation: Correlation well preserved
+- Correlation between TOTIDE2 and TOTIDE2:
+  Original: 1.000
+  Imputed:  1.000
+  Change:   0.000
+  Interpretation: Correlation well preserved

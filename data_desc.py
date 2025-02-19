@@ -1,5 +1,6 @@
 import pandas as pd
-
+import numpy as np
+from pyampute.exploration.mcar_statistical_tests import MCARTest
 
 class DemographicAnalyzer:
     def __init__(self, data_file, output_file="demographic_summary.csv"):
@@ -58,6 +59,38 @@ class DemographicAnalyzer:
         print(f"Mean Age: {mean_age:.2f}")
         print(f"Standard Deviation of Age: {sd_age:.2f}")
 
+    def missing_data_summary(self):
+        """
+        Generate a summary of missing data in the dataset.
+        """
+        target_columns = ['STATUS', 'TOTIDE1', 'TOTIDE2']
+        missing_data = self.data[target_columns].isnull().sum()
+        missing_data_percentage = missing_data / len(self.data) * 100
+        rounded_percentage = missing_data_percentage.round(2)
+
+        for col in target_columns:
+            self.summary[f'{col} Missing (%)'] = rounded_percentage[col]
+
+        print("Missing Data Summary:")
+        print(missing_data)
+
+    def mcar_test(self):
+        # Extract only numeric columns (since categorical variables can cause issues)
+        columns_to_check = self.data[['TOTIDE1', 'TOTIDE2']]
+
+        mt = MCARTest(method = 'little')
+
+        # Perform Little's MCAR test
+        p_value = mt(columns_to_check)
+
+        print(f"Little's MCAR test p-value: {p_value:.5f}")
+        self.summary["Little's MCAR Test P-Value"] = p_value
+
+        if p_value > 0.05:
+            print("The data is likely MCAR (missing completely at random).")
+        else:
+            print("The data is NOT MCAR (probably MAR or MNAR).")
+
     def save_summary(self):
         """
         Save the demographic summary to a CSV file.
@@ -73,10 +106,12 @@ class DemographicAnalyzer:
         self.load_data()
         self.clean_age_column()
         self.calculate_age_stats()
+        self.missing_data_summary()
+        self.mcar_test()
         self.save_summary()
 
 
 if __name__ == "__main__":
-    data_file = "combined_data.csv"
+    data_file = "processed_data.csv"
     analyzer = DemographicAnalyzer(data_file)
     analyzer.main()

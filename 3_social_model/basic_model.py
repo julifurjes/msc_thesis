@@ -24,6 +24,7 @@ class MenopauseSocialCognitionModel:
         self.cognitive_vars = ['TOTIDE1', 'TOTIDE2']
         self.symptom_vars = ['NITESWE', 'BOTCLDS', 'IRRITAB', 'MOODCHG']
         self.control_vars = ['STATUS', 'VISIT']
+        self.socioeco_vars = ['INCOME', 'HOW_HAR', 'BCINCML', 'DEGREE']
         self.all_vars = self.social_vars + self.emotional_vars + self.social_health_vars + self.cognitive_vars + self.symptom_vars + self.control_vars
         self.output_dir = get_output_dir('3_social_model', 'overall')
         os.makedirs(self.output_dir, exist_ok=True)
@@ -332,6 +333,18 @@ class MenopauseSocialCognitionModel:
                 
                 # Fit and print model
                 model = self.fit_mixed_model(outcome, self.social_vars + self.cognitive_vars + self.emotional_vars + self.symptom_vars + self.control_vars)
+                if model is not None:
+                    print(model.summary())
+
+            # Socioeconomic outcomes
+            for outcome in self.socioeco_vars:
+                print(f"\nAnalyzing {outcome}...")
+                # Create visualizations
+                self.create_interaction_plots(outcome, self.social_vars + self.cognitive_vars + self.emotional_vars + self.symptom_vars + self.social_health_vars)
+                self.create_boxplots(outcome)
+                
+                # Fit and print model
+                model = self.fit_mixed_model(outcome, self.social_vars + self.cognitive_vars + self.emotional_vars + self.symptom_vars + self.social_health_vars + self.control_vars)
                 if model is not None:
                     print(model.summary())
 

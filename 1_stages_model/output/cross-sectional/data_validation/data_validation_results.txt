@@ -1,0 +1,33 @@
+Analysis Run: 2025-02-14 11:22:56
+================================================================================
+
+
+Levene's test for TOTIDE1:
+Statistic: 46.6462
+p-value: 0.0000
+Groups tested: Surgical, Pre-menopause, Early Peri, Late Peri, Post-menopause
+Residual plots saved as: c:\Users\julif\Documents\GitHub\msc_thesis\1_stages_model\output\cross-sectional\data_validation\TOTIDE1_residual_plots.png
+
+Levene's test for TOTIDE2:
+Statistic: 45.3885
+p-value: 0.0000
+Groups tested: Surgical, Pre-menopause, Early Peri, Late Peri, Post-menopause
+Residual plots saved as: c:\Users\julif\Documents\GitHub\msc_thesis\1_stages_model\output\cross-sectional\data_validation\TOTIDE2_residual_plots.png
+
+Levene's test for NERVES:
+Statistic: 4.1507
+p-value: 0.0023
+Groups tested: Surgical, Pre-menopause, Early Peri, Late Peri, Post-menopause
+Residual plots saved as: c:\Users\julif\Documents\GitHub\msc_thesis\1_stages_model\output\cross-sectional\data_validation\NERVES_residual_plots.png
+
+Levene's test for SAD:
+Statistic: 10.7153
+p-value: 0.0000
+Groups tested: Surgical, Pre-menopause, Early Peri, Late Peri, Post-menopause
+Residual plots saved as: c:\Users\julif\Documents\GitHub\msc_thesis\1_stages_model\output\cross-sectional\data_validation\SAD_residual_plots.png
+
+Levene's test for FEARFULA:
+Statistic: 17.3356
+p-value: 0.0000
+Groups tested: Surgical, Pre-menopause, Early Peri, Late Peri, Post-menopause
+Residual plots saved as: c:\Users\julif\Documents\GitHub\msc_thesis\1_stages_model\output\cross-sectional\data_validation\FEARFULA_residual_plots.png

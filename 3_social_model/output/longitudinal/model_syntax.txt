@@ -1,0 +1,107 @@
+
+        # Growth Factors
+        i_TOTIDE1 =~ 1*TOTIDE1_t0 + 1*TOTIDE1_t1 + 1*TOTIDE1_t2 + 1*TOTIDE1_t3 + 1*TOTIDE1_t4 + 1*TOTIDE1_t5 + 1*TOTIDE1_t6 + 1*TOTIDE1_t7 + 1*TOTIDE1_t8 + 1*TOTIDE1_t9 + 1*TOTIDE1_t10
+s_TOTIDE1 =~ 0*TOTIDE1_t0 + 1*TOTIDE1_t1 + 2*TOTIDE1_t2 + 3*TOTIDE1_t3 + 4*TOTIDE1_t4 + 5*TOTIDE1_t5 + 6*TOTIDE1_t6 + 7*TOTIDE1_t7 + 8*TOTIDE1_t8 + 9*TOTIDE1_t9 + 10*TOTIDE1_t10
+        # Growth Factor Mean Structure
+        i_TOTIDE1 ~ mean*1
+        s_TOTIDE1 ~ mean*1
+        
+        # Growth Factor Variances and Covariance
+        i_TOTIDE1 ~~ var*i_TOTIDE1
+        s_TOTIDE1 ~~ var*s_TOTIDE1
+        i_TOTIDE1 ~~ cov*s_TOTIDE1
+        
+# Residual Variances
+TOTIDE1_t0 ~~ res*TOTIDE1_t0
+TOTIDE1_t1 ~~ res*TOTIDE1_t1
+TOTIDE1_t2 ~~ res*TOTIDE1_t2
+TOTIDE1_t3 ~~ res*TOTIDE1_t3
+TOTIDE1_t4 ~~ res*TOTIDE1_t4
+TOTIDE1_t5 ~~ res*TOTIDE1_t5
+TOTIDE1_t6 ~~ res*TOTIDE1_t6
+TOTIDE1_t7 ~~ res*TOTIDE1_t7
+TOTIDE1_t8 ~~ res*TOTIDE1_t8
+TOTIDE1_t9 ~~ res*TOTIDE1_t9
+TOTIDE1_t10 ~~ res*TOTIDE1_t10
+
+        # Growth Factors
+        i_TOTIDE2 =~ 1*TOTIDE2_t0 + 1*TOTIDE2_t1 + 1*TOTIDE2_t2 + 1*TOTIDE2_t3 + 1*TOTIDE2_t4 + 1*TOTIDE2_t5 + 1*TOTIDE2_t6 + 1*TOTIDE2_t7 + 1*TOTIDE2_t8 + 1*TOTIDE2_t9 + 1*TOTIDE2_t10
+s_TOTIDE2 =~ 0*TOTIDE2_t0 + 1*TOTIDE2_t1 + 2*TOTIDE2_t2 + 3*TOTIDE2_t3 + 4*TOTIDE2_t4 + 5*TOTIDE2_t5 + 6*TOTIDE2_t6 + 7*TOTIDE2_t7 + 8*TOTIDE2_t8 + 9*TOTIDE2_t9 + 10*TOTIDE2_t10
+        # Growth Factor Mean Structure
+        i_TOTIDE2 ~ mean*1
+        s_TOTIDE2 ~ mean*1
+        
+        # Growth Factor Variances and Covariance
+        i_TOTIDE2 ~~ var*i_TOTIDE2
+        s_TOTIDE2 ~~ var*s_TOTIDE2
+        i_TOTIDE2 ~~ cov*s_TOTIDE2
+        
+# Residual Variances
+TOTIDE2_t0 ~~ res*TOTIDE2_t0
+TOTIDE2_t1 ~~ res*TOTIDE2_t1
+TOTIDE2_t2 ~~ res*TOTIDE2_t2
+TOTIDE2_t3 ~~ res*TOTIDE2_t3
+TOTIDE2_t4 ~~ res*TOTIDE2_t4
+TOTIDE2_t5 ~~ res*TOTIDE2_t5
+TOTIDE2_t6 ~~ res*TOTIDE2_t6
+TOTIDE2_t7 ~~ res*TOTIDE2_t7
+TOTIDE2_t8 ~~ res*TOTIDE2_t8
+TOTIDE2_t9 ~~ res*TOTIDE2_t9
+TOTIDE2_t10 ~~ res*TOTIDE2_t10
+
+        # Growth Factors
+        i_LISTEN =~ 1*LISTEN_t0 + 1*LISTEN_t1 + 1*LISTEN_t2 + 1*LISTEN_t3 + 1*LISTEN_t4 + 1*LISTEN_t5 + 1*LISTEN_t6 + 1*LISTEN_t7 + 1*LISTEN_t8 + 1*LISTEN_t9 + 1*LISTEN_t10
+s_LISTEN =~ 0*LISTEN_t0 + 1*LISTEN_t1 + 2*LISTEN_t2 + 3*LISTEN_t3 + 4*LISTEN_t4 + 5*LISTEN_t5 + 6*LISTEN_t6 + 7*LISTEN_t7 + 8*LISTEN_t8 + 9*LISTEN_t9 + 10*LISTEN_t10
+        # Growth Factor Mean Structure
+        i_LISTEN ~ mean*1
+        s_LISTEN ~ mean*1
+        
+        # Growth Factor Variances and Covariance
+        i_LISTEN ~~ var*i_LISTEN
+        s_LISTEN ~~ var*s_LISTEN
+        i_LISTEN ~~ cov*s_LISTEN
+        
+# Residual Variances
+LISTEN_t0 ~~ res*LISTEN_t0
+LISTEN_t1 ~~ res*LISTEN_t1
+LISTEN_t2 ~~ res*LISTEN_t2
+LISTEN_t3 ~~ res*LISTEN_t3
+LISTEN_t4 ~~ res*LISTEN_t4
+LISTEN_t5 ~~ res*LISTEN_t5
+LISTEN_t6 ~~ res*LISTEN_t6
+LISTEN_t7 ~~ res*LISTEN_t7
+LISTEN_t8 ~~ res*LISTEN_t8
+LISTEN_t9 ~~ res*LISTEN_t9
+LISTEN_t10 ~~ res*LISTEN_t10
+
+        # Growth Factors
+        i_EMOCTDW =~ 1*EMOCTDW_t0 + 1*EMOCTDW_t1 + 1*EMOCTDW_t2 + 1*EMOCTDW_t3 + 1*EMOCTDW_t4 + 1*EMOCTDW_t5 + 1*EMOCTDW_t6 + 1*EMOCTDW_t7 + 1*EMOCTDW_t8 + 1*EMOCTDW_t9 + 1*EMOCTDW_t10
+s_EMOCTDW =~ 0*EMOCTDW_t0 + 1*EMOCTDW_t1 + 2*EMOCTDW_t2 + 3*EMOCTDW_t3 + 4*EMOCTDW_t4 + 5*EMOCTDW_t5 + 6*EMOCTDW_t6 + 7*EMOCTDW_t7 + 8*EMOCTDW_t8 + 9*EMOCTDW_t9 + 10*EMOCTDW_t10
+        # Growth Factor Mean Structure
+        i_EMOCTDW ~ mean*1
+        s_EMOCTDW ~ mean*1
+        
+        # Growth Factor Variances and Covariance
+        i_EMOCTDW ~~ var*i_EMOCTDW
+        s_EMOCTDW ~~ var*s_EMOCTDW
+        i_EMOCTDW ~~ cov*s_EMOCTDW
+        
+# Residual Variances
+EMOCTDW_t0 ~~ res*EMOCTDW_t0
+EMOCTDW_t1 ~~ res*EMOCTDW_t1
+EMOCTDW_t2 ~~ res*EMOCTDW_t2
+EMOCTDW_t3 ~~ res*EMOCTDW_t3
+EMOCTDW_t4 ~~ res*EMOCTDW_t4
+EMOCTDW_t5 ~~ res*EMOCTDW_t5
+EMOCTDW_t6 ~~ res*EMOCTDW_t6
+EMOCTDW_t7 ~~ res*EMOCTDW_t7
+EMOCTDW_t8 ~~ res*EMOCTDW_t8
+EMOCTDW_t9 ~~ res*EMOCTDW_t9
+EMOCTDW_t10 ~~ res*EMOCTDW_t10
+        # Cross-domain structural paths
+        i_TOTIDE1 ~ p1*i_LISTEN + p2*i_EMOCTDW
+        s_TOTIDE1 ~ p3*s_LISTEN + p4*s_EMOCTDW
+        
+        i_TOTIDE2 ~ p5*i_LISTEN + p6*i_EMOCTDW
+        s_TOTIDE2 ~ p7*s_LISTEN + p8*s_EMOCTDW
+        

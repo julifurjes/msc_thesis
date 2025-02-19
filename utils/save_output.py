@@ -12,10 +12,10 @@ class OutputCapture:
             # Your analysis code here
             print("This will be saved to file and shown in terminal")
     """
-    def __init__(self, output_dir):
+    def __init__(self, output_dir, txt_file_name='analysis_results.txt'):
         self.terminal = sys.stdout
         os.makedirs(output_dir, exist_ok=True)
-        self.logfile = open(os.path.join(output_dir, 'analysis_results.txt'), 'w', encoding='utf-8')
+        self.logfile = open(os.path.join(output_dir, txt_file_name), 'w', encoding='utf-8')
         
         # Write header with timestamp
         self.logfile.write(f"Analysis Run: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
