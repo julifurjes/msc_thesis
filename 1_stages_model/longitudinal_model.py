@@ -3,8 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import statsmodels.api as sm
-from statsmodels.formula.api import gee
-from statsmodels.genmod.cov_struct import Exchangeable
+from statsmodels.formula.api import mixedlm
 import warnings
 import os
 import sys
@@ -15,14 +14,13 @@ if project_root not in sys.path:
     sys.path.append(project_root)
 
 from utils.save_output import OutputCapture, get_output_dir
-from utils.data_validation import DataValidator
+from utils.further_checks import FurtherChecks
 
 class MenopauseCognitionAnalysis:
     def __init__(self, file_path):
         self.data = pd.read_csv(file_path, low_memory=False)
         self.cognitive_vars = ['TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
-        self.filter_status()
-        self.gee_results = {}
+        self.mixed_model_results = {}
         self.output_dir = get_output_dir('1_stages_model', 'longitudinal')
     
     def filter_status(self):
@@ -46,7 +44,7 @@ class MenopauseCognitionAnalysis:
         self.data['Menopause_Type'] = np.where(self.data['STATUS'].isin([1, 8]), 'Surgical', 'Natural')
         
         # If you still need an ordering for the natural stages, you can keep the categorical for STATUS_Label.
-        # For instance, you may want natural stages to appear in order and have “Surgical” as a separate category.
+        # For instance, you may want natural stages to appear in order and have "Surgical" as a separate category.
         natural_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause']
         self.data['STATUS_Label'] = pd.Categorical(
             self.data['STATUS_Label'],
@@ -54,72 +52,19 @@ class MenopauseCognitionAnalysis:
             ordered=True
         )
 
-    def run_data_validation(self):
-        # Validation
-        print("\nPerforming data validation...")
-        self.validation_results = self.validate_data()
-        
-        # Check validation results
-        if  self.validation_results and 'missing_data' in  self.validation_results:
-            # Check for high percentage of missing data
-            for var, percentage in  self.validation_results['missing_data']['percentages'].items():
-                if percentage > 20:
-                    warnings.warn(f"{var} has {percentage:.1f}% missing data")
-        
-        # Check distributions if available
-        if 'distributions' in self.validation_results:
-            for var, results in self.validation_results['distributions'].items():
-                if results and results.get('type') == 'numeric':
-                    # Check skewness
-                    if 'basic_stats' in results:
-                        skewness = results['basic_stats'].get('skewness')
-                        if skewness is not None and abs(skewness) > 2:
-                            warnings.warn(f"{var} shows high skewness: {skewness:.2f}")
-                    
-                    # Check normality if test results exist
-                    if ('normality_tests' in results and 
-                        results['normality_tests'] and 
-                        'dagostino_p' in results['normality_tests']):
-                        p_value = results['normality_tests']['dagostino_p']
-                        if p_value is not None and p_value < 0.05:
-                            warnings.warn(f"{var} may not be normally distributed (p < 0.05)")
-        
-        # Check sample size warnings
-        if  self.validation_results and 'sample_sizes' in  self.validation_results:
-            if  self.validation_results['sample_sizes']['warnings']:
-                for warning in  self.validation_results['sample_sizes']['warnings']:
-                    warnings.warn(warning)
-
-    def validate_data(self):
-        """Perform comprehensive data validation."""
-        variables_to_check = self.cognitive_vars + ['STATUS_Label']
-        # Only validate the specified variables
-        validator = DataValidator(
-            data=self.data,
-            variables=variables_to_check,
-            output_dir=self.output_dir
-        )
-        
-        # Run validation checks
-        validation_results = validator.run_checks(
-            checks=['missing', 'distributions', 'group_sizes', 'multicollinearity', 'independence'],
-            grouping_var='STATUS_Label'
-        )
-        return validation_results
-
-    def run_gee_analysis(self, covariates=None):
+    def run_mixed_models(self, covariates=None):
         """
-        Run GEE analysis for each cognitive variable.
+        Run linear mixed-effects models for each cognitive variable.
+        This model includes random intercepts for each subject.
         
         Parameters:
         -----------
         covariates : list
             List of additional covariate column names to include in the model
         """
-        cognitive_vars = ['TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
         
         # Ensure numeric types for cognitive variables and covariates
-        for var in cognitive_vars:
+        for var in self.cognitive_vars:
             self.data[var] = pd.to_numeric(self.data[var], errors='coerce')
         
         if covariates:
@@ -130,14 +75,14 @@ class MenopauseCognitionAnalysis:
         if covariates is None:
             covariates = []
         
-        # Handle covariates differently - don't use categorical encoding for continuous variables
+        # Handle covariates 
         covariate_str = ' + '.join(covariates) if covariates else ''
         
         # Dictionary to store results
-        self.gee_results = {}
+        self.mixed_model_results = {}
         
-        for outcome in cognitive_vars:
-            # Create formula using STATUS as categorical variable
+        for outcome in self.cognitive_vars:
+            # Create formula using STATUS as categorical variable with random intercept for SWANID
             if covariate_str:
                 formula = f"{outcome} ~ C(STATUS_Label, Treatment('Pre-menopause')) + {covariate_str}"
             else:
@@ -147,66 +92,126 @@ class MenopauseCognitionAnalysis:
                 # Drop rows with missing values
                 analysis_data = self.data.dropna(subset=[outcome] + covariates if covariates else [outcome])
                 
-                # Fit GEE model
-                model = gee(
+                # Fit mixed model with random intercept for SWANID
+                model = mixedlm(
                     formula=formula,
-                    groups="SWANID",
-                    data=analysis_data,
-                    cov_struct=Exchangeable(),
-                    family=sm.families.Gaussian()
+                    groups=analysis_data["SWANID"],
+                    data=analysis_data
                 )
                 
-                results = model.fit()
-                self.gee_results[outcome] = results
+                results = model.fit(reml=True)
+                self.mixed_model_results[outcome] = results
                 
                 # Print detailed results
-                print(f"\nGEE Results for {outcome}")
+                print(f"\nMixed Model Results for {outcome}")
                 print("=" * 50)
                 print(results.summary())
                 
-                # Calculate and store effect sizes (standardized coefficients)
-                y_std = analysis_data[outcome].std()
+                # Calculate marginal and conditional R-squared
+                try:
+                    # Residual variance
+                    resid_var = results.scale
+                    # Random effects variance
+                    re_var = results.cov_re.iloc[0, 0] if hasattr(results.cov_re, 'iloc') else results.cov_re[0][0]
+                    # Calculate total variance
+                    total_var = resid_var + re_var
+                    # Variance explained by fixed effects (approximate)
+                    var_fixed = np.var(results.predict(analysis_data))
+                    
+                    # Marginal R² (fixed effects only)
+                    marginal_r2 = var_fixed / (var_fixed + re_var + resid_var)
+                    # Conditional R² (both fixed and random effects)
+                    conditional_r2 = (var_fixed + re_var) / (var_fixed + re_var + resid_var)
+                    
+                    print(f"\nApproximate Marginal R² (fixed effects): {marginal_r2:.4f}")
+                    print(f"Approximate Conditional R² (fixed + random): {conditional_r2:.4f}")
+                    
+                except Exception as e:
+                    print(f"Error calculating R-squared: {str(e)}")
                 
-                # Get the standard deviations for the predictors
-                predictor_stds = {}
-                for pred in results.model.exog_names:
-                    if pred == 'Intercept':
-                        predictor_stds[pred] = 1
-                    elif pred.startswith('C(STATUS_Label'):
-                        predictor_stds[pred] = 1  # Binary variables
-                    else:
-                        predictor_stds[pred] = analysis_data[pred].std()
-                
-                # Calculate standardized coefficients
-                standardized_params = pd.Series({
-                    name: param * (predictor_stds.get(name, 1) / y_std)
-                    for name, param in results.params.items()
-                })
-                
-                print("\nStandardized Coefficients:")
-                print(standardized_params)
+                # Check residuals and model diagnostics
+                self.check_model_diagnostics(results, outcome, analysis_data)
                 
             except Exception as e:
-                print(f"Error in GEE analysis for {outcome}: {str(e)}")
+                print(f"Error in mixed model analysis for {outcome}: {str(e)}")
                 print("Data shape:", analysis_data.shape)
                 print("Formula:", formula)
     
-    def plot_gee_results(self):
-        """Create forest plots of GEE results for all cognitive variables."""
-        if not self.gee_results:
-            print("No GEE results available. Run run_gee_analysis() first.")
+    def check_model_diagnostics(self, model_results, outcome, data):
+        """Check model residuals and diagnostics for the mixed model."""
+        try:
+            # Calculate residuals
+            predicted = model_results.predict(data)
+            actual = data[outcome]
+            residuals = actual - predicted
+            
+            # Plot residuals
+            plt.figure(figsize=(12, 10))
+            
+            plt.subplot(2, 2, 1)
+            plt.scatter(predicted, residuals, alpha=0.5)
+            plt.axhline(y=0, color='r', linestyle='-')
+            plt.title(f'Residuals vs Fitted for {outcome}')
+            plt.xlabel('Fitted values')
+            plt.ylabel('Residuals')
+            
+            plt.subplot(2, 2, 2)
+            sns.histplot(residuals, kde=True)
+            plt.title('Histogram of Residuals')
+            plt.xlabel('Residual Value')
+            
+            plt.subplot(2, 2, 3)
+            sm.qqplot(residuals.dropna(), line='s', ax=plt.gca())
+            plt.title('Q-Q Plot of Residuals')
+            
+            plt.subplot(2, 2, 4)
+            plt.scatter(range(len(residuals)), residuals, alpha=0.5)
+            plt.axhline(y=0, color='r', linestyle='-')
+            plt.title('Residuals vs Order')
+            plt.xlabel('Observation Order')
+            plt.ylabel('Residuals')
+            
+            # Save the plot
+            plt.tight_layout()
+            plt.savefig(os.path.join(self.output_dir, f'{outcome}_mixed_diagnostics.png'))
+            plt.close()
+            
+            # Check normality of residuals
+            _, normality_p = sm.stats.diagnostic.normal_ad(residuals.dropna())
+            
+            print(f"\nNormality test p-value: {normality_p:.4f}")
+            
+            # Suggest alternative approaches if needed
+            if normality_p < 0.05:
+                print("WARNING: Residuals are not normally distributed.")
+                print("Consider transforming the outcome variable or using a robust estimation method.")
+            
+        except Exception as e:
+            print(f"Error in model diagnostics: {str(e)}")
+    
+    def plot_forest_plots(self):
+        """Create forest plots of mixed model results for all cognitive variables."""
+        if not self.mixed_model_results:
+            print("No mixed model results available. Run run_mixed_models() first.")
             return
         
-        # Create figure
-        fig, axes = plt.subplots(len(self.gee_results), 1, figsize=(12, 4*len(self.gee_results)))
-        if len(self.gee_results) == 1:
-            axes = [axes]
+        # Calculate number of plots and arrange in 2 columns
+        n_plots = len(self.mixed_model_results)
+        n_cols = 2  # Always use 2 columns
+        n_rows = (n_plots + 1) // 2  # Ceiling division for odd number of plots
+        
+        # Create a figure with subplots in a 2-column grid
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=(18, 6*n_rows))
+        axes = axes.flatten()  # Flatten to make indexing easier
         
         # Define the status effects we want to plot
         status_effects = ['Early Peri', 'Late Peri', 'Post-menopause']
         
-        for idx, (outcome, results) in enumerate(self.gee_results.items()):
+        plot_idx = 0
+        for outcome, results in self.mixed_model_results.items():
             print(f"\nProcessing {outcome}...")
+            ax = axes[plot_idx]
+            plot_idx += 1
             
             # Initialize lists to store plot data
             coefs = []
@@ -214,7 +219,7 @@ class MenopauseCognitionAnalysis:
             pvalues = []
             names = []
             
-            # Extract coefficients using the exact parameter names from the GEE output
+            # Extract coefficients
             for status in status_effects:
                 param_name = f"C(STATUS_Label, Treatment('Pre-menopause'))[T.{status}]"
                 
@@ -225,15 +230,17 @@ class MenopauseCognitionAnalysis:
                     pvalues.append(results.pvalues[param_name])
                     names.append(status)
                 else:
-                    print(f"Warning: No coefficient found for {status} using {param_name}")
+                    print(f"Warning: No coefficient found for {status}")
             
             if not coefs:
                 print(f"No coefficients found for {outcome}")
+                ax.set_visible(False)
                 continue
             
-            # Create forest plot
-            y_pos = np.arange(len(names))
-            axes[idx].errorbar(
+            # Create forest plot with spaced points
+            y_pos = np.arange(len(names)) * 1.5
+            
+            ax.errorbar(
                 coefs, y_pos,
                 xerr=1.96 * np.array(errors),  # 95% CI
                 fmt='o',
@@ -244,84 +251,68 @@ class MenopauseCognitionAnalysis:
             )
             
             # Add vertical line at zero
-            axes[idx].axvline(x=0, color='gray', linestyle='--', alpha=0.5)
+            ax.axvline(x=0, color='gray', linestyle='--', alpha=0.5)
             
             # Customize plot
-            axes[idx].set_yticks(y_pos)
-            axes[idx].set_yticklabels(names)
-            axes[idx].set_title(f'{outcome} Effects\n(Reference: Pre-menopause)', pad=20)
-            axes[idx].set_xlabel('Coefficient Value')
+            ax.set_yticks(y_pos)
+            ax.set_yticklabels(names, fontsize=12)
+            ax.set_title(f'{outcome} Effects (Mixed Model)\n(Reference: Pre-menopause)', fontsize=14)
+            ax.set_xlabel('Coefficient Value', fontsize=12)
             
-            # Add coefficient values and p-values as text
+            # Calculate x-axis limits first to ensure text stays within bounds
+            x_max = max([abs(c + e*1.96*1.2) for c, e in zip(coefs, errors)])
+            ax.set_xlim(-x_max, x_max)
+            
+            # Add simple text labels with moderate spacing
             for i, (coef, p) in enumerate(zip(coefs, pvalues)):
                 # Add asterisks for significance levels
                 stars = ''
-                if p < 0.001:
-                    stars = '***'
-                elif p < 0.01:
-                    stars = '**'
-                elif p < 0.05:
-                    stars = '*'
+                if p < 0.001: stars = '***'
+                elif p < 0.01: stars = '**'
+                elif p < 0.05: stars = '*'
                 
-                text = f' {coef:.3f}{stars}\n(p={p:.3f})'
-                axes[idx].text(
-                    coef, i,
+                # Always position text on the right side
+                offset = 0.05  # Fixed positive offset to place text on the right
+                text_pos = coef + offset
+                
+                # Short, concise text format
+                text = f"{coef:.2f}{stars} (p={p:.3f})"
+                
+                # Always use left alignment
+                ax.text(
+                    text_pos, y_pos[i],
                     text,
                     verticalalignment='center',
-                    horizontalalignment='left' if coef >= 0 else 'right',
-                    fontsize=10
+                    horizontalalignment='left',  # Always left-aligned
+                    fontsize=10,
+                    bbox=dict(facecolor='white', alpha=0.7, pad=3, edgecolor='none')
                 )
             
             # Add gridlines
-            axes[idx].grid(True, axis='x', linestyle=':', alpha=0.6)
-            
-            # Adjust x-axis to make sure all error bars and text are visible
-            x_max = max([abs(c + e*1.96) for c, e in zip(coefs, errors)])
-            axes[idx].set_xlim(-x_max*1.2, x_max*1.2)
+            ax.grid(True, axis='x', linestyle=':', alpha=0.6)
+        
+        # Hide any unused subplots
+        for i in range(plot_idx, len(axes)):
+            axes[i].set_visible(False)
         
         # Add legend for significance levels
-        fig.text(0.99, 0.01, 
+        fig.text(0.98, 0.02, 
                 '* p<0.05   ** p<0.01   *** p<0.001',
-                fontsize=10,
+                fontsize=11,
                 horizontalalignment='right')
         
-        plt.tight_layout()
+        # Adjust layout with more space
+        plt.tight_layout(h_pad=3, w_pad=3)
         
         # Save the plot
-        file_name = os.path.join(self.output_dir, 'gee_results_forest_plots.png')
+        file_name = os.path.join(self.output_dir, 'mixed_model_forest_plots.png')
         plt.savefig(file_name, dpi=300, bbox_inches='tight')
         plt.close()
         
         print(f"\nPlot saved as: {file_name}")
-
-    def calculate_baseline_changes(self):
-        """Calculate changes from each subject's first available measurement as baseline."""
-        for col in self.cognitive_vars:
-            self.data[col] = pd.to_numeric(self.data[col], errors='coerce')
-        
-        # Sort by subject ID and visit
-        self.data = self.data.sort_values(['SWANID', 'VISIT'])
-        
-        # Use the first visit for each subject as baseline, regardless of STATUS
-        baseline_data = self.data.groupby('SWANID').first().reset_index()
-        
-        baseline_cols = {col: f'{col}_baseline' for col in self.cognitive_vars}
-        baseline_data = baseline_data[['SWANID'] + self.cognitive_vars].rename(columns=baseline_cols)
-        
-        # Merge baseline data back into main DataFrame
-        self.data = self.data.merge(baseline_data, on='SWANID', how='left')
-        
-        # Calculate changes from baseline
-        for var in self.cognitive_vars:
-            self.data[f'{var}_change'] = self.data[var] - self.data[f'{var}_baseline']
-            self.data[f'{var}_pct_change'] = (
-                (self.data[var] - self.data[f'{var}_baseline']) / self.data[f'{var}_baseline'] * 100
-            )
-        
-        return self.data
-
-    def plot_change_distributions(self, use_percentage=False):
-        """Create violin plots with embedded box plots for change scores."""
+    
+    def plot_cognitive_trajectories(self):
+        """Create line plots showing individual trajectories by menopausal status."""
         var_labels = {
             'TOTIDE1': 'Total IDE Score 1',
             'TOTIDE2': 'Total IDE Score 2',
@@ -331,81 +322,95 @@ class MenopauseCognitionAnalysis:
         }
         
         # Create a figure with subplots
-        fig, axes = plt.subplots(3, 2, figsize=(15, 20))
-        axes = axes.flatten()  # Flatten the 2D array of axes
+        n_vars = len(self.cognitive_vars)
+        n_cols = min(3, n_vars)
+        n_rows = (n_vars + n_cols - 1) // n_cols
         
-        # Set color palette
-        colors = sns.color_palette("coolwarm", n_colors=4)
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=(6*n_cols, 5*n_rows), squeeze=False)
+        axes = axes.flatten()
         
         for idx, var in enumerate(self.cognitive_vars):
-            suffix = '_pct_change' if use_percentage else '_change'
-            var_change = var + suffix
-            
-            # Create violin plot with boxplot inside
-            sns.violinplot(
-                data=self.data,
-                x='STATUS_Label',  # or another variable if you want to separate by VISIT/time
-                y=var_change,
-                hue='Menopause_Type',
-                split=True,  # if appropriate
-                inner='box',
-                ax=axes[idx],
-                palette="coolwarm"
+            # Get a subset of data for visualization (limit to 100 subjects)
+            subset_ids = np.random.choice(
+                self.data['SWANID'].unique(), 
+                min(100, len(self.data['SWANID'].unique())), 
+                replace=False
             )
+            plot_data = self.data[self.data['SWANID'].isin(subset_ids)]
+            
+            # Sort by SWANID and VISIT to ensure proper trajectory
+            plot_data = plot_data.sort_values(['SWANID', 'VISIT'])
+            
+            # Create a spaghetti plot by SWANID, colored by STATUS_Label
+            ax = axes[idx]
+            
+            # First plot average trajectories by status
+            sns.lineplot(
+                data=self.data,
+                x='VISIT', 
+                y=var,
+                hue='STATUS_Label',
+                estimator='mean',
+                errorbar=('ci', 95),
+                ax=ax,
+                linewidth=3,
+                palette='coolwarm'
+            )
+            
+            # Add individual trajectories with low alpha for a subset
+            for swanid, group in plot_data.groupby('SWANID'):
+                ax.plot(
+                    group['VISIT'], 
+                    group[var], 
+                    alpha=0.1, 
+                    color='gray',
+                    linewidth=0.5
+                )
             
             # Customize the plot
-            axes[idx].set_title(f'Changes in {var_labels[var]} Across Menopausal Stages', pad=20)
-            axes[idx].set_xlabel('Menopausal Status (Timeline →)', labelpad=10)
-            axes[idx].set_ylabel(
-                'Percent Change from Baseline' if use_percentage 
-                else 'Absolute Change from Baseline'
-            )
-            
-            # Add horizontal line at y=0 for reference
-            axes[idx].axhline(y=0, color='black', linestyle='--', alpha=0.3)
-            
-            # Rotate x-axis labels for better readability
-            axes[idx].tick_params(axis='x', rotation=45)
+            ax.set_title(f'Trajectories for {var_labels[var]}', pad=20)
+            ax.set_xlabel('Visit')
+            ax.set_ylabel(var_labels[var])
             
             # Add summary statistics as text
-            summary_stats = self.data.groupby('STATUS_Label', observed=True)[var_change].agg([
+            summary_stats = self.data.groupby('STATUS_Label', observed=True)[var].agg([
                 'count', 'mean', 'std', 'median'
             ]).round(2)
             
-            stat_text = "Summary Statistics:\n"
+            # Add summary statistics to the side of the plot
+            stat_text = "Summary by Status:\n"
             for status, stats in summary_stats.iterrows():
                 stat_text += f"\n{status}:\n"
                 stat_text += f"n={stats['count']}, mean={stats['mean']}\n"
                 stat_text += f"median={stats['median']}, sd={stats['std']}\n"
             
-            # Position the text box in a better location
-            text_box = axes[idx].text(
-                1.15,  # x position
+            # Position the text box outside the plot
+            text_box = ax.text(
+                1.05,  # x position
                 0.5,   # y position
                 stat_text,
                 fontsize=8,
                 bbox=dict(facecolor='white', alpha=0.8),
-                transform=axes[idx].transAxes,  # Use axes coordinates
+                transform=ax.transAxes,  # Use axes coordinates
                 verticalalignment='center'
             )
         
-        # Remove the empty subplot if we have one
-        if len(self.cognitive_vars) < len(axes):
-            fig.delaxes(axes[-1])
+        # Remove any unused subplots
+        for j in range(idx + 1, len(axes)):
+            axes[j].set_visible(False)
         
         # Add a main title
         fig.suptitle(
-            'Cognitive Changes Across Menopausal Stages\n'
-            '(Pre-menopause → Early Peri → Late Peri → Post-menopause)',
+            'Cognitive Measure Trajectories by Menopausal Status',
             y=1.02,
             fontsize=14
         )
         
         # Adjust layout and display
         plt.tight_layout()
-
-        file_name = os.path.join(self.output_dir, f'menopause_changes_{"percent" if use_percentage else "absolute"}.png')
+        
         # Save the plot
+        file_name = os.path.join(self.output_dir, 'menopause_trajectories.png')
         fig.savefig(
             file_name,
             dpi=300,
@@ -413,34 +418,33 @@ class MenopauseCognitionAnalysis:
         )
         
         plt.close()
+        print(f"\nPlot saved as: {file_name}")
 
     def run_complete_analysis(self, covariates=None):
-        """Run the complete analysis pipeline including GEE analysis."""
+        """Run the complete analysis pipeline with mixed models."""
         # Create output directory if it doesn't exist
         os.makedirs(self.output_dir, exist_ok=True)
+
+        print("Filtering menopausal status...")
+        self.filter_status()
         
         # Set up output capture
         output_capture = OutputCapture(self.output_dir)
         sys.stdout = output_capture
 
-        try:
-            print("Running data validation...")
-            self.run_data_validation()
+        print("Running distribution checks...")
+        further_checks = FurtherChecks()
+        further_checks.examine_distributions(self.data, self.cognitive_vars, self.output_dir)
 
-            print("Calculating baseline changes...")
-            self.calculate_baseline_changes()
+        try:
+            print("\nRunning linear mixed-effects models...")
+            self.run_mixed_models(covariates=covariates)
             
-            print("\nRunning GEE analysis...")
-            self.run_gee_analysis(covariates=covariates)
+            print("\nPlotting mixed model results...")
+            self.plot_forest_plots()
             
-            print("\nPlotting GEE results...")
-            self.plot_gee_results()
-            
-            print("\nCreating distribution plots for absolute changes...")
-            self.plot_change_distributions(use_percentage=False)
-            
-            print("\nCreating distribution plots for percentage changes...")
-            self.plot_change_distributions(use_percentage=True)
+            print("\nCreating cognitive trajectory plots...")
+            self.plot_cognitive_trajectories()
 
             print("\nAnalysis complete.")
 

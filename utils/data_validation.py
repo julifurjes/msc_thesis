@@ -21,7 +21,8 @@ class DataValidator:
     
     def __init__(self, data: pd.DataFrame, 
                  variables: List[str] = None,
-                 output_dir: str = None):
+                 output_dir: str = None,
+                 plotting: bool = False):
         """
         Initialize DataValidator.
         
@@ -36,6 +37,7 @@ class DataValidator:
         self.base_output_dir = output_dir if output_dir else '.'
         self.output_dir = os.path.join(self.base_output_dir, 'data_validation')
         os.makedirs(self.output_dir, exist_ok=True)
+        self.plotting = plotting
         self.validation_results = {}
         
         # Create output directory if it doesn't exist
@@ -57,12 +59,9 @@ class DataValidator:
             'percentages': missing_percentages.to_dict()
         }
     
-    def check_distributions(self, plot: bool = True) -> Dict:
+    def check_distributions(self) -> Dict:
         """
         Check distributions of variables.
-        
-        Args:
-            plot (bool): Whether to create distribution plots
         """
         results = {}
         
@@ -108,7 +107,7 @@ class DataValidator:
                         print(f"Warning: Could not perform normality tests for {var}: {str(e)}")
                         stats_dict['normality'] = None
                 
-                if plot:
+                if self.plotting:
                     self._plot_numeric_distribution(numeric_data, var)
                     
             except (ValueError, TypeError) as e:
@@ -123,7 +122,7 @@ class DataValidator:
                     'proportions': proportions.to_dict()
                 }
                 
-                if plot:
+                if self.plotting:
                     self._plot_categorical_distribution(value_counts, var)
             
             except Exception as e:
@@ -169,6 +168,8 @@ class DataValidator:
         for var in self.variables:
             try:
                 # Get groups and ensure they're numeric
+                self.data[var] = pd.to_numeric(self.data[var], errors='coerce')
+
                 groups = []
                 group_names = []
                 group_data = []
@@ -178,9 +179,11 @@ class DataValidator:
                     values = pd.to_numeric(group[var], errors='coerce').dropna()
                     if len(values) > 1:  # Need at least 2 points per group
                         groups.append(values.values)
-                        group_names.append(name)
+                        # Convert name to string to avoid type issues with plot labels
+                        str_name = str(name)
+                        group_names.append(str_name)
                         group_data.append({
-                            'group': name,
+                            'group': str_name,  # Store as string
                             'values': values,
                             'mean': values.mean(),
                             'residuals': values - values.mean()
@@ -192,7 +195,9 @@ class DataValidator:
                     stat, p_value = levene(*groups)
 
                     # Create residual plots
-                    plot_filename = self._create_residual_plots(var, group_data, grouping_var)
+                    if self.plotting:
+                        plot_filename = self._create_residual_plots(var, group_data, grouping_var)
+                        print(f"Residual plots saved as: {plot_filename}")
                     
                     levene_results[var] = {
                         'statistic': float(stat),
@@ -205,7 +210,6 @@ class DataValidator:
                     print(f"Statistic: {stat:.4f}")
                     print(f"p-value: {p_value:.4f}")
                     print(f"Groups tested: {', '.join(group_names)}")
-                    print(f"Residual plots saved as: {plot_filename}")
                 else:
                     print(f"\nWarning: Not enough valid groups for Levene's test on {var}")
                     levene_results[var] = None
@@ -288,12 +292,9 @@ class DataValidator:
         
         return filename
     
-    def check_multicollinearity(self, plot: bool = True) -> Optional[Dict]:
+    def check_multicollinearity(self) -> Optional[Dict]:
         """
         Check for multicollinearity between numeric variables using correlation matrix and VIF.
-        
-        Args:
-            plot (bool): Whether to create and save correlation heatmap plot.
             
         Returns:
             Dict: Dictionary containing correlation matrix and VIF scores.
@@ -302,21 +303,46 @@ class DataValidator:
         numeric_data = self.data[self.variables].apply(pd.to_numeric, errors='coerce')
         
         if numeric_data.shape[1] < 2:
+            print("Warning: Not enough numeric variables for multicollinearity check.")
             return None
         
         # Calculate correlation matrix
         corr_matrix = numeric_data.corr()
+
+        # Drop any rows with NaN values
+        clean_numeric_data = numeric_data.dropna()
+        
+        # Check if we have enough data after dropping NaNs
+        if clean_numeric_data.shape[0] <= 1:
+            print("Not enough complete rows for VIF calculation after removing missing values")
+            return {
+                'correlation_matrix': corr_matrix.to_dict(),
+                'vif_scores': "Unable to calculate VIF scores due to missing data",
+                'high_vif_warning': []
+            }
+        
+        # Check for infinite values and replace them
+        clean_numeric_data = clean_numeric_data.replace([np.inf, -np.inf], np.nan)
+        clean_numeric_data = clean_numeric_data.dropna()
+        
+        if clean_numeric_data.shape[0] <= 1:
+            print("Not enough complete rows for VIF calculation after removing infinite values")
+            return {
+                'correlation_matrix': corr_matrix.to_dict(),
+                'vif_scores': "Unable to calculate VIF scores due to infinite values",
+                'high_vif_warning': []
+            }
         
         # Calculate VIF for each variable
         vif_data = pd.DataFrame()
-        vif_data["Variable"] = numeric_data.columns
-        vif_data["VIF"] = [variance_inflation_factor(numeric_data.values, i) 
+        vif_data["Variable"] = clean_numeric_data.columns
+        vif_data["VIF"] = [variance_inflation_factor(clean_numeric_data.values, i) 
                         for i in range(numeric_data.shape[1])]
         
         # Sort VIF scores in descending order
         vif_data = vif_data.sort_values('VIF', ascending=False)
         
-        if plot:
+        if self.plotting:
             # Plot correlation matrix
             plt.figure(figsize=(10, 8))
             sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', center=0)
@@ -457,7 +483,7 @@ class DataValidator:
                         summary.append(f"  Std: {stats['std']:.2f}")
                         summary.append(f"  Skewness: {stats['skewness']:.2f}")
                         summary.append(f"  Kurtosis: {stats['kurtosis']:.2f}")
-                        if 'normality' in var_results:
+                        if 'normality' in var_results and var_results['normality'] is not None:
                             summary.append(f"  Shapiro-Wilk p-value: {var_results['normality']['shapiro_p']:.2e}")
                             summary.append(f"  D'Agostino p-value: {var_results['normality']['dagostino_p']:.2e}")
                     else:  # categorical
@@ -472,21 +498,22 @@ class DataValidator:
         if 'group_sizes' in results:
             summary.append("\n3. Group Size Analysis:")
             for var, size_results in results['group_sizes'].items():
-                summary.append(f"\n{var}:")
-                summary.append(f"  Min group size: {size_results['min_size']}")
-                summary.append(f"  Max group size: {size_results['max_size']}")
-                summary.append(f"  Max/Min ratio: {size_results['ratio']:.2f}")
-                summary.append(f"  Balance status: {'Balanced' if size_results['balanced'] else 'Imbalanced'}")
-                
-                summary.append("\n  Group counts:")
-                for group, count in size_results['counts'].items():
-                    summary.append(f"    {group}: {count}")
+                if size_results:  # Check if not None
+                    summary.append(f"\n{var}:")
+                    summary.append(f"  Min group size: {size_results['min_size']}")
+                    summary.append(f"  Max group size: {size_results['max_size']}")
+                    summary.append(f"  Max/Min ratio: {size_results['ratio']:.2f}")
+                    summary.append(f"  Balance status: {'Balanced' if size_results['balanced'] else 'Imbalanced'}")
+                    
+                    summary.append("\n  Group counts:")
+                    for group, count in size_results['counts'].items():
+                        summary.append(f"    {group}: {count}")
         
         # Homogeneity
         if 'homogeneity' in results:
             summary.append("\n4. Homogeneity of Variance:")
             for var, var_results in results['homogeneity'].items():
-                if var_results:
+                if var_results:  # Check if not None
                     summary.append(f"{var}: p-value = {var_results['p_value']:.4f} "
                                 f"({'Homogeneous' if var_results['homogeneous'] else 'Non-homogeneous'})")
         
@@ -494,7 +521,7 @@ class DataValidator:
         if 'independence' in results:
             summary.append("\n5. Independence Check Results:")
             for var, var_results in results['independence'].items():
-                if var_results:
+                if var_results:  # Check if not None
                     if isinstance(var_results, dict) and 'lag_correlation' in var_results:
                         summary.append(f"{var}: lag-1 correlation = {var_results['lag_correlation']:.4f} "
                                     f"({'Independent' if var_results['independent'] else 'Dependent'})")
@@ -506,22 +533,69 @@ class DataValidator:
                                             f"({'Independent' if group_result['independent'] else 'Dependent'})")
         
         # Multicollinearity
-        if 'multicollinearity' in results:
+        if 'multicollinearity' in results and results['multicollinearity'] is not None:
             summary.append("\n6. Multicollinearity Analysis:")
-            if results['multicollinearity']:
-                summary.append("  See correlation matrix plot for details.")
-                # Add high correlation warnings
-                corr_matrix = pd.DataFrame(results['multicollinearity'])
-                high_corr = []
-                for i in range(len(corr_matrix.columns)):
-                    for j in range(i+1, len(corr_matrix.columns)):
-                        corr = corr_matrix.iloc[i, j]
-                        if abs(corr) > 0.7:  # Common threshold for high correlation
-                            high_corr.append(f"  High correlation between {corr_matrix.columns[i]} "
-                                        f"and {corr_matrix.columns[j]}: {corr:.2f}")
-                if high_corr:
-                    summary.append("\n  High correlations detected:")
-                    summary.extend(high_corr)
+            
+            # Handle correlation matrix
+            if 'correlation_matrix' in results['multicollinearity']:
+                try:
+                    # Create a DataFrame from the correlation matrix dictionary
+                    corr_data = results['multicollinearity']['correlation_matrix']
+                    
+                    # Check if corr_data is a dictionary of dictionaries (proper matrix format)
+                    if isinstance(corr_data, dict) and all(isinstance(v, dict) for v in corr_data.values()):
+                        summary.append("  Correlation matrix analysis:")
+                        
+                        # Find high correlations
+                        high_corr = []
+                        variables = list(corr_data.keys())
+                        
+                        for i, var1 in enumerate(variables):
+                            for j, var2 in enumerate(variables):
+                                if i < j:  # Only check upper triangle to avoid duplicates
+                                    # Safe access with default
+                                    try:
+                                        corr = corr_data[var1].get(var2, 0)
+                                        if abs(corr) > 0.7:  # Common threshold for high correlation
+                                            high_corr.append(f"  High correlation between {var1} and {var2}: {corr:.2f}")
+                                    except Exception as e:
+                                        # Skip any problematic pairs
+                                        pass
+                        
+                        if high_corr:
+                            summary.append("  High correlations detected:")
+                            summary.extend(high_corr)
+                        else:
+                            summary.append("  No high correlations detected (threshold: 0.7)")
+                    else:
+                        summary.append("  Correlation matrix data format is not as expected")
+                except Exception as e:
+                    summary.append(f"  Error processing correlation matrix: {str(e)}")
+            
+            # Handle VIF scores
+            if 'vif_scores' in results['multicollinearity']:
+                vif_scores = results['multicollinearity']['vif_scores']
+                if isinstance(vif_scores, list):
+                    summary.append("\n  Variance Inflation Factors (VIF):")
+                    try:
+                        for item in vif_scores:
+                            if isinstance(item, dict) and 'Variable' in item and 'VIF' in item:
+                                summary.append(f"    {item['Variable']}: {item['VIF']}")
+                    except Exception as e:
+                        summary.append(f"  Error processing VIF scores: {str(e)}")
+                elif isinstance(vif_scores, str):
+                    # If vif_scores is a string message
+                    summary.append(f"\n  VIF analysis: {vif_scores}")
+            
+            # Handle high VIF warning
+            if 'high_vif_warning' in results['multicollinearity']:
+                high_vif = results['multicollinearity']['high_vif_warning']
+                if high_vif and isinstance(high_vif, list):
+                    summary.append("\n  Variables with high VIF (>5):")
+                    for var in high_vif:
+                        summary.append(f"    {var}")
+                elif isinstance(high_vif, list) and not high_vif:
+                    summary.append("\n  No variables with high VIF detected")
         
         return '\n'.join(summary)
     
@@ -545,22 +619,42 @@ class DataValidator:
                 'multicollinearity': self.check_multicollinearity,
                 'independence': self.check_independence
             }
+
+            print("=== Data Validation Results ===")
             
             results = {}
+
             for check in checks:
+                print(f"DEBUG: Processing check: {check}")
                 if check in available_checks:
+                    print(f"DEBUG: {check} is a valid check")
                     if check in ['group_sizes', 'homogeneity']:
+                        print(f"DEBUG: {check} needs grouping_var")
                         if 'grouping_var' not in kwargs:
+                            print(f"DEBUG: grouping_var not found in kwargs")
                             print(f"Warning: {check} requires grouping_var parameter")
                             continue
                         results[check] = available_checks[check](kwargs['grouping_var'])
+                        print(f"DEBUG: {check} completed successfully")
                     elif check == 'independence' and 'time_var' in kwargs:
                         results[check] = available_checks[check](kwargs['time_var'])
+                        print(f"DEBUG: independence completed successfully")
                     else:
                         results[check] = available_checks[check]()
-
+                        print(f"DEBUG: {check} completed successfully")
+                else:
+                    print(f"DEBUG: Invalid check: {check}, skipping")
+            
             summary = self.generate_validation_summary(results)
             print(summary)
+            
+            return results
+            
+        except Exception as e:
+            print(f"DEBUG ERROR: Exception in run_checks: {str(e)}")
+            import traceback
+            print(f"DEBUG ERROR: Traceback: {traceback.format_exc()}")
+            return {}
 
         finally:
             sys.stdout = output_capture.terminal

@@ -1,7 +1,23 @@
 ,Value
-Mean Age,50.930542854767644
-Standard Deviation of Age,4.162328142114131
-STATUS Missing (%),0.23692742538864411
-TOTIDE1 Missing (%),58.12619502868069
-TOTIDE2 Missing (%),58.14697813617092
-Little's MCAR Test P-Value,0.3553366322164503
+Cross-Sectional Mean Age,47.089084376161566
+Cross-Sectional Standard Deviation of Age,4.3352900590797665
+RACE Distribution,"{'4': 7806, '1': 4351, '5': 1911, '3': 855, '2': 652, ' ': 567}"
+DEGREE Distribution,"{'3': 5044, '2': 4219, '4': 2651, '5': 2540, '1': 1601, ' ': 87}"
+Total Subjects,2309
+Visit Completion Distribution,"{11: 1714, 10: 256, 9: 109, 8: 129, 7: 52, 6: 46, 5: 2, 4: 1}"
+Visit Statistics,"    Visit     N  Retention (%)  Age Mean
+0       0  2309          100.0     45.91
+1       1  2192           94.9     46.96
+2       2  2193           95.0     47.98
+3       3  2188           94.8     48.98
+4       4  2208           95.6     50.01
+5       5  2215           95.9     51.00
+6       6  2215           95.9     52.00
+7       7  2203           95.4     53.03
+8       8  2113           91.5     54.00
+9       9  2161           93.6     55.04
+10     10  2084           90.3     55.99"
+STATUS Missing,80
+TOTIDE1 Missing,14007
+TOTIDE2 Missing,14012
+Total Rows,24081

@@ -1,1819 +1,831 @@
-Analysis Run: 2025-02-06 15:11:23
+Analysis Run: 2025-03-20 14:21:46
 ================================================================================
 
-Preparing data...
-Data shape after preprocessing: (5649, 1720)
+Preparing data and applying log transformations...
 
-Calculating baseline changes...
+Manually creating log transformations for outcome variables...
+Applied log transformation to TOTIDE1 with offset 1.0
+  Original TOTIDE1 skewness: -0.993
+  Log-transformed TOTIDE1_log skewness: -1.923
+Applied log transformation to TOTIDE2 with offset 1.0
+  Original TOTIDE2 skewness: -1.047
+  Log-transformed TOTIDE2_log skewness: -2.687
 
-Running GEE analysis...
+Creating distribution comparison plots...
+  Created comparison plot for TOTIDE1
+  Created comparison plot for TOTIDE2
+Data shape after preprocessing: (22352, 2107)
 
-GEE Results for Hot Flashes → Total IDE Score 1
+Running mixed models analysis with log-transformed variables...
+
+Running linear mixed-effects models with log-transformed variables...
+Analyzing models for Total IDE Score 1 (Log)
+
+Mixed Model Results for Hot Flashes → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.866
-Covariance type:                    robust   Time:                         15:11:25
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4239      0.199     52.393      0.000      10.034      10.814
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4138      0.228     -1.818      0.069      -0.860       0.032
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0351      0.203     -0.172      0.863      -0.434       0.364
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0037      0.208     -0.018      0.986      -0.412       0.405
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0717      0.201     -0.356      0.722      -0.466       0.323
-HOTFLAS                                                           0.0039      0.023      0.169      0.866      -0.041       0.049
-==============================================================================
-Skew:                         -1.0608   Kurtosis:                       1.1588
-Centered skew:                -0.2547   Centered kurtosis:              1.3577
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 9272                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0206     
+Min. group size:                  1                       Log-Likelihood:                     3514.6672  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.434    0.012 204.917 0.000  2.410  2.457
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.026    0.014  -1.808 0.071 -0.054  0.002
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.012    0.011  -1.026 0.305 -0.034  0.011
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.005    0.012   0.409 0.682 -0.019  0.029
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.002    0.011   0.192 0.848 -0.020  0.024
+HOTFLAS                                                       -0.004    0.002  -1.943 0.052 -0.007  0.000
+LANGCOG                                                       -0.019    0.004  -5.298 0.000 -0.027 -0.012
+Group Var                                                      0.011    0.004                            
+=========================================================================================================
 
-GEE Results for Number of Hot Flashes → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0083
+Approximate Conditional R² (fixed + random): 0.3545
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Number of Hot Flashes → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.866
-Covariance type:                    robust   Time:                         15:11:26
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4227      0.199     52.384      0.000      10.033      10.813
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4113      0.228     -1.807      0.071      -0.857       0.035
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0343      0.204     -0.169      0.866      -0.433       0.365
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0007      0.209     -0.003      0.997      -0.410       0.408
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0697      0.201     -0.346      0.729      -0.464       0.325
-NUMHOTF                                                          -0.0001      0.038     -0.003      0.998      -0.075       0.074
-==============================================================================
-Skew:                         -1.0603   Kurtosis:                       1.1570
-Centered skew:                -0.2546   Centered kurtosis:              1.3572
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 6751                    Method:                             REML       
+No. Groups:                       1619                    Scale:                              0.0216     
+Min. group size:                  1                       Log-Likelihood:                     2439.6909  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.2                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.432    0.015 162.322 0.000  2.403  2.462
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.024    0.017  -1.373 0.170 -0.058  0.010
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.008    0.014  -0.592 0.554 -0.036  0.019
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.012    0.015   0.772 0.440 -0.018  0.041
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.005    0.014   0.383 0.702 -0.022  0.033
+NUMHOTF                                                       -0.003    0.003  -1.076 0.282 -0.008  0.002
+LANGCOG                                                       -0.021    0.005  -4.225 0.000 -0.031 -0.011
+Group Var                                                      0.011    0.005                            
+=========================================================================================================
 
-GEE Results for Bothersomeness of Hot Flashes → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0080
+Approximate Conditional R² (fixed + random): 0.3366
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Bothersomeness of Hot Flashes → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.866
-Covariance type:                    robust   Time:                         15:11:27
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4231      0.199     52.436      0.000      10.033      10.813
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4165      0.227     -1.833      0.067      -0.862       0.029
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0365      0.203     -0.179      0.858      -0.435       0.362
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0071      0.208     -0.034      0.973      -0.415       0.401
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0742      0.201     -0.369      0.712      -0.468       0.320
-BOTHOTF                                                           0.0178      0.038      0.474      0.635      -0.056       0.091
-==============================================================================
-Skew:                         -1.0615   Kurtosis:                       1.1625
-Centered skew:                -0.2545   Centered kurtosis:              1.3572
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 6782                    Method:                             REML       
+No. Groups:                       1627                    Scale:                              0.0218     
+Min. group size:                  1                       Log-Likelihood:                     2437.4340  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.2                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.433    0.015 162.831 0.000  2.403  2.462
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.023    0.017  -1.303 0.193 -0.056  0.011
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.008    0.014  -0.556 0.578 -0.035  0.020
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.013    0.015   0.897 0.370 -0.016  0.043
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.006    0.014   0.414 0.679 -0.022  0.033
+BOTHOTF                                                       -0.009    0.003  -3.344 0.001 -0.014 -0.004
+LANGCOG                                                       -0.023    0.005  -4.507 0.000 -0.032 -0.013
+Group Var                                                      0.011    0.004                            
+=========================================================================================================
 
-GEE Results for Night Sweats → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0102
+Approximate Conditional R² (fixed + random): 0.3348
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Night Sweats → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.864
-Covariance type:                    robust   Time:                         15:11:28
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4179      0.198     52.485      0.000      10.029      10.807
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4024      0.227     -1.772      0.076      -0.848       0.043
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0311      0.203     -0.153      0.878      -0.429       0.367
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0104      0.208      0.050      0.960      -0.397       0.418
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0629      0.201     -0.313      0.754      -0.456       0.330
-NITESWE                                                          -0.0285      0.027     -1.072      0.284      -0.081       0.024
-==============================================================================
-Skew:                         -1.0580   Kurtosis:                       1.1522
-Centered skew:                -0.2541   Centered kurtosis:              1.3533
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 9271                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0206     
+Min. group size:                  1                       Log-Likelihood:                     3524.5379  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.434    0.012 205.470 0.000  2.411  2.458
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.026    0.014  -1.846 0.065 -0.054  0.002
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.011    0.011  -0.982 0.326 -0.033  0.011
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.005    0.012   0.417 0.677 -0.019  0.029
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.002    0.011   0.189 0.850 -0.020  0.024
+NITESWE                                                       -0.007    0.002  -3.642 0.000 -0.010 -0.003
+LANGCOG                                                       -0.020    0.004  -5.442 0.000 -0.027 -0.013
+Group Var                                                      0.011    0.004                            
+=========================================================================================================
 
-GEE Results for Number of Night Sweats → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0094
+Approximate Conditional R² (fixed + random): 0.3528
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Number of Night Sweats → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.862
-Covariance type:                    robust   Time:                         15:11:28
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4307      0.199     52.544      0.000      10.042      10.820
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4038      0.227     -1.778      0.075      -0.849       0.041
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0319      0.203     -0.157      0.875      -0.430       0.366
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0100      0.208      0.048      0.962      -0.397       0.417
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0642      0.201     -0.320      0.749      -0.458       0.329
-NUMNITS                                                          -0.0816      0.048     -1.693      0.090      -0.176       0.013
-==============================================================================
-Skew:                         -1.0580   Kurtosis:                       1.1544
-Centered skew:                -0.2538   Centered kurtosis:              1.3597
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 5359                    Method:                             REML       
+No. Groups:                       1295                    Scale:                              0.0210     
+Min. group size:                  1                       Log-Likelihood:                     2036.1390  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.438    0.016 153.538 0.000  2.407  2.469
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.026    0.019  -1.382 0.167 -0.062  0.011
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.017    0.015  -1.160 0.246 -0.046  0.012
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]      -0.010    0.016  -0.668 0.504 -0.041  0.020
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause] -0.010    0.015  -0.692 0.489 -0.039  0.019
+NUMNITS                                                       -0.014    0.003  -4.737 0.000 -0.020 -0.008
+LANGCOG                                                       -0.014    0.006  -2.410 0.016 -0.025 -0.003
+Group Var                                                      0.010    0.005                            
+=========================================================================================================
 
-GEE Results for Bothersomeness of Night Sweats → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0086
+Approximate Conditional R² (fixed + random): 0.3262
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Bothersomeness of Night Sweats → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.865
-Covariance type:                    robust   Time:                         15:11:29
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4239      0.199     52.485      0.000      10.035      10.813
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4085      0.227     -1.797      0.072      -0.854       0.037
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0329      0.203     -0.162      0.871      -0.432       0.366
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0027      0.208      0.013      0.990      -0.405       0.410
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0675      0.201     -0.336      0.737      -0.461       0.326
-BOTNITS                                                          -0.0159      0.038     -0.423      0.672      -0.090       0.058
-==============================================================================
-Skew:                         -1.0600   Kurtosis:                       1.1570
-Centered skew:                -0.2549   Centered kurtosis:              1.3579
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 5383                    Method:                             REML       
+No. Groups:                       1301                    Scale:                              0.0211     
+Min. group size:                  1                       Log-Likelihood:                     2016.7886  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.435    0.016 152.470 0.000  2.404  2.466
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.025    0.019  -1.322 0.186 -0.061  0.012
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.016    0.015  -1.085 0.278 -0.045  0.013
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]      -0.009    0.016  -0.587 0.557 -0.040  0.022
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause] -0.009    0.015  -0.611 0.541 -0.038  0.020
+BOTNITS                                                       -0.004    0.003  -1.439 0.150 -0.010  0.002
+LANGCOG                                                       -0.012    0.006  -2.163 0.031 -0.023 -0.001
+Group Var                                                      0.010    0.005                            
+=========================================================================================================
 
-GEE Results for Cold Sweats → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0029
+Approximate Conditional R² (fixed + random): 0.3279
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Cold Sweats → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.853
-Covariance type:                    robust   Time:                         15:11:30
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4430      0.198     52.644      0.000      10.054      10.832
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.3841      0.227     -1.695      0.090      -0.828       0.060
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0300      0.203     -0.148      0.883      -0.428       0.368
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0158      0.207      0.076      0.939      -0.391       0.422
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0569      0.201     -0.283      0.777      -0.450       0.336
-COLDSWE                                                          -0.2061      0.069     -2.992      0.003      -0.341      -0.071
-==============================================================================
-Skew:                         -1.0521   Kurtosis:                       1.1361
-Centered skew:                -0.2552   Centered kurtosis:              1.3549
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 9264                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0207     
+Min. group size:                  1                       Log-Likelihood:                     3532.8699  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.0                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.433    0.012 205.931 0.000  2.410  2.456
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.025    0.014  -1.740 0.082 -0.053  0.003
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.011    0.011  -1.012 0.311 -0.033  0.011
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.006    0.012   0.498 0.619 -0.018  0.029
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.002    0.011   0.217 0.828 -0.020  0.024
+COLDSWE                                                       -0.012    0.002  -6.980 0.000 -0.016 -0.009
+LANGCOG                                                       -0.019    0.004  -5.377 0.000 -0.027 -0.012
+Group Var                                                      0.011    0.004                            
+=========================================================================================================
 
-GEE Results for Number of Cold Sweats → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0132
+Approximate Conditional R² (fixed + random): 0.3487
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Number of Cold Sweats → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.856
-Covariance type:                    robust   Time:                         15:11:31
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4432      0.198     52.628      0.000      10.054      10.832
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.3980      0.227     -1.755      0.079      -0.843       0.047
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0330      0.203     -0.162      0.871      -0.431       0.365
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0063      0.208      0.030      0.976      -0.400       0.413
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0598      0.201     -0.298      0.766      -0.453       0.333
-NUMCLDS                                                          -0.1246      0.041     -3.074      0.002      -0.204      -0.045
-==============================================================================
-Skew:                         -1.0574   Kurtosis:                       1.1565
-Centered skew:                -0.2567   Centered kurtosis:              1.3582
-==============================================================================
+                                 Mixed Linear Model Regression Results
+========================================================================================================
+Model:                             MixedLM                Dependent Variable:                TOTIDE1_log
+No. Observations:                  2138                   Method:                            REML       
+No. Groups:                        519                    Scale:                             0.0259     
+Min. group size:                   1                      Log-Likelihood:                    532.4002   
+Max. group size:                   5                      Converged:                         Yes        
+Mean group size:                   4.1                                                                  
+--------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+--------------------------------------------------------------------------------------------------------
+Intercept                                                      2.397    0.033 73.229 0.000  2.333  2.461
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]        0.014    0.035  0.385 0.700 -0.056  0.083
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.007    0.030 -0.231 0.817 -0.066  0.052
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.022    0.031  0.686 0.493 -0.040  0.083
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.017    0.030  0.555 0.579 -0.043  0.076
+NUMCLDS                                                       -0.005    0.006 -0.795 0.427 -0.016  0.007
+LANGCOG                                                       -0.032    0.012 -2.590 0.010 -0.056 -0.008
+Group Var                                                      0.016    0.010                           
+========================================================================================================
 
-GEE Results for Bothersomeness of Cold Sweats → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0096
+Approximate Conditional R² (fixed + random): 0.3812
+
+Anderson-Darling normality test p-value: 0.0000
+Shapiro-Wilk normality test p-value: 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Bothersomeness of Cold Sweats → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Thu, 06 Feb 2025   Scale:                           2.852
-Covariance type:                    robust   Time:                         15:11:32
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4487      0.198     52.791      0.000      10.061      10.837
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.3931      0.226     -1.736      0.082      -0.837       0.051
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0314      0.203     -0.155      0.877      -0.429       0.366
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0056      0.207      0.027      0.978      -0.400       0.412
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0586      0.200     -0.293      0.770      -0.451       0.334
-BOTCLDS                                                          -0.1501      0.050     -2.991      0.003      -0.248      -0.052
-==============================================================================
-Skew:                         -1.0543   Kurtosis:                       1.1428
-Centered skew:                -0.2588   Centered kurtosis:              1.3516
-==============================================================================
+                                 Mixed Linear Model Regression Results
+========================================================================================================
+Model:                             MixedLM                Dependent Variable:                TOTIDE1_log
+No. Observations:                  2160                   Method:                            REML       
+No. Groups:                        525                    Scale:                             0.0261     
+Min. group size:                   1                      Log-Likelihood:                    531.4190   
+Max. group size:                   5                      Converged:                         Yes        
+Mean group size:                   4.1                                                                  
+--------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+--------------------------------------------------------------------------------------------------------
+Intercept                                                      2.382    0.032 73.638 0.000  2.318  2.445
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]        0.026    0.035  0.728 0.467 -0.043  0.094
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]      0.004    0.030  0.129 0.897 -0.055  0.063
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.035    0.031  1.116 0.264 -0.026  0.096
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.028    0.030  0.939 0.348 -0.031  0.087
+BOTCLDS                                                       -0.007    0.006 -1.120 0.263 -0.018  0.005
+LANGCOG                                                       -0.028    0.012 -2.306 0.021 -0.051 -0.004
+Group Var                                                      0.016    0.010                           
+========================================================================================================
 
-GEE Results for Stiffness → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0090
+Approximate Conditional R² (fixed + random): 0.3803
+
+Anderson-Darling normality test p-value: 0.0000
+Shapiro-Wilk normality test p-value: 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Stiffness → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.864
-Covariance type:                    robust   Time:                         15:11:32
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4351      0.198     52.774      0.000      10.048      10.823
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4306      0.226     -1.902      0.057      -0.874       0.013
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0449      0.202     -0.222      0.824      -0.442       0.352
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0152      0.207     -0.073      0.942      -0.420       0.390
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0854      0.200     -0.427      0.669      -0.477       0.307
-STIFF                                                             0.0330      0.024      1.374      0.169      -0.014       0.080
-==============================================================================
-Skew:                         -1.0612   Kurtosis:                       1.1674
-Centered skew:                -0.2548   Centered kurtosis:              1.3598
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 9272                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0206     
+Min. group size:                  1                       Log-Likelihood:                     3514.0071  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.435    0.012 205.001 0.000  2.412  2.458
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.029    0.014  -2.043 0.041 -0.057 -0.001
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.013    0.011  -1.154 0.249 -0.035  0.009
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.001    0.012   0.106 0.915 -0.022  0.025
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause] -0.001    0.011  -0.063 0.950 -0.023  0.021
+STIFF                                                          0.000    0.002   0.221 0.825 -0.003  0.004
+LANGCOG                                                       -0.019    0.004  -5.140 0.000 -0.026 -0.012
+Group Var                                                      0.011    0.004                            
+=========================================================================================================
 
-GEE Results for Irritability → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0078
+Approximate Conditional R² (fixed + random): 0.3554
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Irritability → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           2.866
-Covariance type:                    robust   Time:                         15:11:33
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4249      0.199     52.341      0.000      10.035      10.815
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4131      0.227     -1.817      0.069      -0.859       0.033
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0353      0.204     -0.173      0.863      -0.435       0.364
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.0032      0.208     -0.015      0.988      -0.411       0.405
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0726      0.201     -0.361      0.718      -0.468       0.322
-IRRITAB                                                          -0.0169      0.028     -0.601      0.548      -0.072       0.038
-==============================================================================
-Skew:                         -1.0583   Kurtosis:                       1.1467
-Centered skew:                -0.2549   Centered kurtosis:              1.3592
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 9268                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0206     
+Min. group size:                  1                       Log-Likelihood:                     3512.3276  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.0                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.435    0.012 205.074 0.000  2.412  2.458
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.029    0.014  -2.013 0.044 -0.057 -0.001
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.013    0.011  -1.113 0.266 -0.035  0.010
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.002    0.012   0.132 0.895 -0.022  0.025
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause] -0.000    0.011  -0.043 0.966 -0.023  0.022
+IRRITAB                                                       -0.003    0.002  -1.748 0.080 -0.007  0.000
+LANGCOG                                                       -0.019    0.004  -5.236 0.000 -0.026 -0.012
+Group Var                                                      0.011    0.004                            
+=========================================================================================================
 
-GEE Results for Mood Changes → Total IDE Score 1
+
+Approximate Marginal R² (fixed effects): 0.0083
+Approximate Conditional R² (fixed + random): 0.3548
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Mood Changes → Total IDE Score 1
+Using log-transformed variable: TOTIDE1_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE1   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Thu, 06 Feb 2025   Scale:                           2.860
-Covariance type:                    robust   Time:                         15:11:34
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.4187      0.199     52.388      0.000      10.029      10.808
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.4006      0.227     -1.767      0.077      -0.845       0.044
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.0289      0.204     -0.142      0.887      -0.428       0.370
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]          0.0036      0.208      0.017      0.986      -0.404       0.411
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.0697      0.201     -0.347      0.729      -0.464       0.324
-MOODCHG                                                          -0.0492      0.031     -1.596      0.110      -0.110       0.011
-==============================================================================
-Skew:                         -1.0594   Kurtosis:                       1.1538
-Centered skew:                -0.2562   Centered kurtosis:              1.3686
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE1_log
+No. Observations:                 9268                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0207     
+Min. group size:                  1                       Log-Likelihood:                     3519.0718  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.0                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.435    0.012 205.479 0.000  2.411  2.458
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.027    0.014  -1.914 0.056 -0.055  0.001
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.012    0.011  -1.030 0.303 -0.034  0.010
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.002    0.012   0.201 0.840 -0.021  0.026
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause] -0.000    0.011  -0.038 0.970 -0.023  0.022
+MOODCHG                                                       -0.007    0.002  -3.725 0.000 -0.011 -0.004
+LANGCOG                                                       -0.019    0.004  -5.288 0.000 -0.026 -0.012
+Group Var                                                      0.011    0.004                            
+=========================================================================================================
 
-GEE Results for Hot Flashes → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0096
+Approximate Conditional R² (fixed + random): 0.3510
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+Analyzing models for Total IDE Score 2 (Log)
+
+Mixed Model Results for Hot Flashes → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           3.058
-Covariance type:                    robust   Time:                         15:11:35
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5295      0.170     61.783      0.000      10.195      10.864
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7253      0.208     -3.482      0.000      -1.134      -0.317
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2770      0.177     -1.569      0.117      -0.623       0.069
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3632      0.183     -1.987      0.047      -0.721      -0.005
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3439      0.173     -1.989      0.047      -0.683      -0.005
-HOTFLAS                                                           0.0246      0.023      1.087      0.277      -0.020       0.069
-==============================================================================
-Skew:                         -1.0792   Kurtosis:                       1.5170
-Centered skew:                -0.2795   Centered kurtosis:              1.4040
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 9272                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0247     
+Min. group size:                  1                       Log-Likelihood:                     2600.2806  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.411    0.013 182.991 0.000  2.385  2.436
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.039    0.016  -2.431 0.015 -0.070 -0.008
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.009    0.012  -0.699 0.485 -0.033  0.016
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.001    0.013   0.045 0.964 -0.026  0.027
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.004    0.013   0.350 0.726 -0.020  0.029
+HOTFLAS                                                       -0.001    0.002  -0.359 0.719 -0.005  0.003
+LANGCOG                                                       -0.017    0.004  -3.991 0.000 -0.025 -0.008
+Group Var                                                      0.015    0.005                            
+=========================================================================================================
 
-GEE Results for Number of Hot Flashes → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0066
+Approximate Conditional R² (fixed + random): 0.3743
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Number of Hot Flashes → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           3.058
-Covariance type:                    robust   Time:                         15:11:35
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5252      0.171     61.603      0.000      10.190      10.860
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7170      0.209     -3.433      0.001      -1.126      -0.308
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2763      0.177     -1.562      0.118      -0.623       0.070
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3534      0.184     -1.926      0.054      -0.713       0.006
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3381      0.173     -1.950      0.051      -0.678       0.002
-NUMHOTF                                                           0.0189      0.037      0.512      0.609      -0.054       0.091
-==============================================================================
-Skew:                         -1.0780   Kurtosis:                       1.5105
-Centered skew:                -0.2790   Centered kurtosis:              1.4055
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 6751                    Method:                             REML       
+No. Groups:                       1619                    Scale:                              0.0267     
+Min. group size:                  1                       Log-Likelihood:                     1695.2826  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.2                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.401    0.017 143.093 0.000  2.368  2.434
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.030    0.019  -1.525 0.127 -0.068  0.008
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]      0.003    0.016   0.213 0.831 -0.027  0.034
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.017    0.017   1.024 0.306 -0.016  0.050
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.015    0.016   0.923 0.356 -0.016  0.045
+NUMHOTF                                                       -0.002    0.003  -0.797 0.425 -0.008  0.003
+LANGCOG                                                       -0.018    0.006  -3.111 0.002 -0.029 -0.007
+Group Var                                                      0.014    0.005                            
+=========================================================================================================
 
-GEE Results for Bothersomeness of Hot Flashes → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0063
+Approximate Conditional R² (fixed + random): 0.3487
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Bothersomeness of Hot Flashes → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           3.058
-Covariance type:                    robust   Time:                         15:11:36
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5222      0.171     61.581      0.000      10.187      10.857
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7099      0.209     -3.400      0.001      -1.119      -0.301
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2726      0.177     -1.539      0.124      -0.620       0.075
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3451      0.183     -1.884      0.060      -0.704       0.014
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3318      0.173     -1.914      0.056      -0.672       0.008
-BOTHOTF                                                          -0.0005      0.040     -0.013      0.990      -0.078       0.077
-==============================================================================
-Skew:                         -1.0772   Kurtosis:                       1.5101
-Centered skew:                -0.2787   Centered kurtosis:              1.4017
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 6782                    Method:                             REML       
+No. Groups:                       1627                    Scale:                              0.0267     
+Min. group size:                  1                       Log-Likelihood:                     1707.1247  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.2                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.401    0.017 143.858 0.000  2.368  2.434
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.027    0.019  -1.398 0.162 -0.065  0.011
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]      0.005    0.016   0.303 0.762 -0.026  0.035
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.020    0.017   1.198 0.231 -0.013  0.052
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.015    0.016   0.984 0.325 -0.015  0.046
+BOTHOTF                                                       -0.012    0.003  -4.100 0.000 -0.018 -0.006
+LANGCOG                                                       -0.019    0.006  -3.428 0.001 -0.030 -0.008
+Group Var                                                      0.014    0.005                            
+=========================================================================================================
 
-GEE Results for Night Sweats → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0097
+Approximate Conditional R² (fixed + random): 0.3494
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Night Sweats → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Thu, 06 Feb 2025   Scale:                           3.058
-Covariance type:                    robust   Time:                         15:11:37
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5220      0.171     61.577      0.000      10.187      10.857
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7097      0.208     -3.404      0.001      -1.118      -0.301
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2725      0.177     -1.540      0.124      -0.619       0.074
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3448      0.183     -1.883      0.060      -0.704       0.014
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3317      0.173     -1.915      0.055      -0.671       0.008
-NITESWE                                                          -0.0013      0.027     -0.047      0.963      -0.055       0.053
-==============================================================================
-Skew:                         -1.0772   Kurtosis:                       1.5100
-Centered skew:                -0.2786   Centered kurtosis:              1.4016
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 9271                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0248     
+Min. group size:                  1                       Log-Likelihood:                     2608.1601  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.410    0.013 183.389 0.000  2.385  2.436
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.038    0.016  -2.379 0.017 -0.069 -0.007
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.007    0.012  -0.599 0.549 -0.032  0.017
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.002    0.013   0.139 0.889 -0.024  0.028
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.005    0.012   0.438 0.662 -0.019  0.030
+NITESWE                                                       -0.004    0.002  -2.052 0.040 -0.008 -0.000
+LANGCOG                                                       -0.017    0.004  -4.142 0.000 -0.025 -0.009
+Group Var                                                      0.014    0.005                            
+=========================================================================================================
 
-GEE Results for Number of Night Sweats → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0071
+Approximate Conditional R² (fixed + random): 0.3717
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Number of Night Sweats → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Thu, 06 Feb 2025   Scale:                           3.056
-Covariance type:                    robust   Time:                         15:11:37
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5253      0.171     61.540      0.000      10.190      10.861
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7074      0.209     -3.390      0.001      -1.116      -0.298
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2718      0.177     -1.535      0.125      -0.619       0.075
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3414      0.183     -1.865      0.062      -0.700       0.017
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3301      0.173     -1.905      0.057      -0.670       0.010
-NUMNITS                                                          -0.0304      0.043     -0.707      0.479      -0.115       0.054
-==============================================================================
-Skew:                         -1.0776   Kurtosis:                       1.5146
-Centered skew:                -0.2784   Centered kurtosis:              1.4008
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 5359                    Method:                             REML       
+No. Groups:                       1295                    Scale:                              0.0259     
+Min. group size:                  1                       Log-Likelihood:                     1423.2973  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.408    0.018 134.295 0.000  2.372  2.443
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.039    0.021  -1.864 0.062 -0.080  0.002
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.004    0.017  -0.239 0.811 -0.036  0.028
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.002    0.018   0.104 0.917 -0.033  0.036
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.000    0.017   0.000 1.000 -0.032  0.032
+NUMNITS                                                       -0.019    0.003  -5.689 0.000 -0.025 -0.012
+LANGCOG                                                       -0.013    0.007  -1.960 0.050 -0.025 -0.000
+Group Var                                                      0.014    0.006                            
+=========================================================================================================
 
-GEE Results for Bothersomeness of Night Sweats → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0126
+Approximate Conditional R² (fixed + random): 0.3559
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Bothersomeness of Night Sweats → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Thu, 06 Feb 2025   Scale:                           3.057
-Covariance type:                    robust   Time:                         15:11:38
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5229      0.171     61.586      0.000      10.188      10.858
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7087      0.209     -3.396      0.001      -1.118      -0.300
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2720      0.177     -1.537      0.124      -0.619       0.075
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3437      0.183     -1.878      0.060      -0.702       0.015
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3309      0.173     -1.911      0.056      -0.670       0.008
-BOTNITS                                                          -0.0078      0.039     -0.200      0.842      -0.084       0.069
-==============================================================================
-Skew:                         -1.0772   Kurtosis:                       1.5106
-Centered skew:                -0.2787   Centered kurtosis:              1.4019
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 5383                    Method:                             REML       
+No. Groups:                       1301                    Scale:                              0.0259     
+Min. group size:                  1                       Log-Likelihood:                     1409.7628  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.404    0.018 133.411 0.000  2.368  2.439
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.037    0.021  -1.769 0.077 -0.079  0.004
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.002    0.017  -0.140 0.889 -0.035  0.030
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.003    0.018   0.177 0.860 -0.032  0.038
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.002    0.017   0.093 0.926 -0.031  0.034
+BOTNITS                                                       -0.007    0.003  -2.058 0.040 -0.014 -0.000
+LANGCOG                                                       -0.011    0.007  -1.696 0.090 -0.024  0.002
+Group Var                                                      0.014    0.006                            
+=========================================================================================================
 
-GEE Results for Cold Sweats → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0047
+Approximate Conditional R² (fixed + random): 0.3598
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Cold Sweats → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Thu, 06 Feb 2025   Scale:                           3.047
-Covariance type:                    robust   Time:                         15:11:39
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5408      0.171     61.784      0.000      10.206      10.875
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.6867      0.208     -3.301      0.001      -1.094      -0.279
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2693      0.177     -1.524      0.128      -0.616       0.077
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3317      0.183     -1.816      0.069      -0.690       0.026
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3214      0.173     -1.859      0.063      -0.660       0.018
-COLDSWE                                                          -0.1810      0.065     -2.769      0.006      -0.309      -0.053
-==============================================================================
-Skew:                         -1.0712   Kurtosis:                       1.4900
-Centered skew:                -0.2796   Centered kurtosis:              1.3989
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 9264                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0248     
+Min. group size:                  1                       Log-Likelihood:                     2619.9031  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.0                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.409    0.013 183.809 0.000  2.384  2.435
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.035    0.016  -2.223 0.026 -0.066 -0.004
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.008    0.012  -0.623 0.533 -0.032  0.017
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.004    0.013   0.295 0.768 -0.022  0.030
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.007    0.012   0.528 0.598 -0.018  0.031
+COLDSWE                                                       -0.013    0.002  -6.700 0.000 -0.017 -0.009
+LANGCOG                                                       -0.017    0.004  -4.156 0.000 -0.025 -0.009
+Group Var                                                      0.014    0.005                            
+=========================================================================================================
 
-GEE Results for Number of Cold Sweats → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0115
+Approximate Conditional R² (fixed + random): 0.3688
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Number of Cold Sweats → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Thu, 06 Feb 2025   Scale:                           3.050
-Covariance type:                    robust   Time:                         15:11:40
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5392      0.171     61.712      0.000      10.204      10.874
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.6995      0.209     -3.353      0.001      -1.108      -0.291
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2717      0.177     -1.537      0.124      -0.618       0.075
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3400      0.183     -1.860      0.063      -0.698       0.018
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3243      0.173     -1.874      0.061      -0.663       0.015
-NUMCLDS                                                          -0.1008      0.042     -2.375      0.018      -0.184      -0.018
-==============================================================================
-Skew:                         -1.0774   Kurtosis:                       1.5281
-Centered skew:                -0.2793   Centered kurtosis:              1.3997
-==============================================================================
+                                 Mixed Linear Model Regression Results
+========================================================================================================
+Model:                             MixedLM                Dependent Variable:                TOTIDE2_log
+No. Observations:                  2138                   Method:                            REML       
+No. Groups:                        519                    Scale:                             0.0370     
+Min. group size:                   1                      Log-Likelihood:                    144.7938   
+Max. group size:                   5                      Converged:                         Yes        
+Mean group size:                   4.1                                                                  
+--------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+--------------------------------------------------------------------------------------------------------
+Intercept                                                      2.357    0.039 59.953 0.000  2.280  2.434
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.002    0.043 -0.045 0.964 -0.085  0.081
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]      0.000    0.036  0.004 0.997 -0.071  0.071
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.021    0.038  0.546 0.585 -0.053  0.094
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.025    0.036  0.674 0.501 -0.047  0.096
+NUMCLDS                                                       -0.015    0.007 -2.052 0.040 -0.029 -0.001
+LANGCOG                                                       -0.023    0.015 -1.530 0.126 -0.052  0.006
+Group Var                                                      0.023    0.012                           
+========================================================================================================
 
-GEE Results for Bothersomeness of Cold Sweats → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0083
+Approximate Conditional R² (fixed + random): 0.3913
+
+Anderson-Darling normality test p-value: 0.0000
+Shapiro-Wilk normality test p-value: 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Bothersomeness of Cold Sweats → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Thu, 06 Feb 2025   Scale:                           3.044
-Covariance type:                    robust   Time:                         15:11:40
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5496      0.170     62.000      0.000      10.216      10.883
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.6916      0.208     -3.321      0.001      -1.100      -0.283
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2698      0.176     -1.530      0.126      -0.615       0.076
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3392      0.182     -1.860      0.063      -0.697       0.018
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3210      0.173     -1.861      0.063      -0.659       0.017
-BOTCLDS                                                          -0.1552      0.049     -3.159      0.002      -0.252      -0.059
-==============================================================================
-Skew:                         -1.0730   Kurtosis:                       1.5133
-Centered skew:                -0.2811   Centered kurtosis:              1.3979
-==============================================================================
+                                 Mixed Linear Model Regression Results
+========================================================================================================
+Model:                             MixedLM                Dependent Variable:                TOTIDE2_log
+No. Observations:                  2160                   Method:                            REML       
+No. Groups:                        525                    Scale:                             0.0370     
+Min. group size:                   1                      Log-Likelihood:                    144.9566   
+Max. group size:                   5                      Converged:                         Yes        
+Mean group size:                   4.1                                                                  
+--------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+--------------------------------------------------------------------------------------------------------
+Intercept                                                      2.334    0.039 60.202 0.000  2.258  2.410
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]        0.018    0.042  0.434 0.664 -0.064  0.101
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]      0.020    0.036  0.549 0.583 -0.050  0.090
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.040    0.037  1.070 0.284 -0.033  0.113
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.043    0.036  1.196 0.232 -0.027  0.113
+BOTCLDS                                                       -0.016    0.007 -2.189 0.029 -0.030 -0.002
+LANGCOG                                                       -0.019    0.015 -1.309 0.191 -0.047  0.009
+Group Var                                                      0.024    0.012                           
+========================================================================================================
 
-GEE Results for Stiffness → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0079
+Approximate Conditional R² (fixed + random): 0.3938
+
+Anderson-Darling normality test p-value: 0.0000
+Shapiro-Wilk normality test p-value: 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Stiffness → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           3.056
-Covariance type:                    robust   Time:                         15:11:41
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5332      0.171     61.740      0.000      10.199      10.868
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7271      0.208     -3.490      0.000      -1.136      -0.319
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2820      0.177     -1.597      0.110      -0.628       0.064
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3581      0.183     -1.961      0.050      -0.716      -0.000
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3459      0.173     -1.998      0.046      -0.685      -0.007
-STIFF                                                             0.0290      0.024      1.200      0.230      -0.018       0.076
-==============================================================================
-Skew:                         -1.0787   Kurtosis:                       1.5221
-Centered skew:                -0.2797   Centered kurtosis:              1.4119
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 9272                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0247     
+Min. group size:                  1                       Log-Likelihood:                     2599.7128  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.1                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.411    0.013 183.021 0.000  2.385  2.436
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.039    0.016  -2.448 0.014 -0.070 -0.008
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.009    0.012  -0.724 0.469 -0.033  0.015
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.000    0.013   0.002 0.998 -0.026  0.026
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.004    0.012   0.333 0.739 -0.020  0.029
+STIFF                                                         -0.001    0.002  -0.621 0.534 -0.005  0.003
+LANGCOG                                                       -0.016    0.004  -3.965 0.000 -0.024 -0.008
+Group Var                                                      0.015    0.005                            
+=========================================================================================================
 
-GEE Results for Irritability → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0066
+Approximate Conditional R² (fixed + random): 0.3745
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Irritability → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     6
-Date:                     Thu, 06 Feb 2025   Scale:                           3.057
-Covariance type:                    robust   Time:                         15:11:42
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5261      0.171     61.556      0.000      10.191      10.861
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.7132      0.208     -3.423      0.001      -1.122      -0.305
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2745      0.177     -1.550      0.121      -0.621       0.073
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3495      0.183     -1.907      0.056      -0.709       0.010
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3370      0.173     -1.943      0.052      -0.677       0.003
-IRRITAB                                                          -0.0278      0.030     -0.936      0.349      -0.086       0.030
-==============================================================================
-Skew:                         -1.0730   Kurtosis:                       1.4842
-Centered skew:                -0.2783   Centered kurtosis:              1.3909
-==============================================================================
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 9268                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0247     
+Min. group size:                  1                       Log-Likelihood:                     2601.8085  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.0                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.412    0.013 183.206 0.000  2.386  2.437
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.040    0.016  -2.494 0.013 -0.071 -0.008
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.009    0.012  -0.731 0.465 -0.033  0.015
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]      -0.001    0.013  -0.040 0.968 -0.026  0.025
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.003    0.012   0.267 0.789 -0.021  0.028
+IRRITAB                                                       -0.005    0.002  -2.429 0.015 -0.009 -0.001
+LANGCOG                                                       -0.017    0.004  -4.082 0.000 -0.025 -0.009
+Group Var                                                      0.014    0.005                            
+=========================================================================================================
 
-GEE Results for Mood Changes → Total IDE Score 2
+
+Approximate Marginal R² (fixed effects): 0.0074
+Approximate Conditional R² (fixed + random): 0.3740
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Mixed Model Results for Mood Changes → Total IDE Score 2
+Using log-transformed variable: TOTIDE2_log
 ==================================================
-                               GEE Regression Results                              
-===================================================================================
-Dep. Variable:                     TOTIDE2   No. Observations:                 5649
-Model:                                 GEE   No. clusters:                     2238
-Method:                        Generalized   Min. cluster size:                   1
-                      Estimating Equations   Max. cluster size:                   3
-Family:                           Gaussian   Mean cluster size:                 2.5
-Dependence structure:         Exchangeable   Num. iterations:                     7
-Date:                     Thu, 06 Feb 2025   Scale:                           3.048
-Covariance type:                    robust   Time:                         15:11:42
-=================================================================================================================================
-                                                                    coef    std err          z      P>|z|      [0.025      0.975]
----------------------------------------------------------------------------------------------------------------------------------
-Intercept                                                        10.5174      0.170     61.817      0.000      10.184      10.851
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]          -0.6952      0.207     -3.357      0.001      -1.101      -0.289
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]        -0.2655      0.176     -1.506      0.132      -0.611       0.080
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]         -0.3400      0.182     -1.863      0.062      -0.698       0.018
-C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]    -0.3331      0.172     -1.931      0.053      -0.671       0.005
-MOODCHG                                                          -0.0714      0.031     -2.268      0.023      -0.133      -0.010
-==============================================================================
-Skew:                         -1.0730   Kurtosis:                       1.4907
-Centered skew:                -0.2738   Centered kurtosis:              1.3793
-==============================================================================
-
-Creating distribution plots for absolute changes...
-
-================================================================================
-ABSOLUTE CHANGE STATISTICS
-================================================================================
-
-COGNITIVE MEASURES:
---------------------------------------------------------------------------------
-
-Total IDE Score 1:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median  min  max
-STATUS_Label                                         
-Surgical            0    NaN    NaN     NaN  NaN  NaN
-Pre-menopause      69 -0.101  0.910     0.0 -5.0  3.0
-Early Peri         33  0.424  1.542     0.0 -3.0  5.0
-Late Peri           9  0.444  1.236     0.0 -1.0  3.0
-Post-menopause      9  0.333  1.871     0.0 -1.0  5.0
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.320, 0.117]
-One-sample t-test (H0: mean = 0):
-t-statistic: -0.926
-p-value: 0.358
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Total IDE Score 2:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median  min  max
-STATUS_Label                                         
-Surgical            0    NaN    NaN     NaN  NaN  NaN
-Pre-menopause      69 -0.174  0.923     0.0 -4.0  3.0
-Early Peri         33  0.394  1.413     1.0 -3.0  3.0
-Late Peri           9  0.111  1.364     0.0 -2.0  2.0
-Post-menopause      9  0.222  0.972     0.0 -1.0  2.0
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.396, 0.048]
-One-sample t-test (H0: mean = 0):
-t-statistic: -1.565
-p-value: 0.122
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
---------------------------------------------------------------------------------
-
-
-SYMPTOMS:
---------------------------------------------------------------------------------
-
-Hot Flashes:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median    min    max
-STATUS_Label                                             
-Surgical            0    NaN    NaN     NaN    NaN    NaN
-Pre-menopause      69 -0.054  0.265     0.0 -1.490  0.745
-Early Peri         33  0.271  0.786     0.0 -0.745  2.979
-Late Peri           9  0.331  0.993     0.0  0.000  2.979
-Post-menopause      9  0.166  1.570     0.0 -2.979  2.979
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.118, 0.010]
-One-sample t-test (H0: mean = 0):
-t-statistic: -1.689
-p-value: 0.096
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Number of Hot Flashes:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median    min    max
-STATUS_Label                                             
-Surgical            0    NaN    NaN     NaN    NaN    NaN
-Pre-menopause      69 -0.028  0.144   0.000 -0.654  0.436
-Early Peri         33  0.304  0.757   0.000 -0.436  3.488
-Late Peri           9  0.266  0.799   0.000  0.000  2.398
-Post-menopause      9  0.266  0.553   0.436 -0.872  0.872
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.063, 0.006]
-One-sample t-test (H0: mean = 0):
-t-statistic: -1.636
-p-value: 0.106
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Bothersomeness of Hot Flashes:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median    min    max
-STATUS_Label                                             
-Surgical            0    NaN    NaN     NaN    NaN    NaN
-Pre-menopause      69 -0.036  0.242     0.0 -0.934  0.623
-Early Peri         33  0.104  0.465     0.0 -0.934  1.245
-Late Peri           9  0.138  0.415     0.0  0.000  1.245
-Post-menopause      9  0.242  0.710     0.0 -1.245  0.934
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.094, 0.022]
-One-sample t-test (H0: mean = 0):
-t-statistic: -1.239
-p-value: 0.220
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Night Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median    min    max
-STATUS_Label                                             
-Surgical            0    NaN    NaN     NaN    NaN    NaN
-Pre-menopause      69  0.037  0.225     0.0  0.000  1.682
-Early Peri         33  0.204  1.133     0.0 -3.364  3.364
-Late Peri           9  0.374  1.121     0.0  0.000  3.364
-Post-menopause      9 -0.000  1.030     0.0 -2.523  0.841
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.018, 0.091]
-One-sample t-test (H0: mean = 0):
-t-statistic: 1.350
-p-value: 0.182
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Number of Night Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median    min    max
-STATUS_Label                                             
-Surgical            0    NaN    NaN     NaN    NaN    NaN
-Pre-menopause      69  0.012  0.187     0.0 -0.537  1.073
-Early Peri         33  0.122  0.470     0.0 -0.537  1.610
-Late Peri           9  0.179  0.537     0.0  0.000  1.610
-Post-menopause      9  0.119  0.237     0.0  0.000  0.537
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.033, 0.056]
-One-sample t-test (H0: mean = 0):
-t-statistic: 0.519
-p-value: 0.605
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Bothersomeness of Night Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median    min    max
-STATUS_Label                                             
-Surgical            0    NaN    NaN     NaN    NaN    NaN
-Pre-menopause      69  0.084  0.449     0.0 -0.323  3.231
-Early Peri         33  0.127  0.661     0.0 -0.969  1.616
-Late Peri           9  0.144  0.431     0.0  0.000  1.293
-Post-menopause      9  0.144  0.488     0.0 -0.323  0.969
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.024, 0.192]
-One-sample t-test (H0: mean = 0):
-t-statistic: 1.559
-p-value: 0.124
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Cold Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median  min    max
-STATUS_Label                                           
-Surgical            0    NaN    NaN     NaN  NaN    NaN
-Pre-menopause      69  0.008  0.064     0.0  0.0  0.529
-Early Peri         33  0.032  0.128     0.0  0.0  0.529
-Late Peri           9  0.118  0.353     0.0  0.0  1.058
-Post-menopause      9  0.000  0.000     0.0  0.0  0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.008, 0.023]
-One-sample t-test (H0: mean = 0):
-t-statistic: 1.000
-p-value: 0.321
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Number of Cold Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median  min    max
-STATUS_Label                                           
-Surgical            0    NaN    NaN     NaN  NaN    NaN
-Pre-menopause      69  0.011  0.093     0.0  0.0  0.771
-Early Peri         33  0.047  0.187     0.0  0.0  0.771
-Late Peri           9  0.257  0.771     0.0  0.0  2.314
-Post-menopause      9  0.000  0.000     0.0  0.0  0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.011, 0.033]
-One-sample t-test (H0: mean = 0):
-t-statistic: 1.000
-p-value: 0.321
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Bothersomeness of Cold Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median  min    max
-STATUS_Label                                           
-Surgical            0    NaN    NaN     NaN  NaN    NaN
-Pre-menopause      69  0.023  0.190     0.0  0.0  1.578
-Early Peri         33  0.072  0.287     0.0  0.0  1.184
-Late Peri           9  0.175  0.526     0.0  0.0  1.578
-Post-menopause      9  0.000  0.000     0.0  0.0  0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.023, 0.069]
-One-sample t-test (H0: mean = 0):
-t-statistic: 1.000
-p-value: 0.321
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Stiffness:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median    min    max
-STATUS_Label                                             
-Surgical            0    NaN    NaN     NaN    NaN    NaN
-Pre-menopause      69 -0.074  1.158   0.000 -7.067  2.570
-Early Peri         33  0.409  1.026   0.000 -1.927  2.570
-Late Peri           9  0.500  0.772   0.642 -0.642  1.927
-Post-menopause      9  0.785  1.055   0.642  0.000  2.570
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.353, 0.204]
-One-sample t-test (H0: mean = 0):
-t-statistic: -0.534
-p-value: 0.595
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Irritability:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median    min    max
-STATUS_Label                                             
-Surgical            0    NaN    NaN     NaN    NaN    NaN
-Pre-menopause      69 -0.057  0.439     0.0 -1.951  0.975
-Early Peri         33 -0.384  0.769     0.0 -1.951  0.975
-Late Peri           9  0.108  0.325     0.0  0.000  0.975
-Post-menopause      9 -0.325  0.690     0.0 -1.951  0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-0.162, 0.049]
-One-sample t-test (H0: mean = 0):
-t-statistic: -1.070
-p-value: 0.288
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Mood Changes:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean    std  median    min    max
-STATUS_Label                                             
-Surgical            0    NaN    NaN     NaN    NaN    NaN
-Pre-menopause      69  0.060  0.244     0.0  0.000  1.037
-Early Peri         33 -0.126  0.926     0.0 -3.112  3.112
-Late Peri           9  0.230  0.457     0.0  0.000  1.037
-Post-menopause      9 -0.230  0.457     0.0 -1.037  0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [0.001, 0.119]
-One-sample t-test (H0: mean = 0):
-t-statistic: 2.046
-p-value: 0.045
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
---------------------------------------------------------------------------------
-
-
-Creating distribution plots for percentage changes...
-
-================================================================================
-PERCENTAGE CHANGE STATISTICS
-================================================================================
-
-COGNITIVE MEASURES:
---------------------------------------------------------------------------------
-
-Total IDE Score 1:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean     std  median     min     max
-STATUS_Label                                                
-Surgical            0    NaN     NaN     NaN     NaN     NaN
-Pre-menopause      69 -0.681   9.535     0.0 -50.000  42.857
-Early Peri         33  5.789  17.300     0.0 -25.000  71.429
-Late Peri           9  6.459  15.715     0.0  -9.091  42.857
-Post-menopause      9  5.877  25.413     0.0 -11.111  71.429
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-2.972, 1.610]
-One-sample t-test (H0: mean = 0):
-t-statistic: -0.593
-p-value: 0.555
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Total IDE Score 2:
-
-Detailed Statistics by Menopausal Stage:
-                count   mean     std  median     min     max
-STATUS_Label                                                
-Surgical            0    NaN     NaN     NaN     NaN     NaN
-Pre-menopause      69 -1.329   8.904   0.000 -33.333  33.333
-Early Peri         33  5.043  13.959   9.091 -25.000  37.500
-Late Peri           9  2.685  13.843   0.000 -16.667  25.000
-Post-menopause      9  3.187  10.660   0.000  -9.091  25.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-3.467, 0.810]
-One-sample t-test (H0: mean = 0):
-t-statistic: -1.239
-p-value: 0.219
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
---------------------------------------------------------------------------------
-
-
-SYMPTOMS:
---------------------------------------------------------------------------------
-
-Hot Flashes:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std   median      min       max
-STATUS_Label                                                       
-Surgical            0      NaN      NaN      NaN      NaN       NaN
-Pre-menopause      69  -41.648  158.616    0.000 -673.178    -0.000
-Early Peri         33   -8.811  409.232    0.000 -673.178  2019.534
-Late Peri           9  -52.198  156.595   -0.000 -469.786    -0.000
-Post-menopause      9 -110.635  145.871 -117.447 -469.786    -0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-79.751, -3.544]
-One-sample t-test (H0: mean = 0):
-t-statistic: -2.181
-p-value: 0.033
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Number of Hot Flashes:
-
-Detailed Statistics by Menopausal Stage:
-                count    mean      std  median       min       max
-STATUS_Label                                                      
-Surgical            0     NaN      NaN     NaN       NaN       NaN
-Pre-menopause      69 -17.139   67.788    0.00  -287.668   143.834
-Early Peri         33  13.425  383.707    0.00 -1226.284  1294.508
-Late Peri           9 -93.674  281.023   -0.00  -843.070    -0.000
-Post-menopause      9 -95.233  189.568 -148.41  -306.571   287.668
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-33.424, -0.855]
-One-sample t-test (H0: mean = 0):
-t-statistic: -2.100
-p-value: 0.039
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Bothersomeness of Hot Flashes:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std   median     min      max
-STATUS_Label                                                     
-Surgical            0      NaN      NaN      NaN     NaN      NaN
-Pre-menopause      69  -10.384   43.069   -0.000 -200.54   49.933
-Early Peri         33  -42.047  130.213    0.000 -401.08  199.463
-Late Peri           9  -44.564  133.693   -0.000 -401.08   -0.000
-Post-menopause      9 -137.354  141.257 -133.214 -300.81   -0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-20.730, -0.038]
-One-sample t-test (H0: mean = 0):
-t-statistic: -2.003
-p-value: 0.049
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Night Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std  median      min      max
-STATUS_Label                                                     
-Surgical            0      NaN      NaN     NaN      NaN      NaN
-Pre-menopause      69   -7.362   45.310    -0.0 -338.637   -0.000
-Early Peri         33 -102.724  178.532    -0.0 -677.275   -0.000
-Late Peri           9  -75.253  225.758    -0.0 -677.275   -0.000
-Post-menopause      9  -20.263  123.008    -0.0 -169.319  244.261
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-18.246, 3.523]
-One-sample t-test (H0: mean = 0):
-t-statistic: -1.350
-p-value: 0.182
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Number of Night Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std  median       min      max
-STATUS_Label                                                      
-Surgical            0      NaN      NaN     NaN       NaN      NaN
-Pre-menopause      69  -25.129  154.244     0.0 -1145.408  121.155
-Early Peri         33 -213.951  421.459    -0.0 -1718.112   37.725
-Late Peri           9 -190.901  572.704    -0.0 -1718.112   -0.000
-Post-menopause      9 -127.268  252.539    -0.0  -572.704   -0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-62.183, 11.924]
-One-sample t-test (H0: mean = 0):
-t-statistic: -1.353
-p-value: 0.180
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Bothersomeness of Night Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std  median      min     max
-STATUS_Label                                                    
-Surgical            0      NaN      NaN     NaN      NaN     NaN
-Pre-menopause      69  -22.393  122.643     0.0 -870.631  41.225
-Early Peri         33 -153.431  272.641    -0.0 -870.631  -0.000
-Late Peri           9  -77.389  232.168    -0.0 -696.505  -0.000
-Post-menopause      9 -125.245  225.826    -0.0 -522.378  -0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-51.855, 7.069]
-One-sample t-test (H0: mean = 0):
-t-statistic: -1.517
-p-value: 0.134
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Cold Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std  median  min       max
-STATUS_Label                                                  
-Surgical            0      NaN      NaN     NaN  NaN       NaN
-Pre-menopause      69   11.545   95.897     0.0  0.0   796.578
-Early Peri         33   48.277  193.016     0.0  0.0   796.578
-Late Peri           9  177.017  531.052     0.0  0.0  1593.156
-Post-menopause      9    0.000    0.000     0.0  0.0     0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-11.492, 34.582]
-One-sample t-test (H0: mean = 0):
-t-statistic: 1.000
-p-value: 0.321
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Number of Cold Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std  median  min       max
-STATUS_Label                                                  
-Surgical            0      NaN      NaN     NaN  NaN       NaN
-Pre-menopause      69    8.480   70.438     0.0  0.0   585.105
-Early Peri         33   35.461  141.774     0.0  0.0   585.105
-Late Peri           9  195.035  585.105     0.0  0.0  1755.315
-Post-menopause      9    0.000    0.000     0.0  0.0     0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-8.441, 25.401]
-One-sample t-test (H0: mean = 0):
-t-statistic: 1.000
-p-value: 0.321
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Bothersomeness of Cold Sweats:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std  median  min       max
-STATUS_Label                                                  
-Surgical            0      NaN      NaN     NaN  NaN       NaN
-Pre-menopause      69   19.317  160.460     0.0  0.0  1332.885
-Early Peri         33   60.586  242.224     0.0  0.0   999.664
-Late Peri           9  148.098  444.295     0.0  0.0  1332.885
-Post-menopause      9    0.000    0.000     0.0  0.0     0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-19.230, 57.864]
-One-sample t-test (H0: mean = 0):
-t-statistic: 1.000
-p-value: 0.321
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Stiffness:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std  median      min       max
-STATUS_Label                                                      
-Surgical            0      NaN      NaN     NaN      NaN       NaN
-Pre-menopause      69   -1.902  274.115   0.000 -570.969  2093.551
-Early Peri         33  -75.578  174.076  -0.000 -570.969   421.428
-Late Peri           9 -135.122  201.267 -65.556 -570.969    -0.000
-Post-menopause      9  -80.123  107.608 -65.556 -262.222     0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-67.752, 63.947]
-One-sample t-test (H0: mean = 0):
-t-statistic: -0.058
-p-value: 0.954
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Irritability:
-
-Detailed Statistics by Menopausal Stage:
-                count     mean      std  median      min      max
-STATUS_Label                                                     
-Surgical            0      NaN      NaN     NaN      NaN      NaN
-Pre-menopause      69  -23.410   84.332    -0.0 -466.639   -0.000
-Early Peri         33 -101.902  243.578    -0.0 -466.639  466.639
-Late Peri           9  -14.142   42.425    -0.0 -127.275    0.000
-Post-menopause      9  -61.885  154.694     0.0 -466.639   -0.000
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-43.669, -3.151]
-One-sample t-test (H0: mean = 0):
-t-statistic: -2.306
-p-value: 0.024
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Mood Changes:
-
-Detailed Statistics by Menopausal Stage:
-                count    mean      std  median      min  max
-STATUS_Label                                                
-Surgical            0     NaN      NaN     NaN      NaN  NaN
-Pre-menopause      69 -10.930   44.384    -0.0 -188.545 -0.0
-Early Peri         33 -51.152  114.234    -0.0 -565.636 -0.0
-Late Peri           9 -41.899   83.141    -0.0 -188.545 -0.0
-Post-menopause      9 -31.220   71.763    -0.0 -212.936 -0.0
-
-Surgical:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Pre-menopause:
-95% CI: [-21.592, -0.268]
-One-sample t-test (H0: mean = 0):
-t-statistic: -2.046
-p-value: 0.045
-
-Early Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Late Peri:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
-Post-menopause:
-95% CI: [nan, nan]
-One-sample t-test (H0: mean = 0):
-t-statistic: nan
-p-value: nan
-
---------------------------------------------------------------------------------
-
+                                  Mixed Linear Model Regression Results
+=========================================================================================================
+Model:                            MixedLM                 Dependent Variable:                 TOTIDE2_log
+No. Observations:                 9268                    Method:                             REML       
+No. Groups:                       2289                    Scale:                              0.0248     
+Min. group size:                  1                       Log-Likelihood:                     2606.9662  
+Max. group size:                  5                       Converged:                          Yes        
+Mean group size:                  4.0                                                                    
+---------------------------------------------------------------------------------------------------------
+                                                              Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+---------------------------------------------------------------------------------------------------------
+Intercept                                                      2.411    0.013 183.442 0.000  2.385  2.436
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Surgical]       -0.038    0.016  -2.371 0.018 -0.069 -0.007
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Early Peri]     -0.008    0.012  -0.636 0.525 -0.032  0.016
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Late Peri]       0.001    0.013   0.054 0.957 -0.025  0.027
+C(STATUS_Label, Treatment('Pre-menopause'))[T.Post-menopause]  0.004    0.012   0.283 0.777 -0.021  0.028
+MOODCHG                                                       -0.009    0.002  -4.239 0.000 -0.014 -0.005
+LANGCOG                                                       -0.017    0.004  -4.066 0.000 -0.025 -0.009
+Group Var                                                      0.014    0.005                            
+=========================================================================================================
+
+
+Approximate Marginal R² (fixed effects): 0.0088
+Approximate Conditional R² (fixed + random): 0.3715
+
+Anderson-Darling normality test p-value (on 5000 sampled residuals): 0.0000
+Shapiro-Wilk normality test p-value (on 1000 sampled residuals): 0.0000
+WARNING: Residuals may not be normally distributed.
+However, with this large sample size, the model is still robust to moderate non-normality.
+
+Creating symptom effects plots...
+
+Creating forest plots for log-transformed models...
+Creating forest plot for TOTIDE1 with 12 symptoms
+Forest plot saved as: c:\Users\julif\Documents\GitHub\msc_thesis\2_symptoms_model\output\longitudinal\TOTIDE1_symptom_effects_log.png
+Creating forest plot for TOTIDE2 with 12 symptoms
+Forest plot saved as: c:\Users\julif\Documents\GitHub\msc_thesis\2_symptoms_model\output\longitudinal\TOTIDE2_symptom_effects_log.png
+
+Creating trajectory pattern plots...
+
+Plot saved as: c:\Users\julif\Documents\GitHub\msc_thesis\2_symptoms_model\output\longitudinal\cognitive_measures_trajectories.png
+
+Plot saved as: c:\Users\julif\Documents\GitHub\msc_thesis\2_symptoms_model\output\longitudinal\symptoms_trajectories.png
 
 Analysis complete

@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.impute import KNNImputer
 from scipy import stats
+from pyampute.exploration.mcar_statistical_tests import MCARTest
 import os
 
 class ImputationValidator:
@@ -18,6 +19,7 @@ class ImputationValidator:
         self.data = pd.read_csv(input_file, low_memory=False)
         self.output_dir = output_dir
         self.variables = ['TOTIDE1', 'TOTIDE2']
+        self.variables += ['NUMHOTF', 'BOTHOTF', 'NUMNITS', 'BOTNITS', 'NUMCLDS', 'BOTCLDS', 'HOW_HAR', 'BCINCML']
         self.imputed_data = None
         self.original_values = None
         self.imputed_values = None
@@ -33,6 +35,21 @@ class ImputationValidator:
             var: self.data[var][self.data[var].notna()].copy()
             for var in self.variables
         }
+
+    def mcar_test(self):
+
+        mt = MCARTest(method = 'little')
+
+        # Perform Little's MCAR test
+        p_value = mt(self.variables)
+
+        print(f"Little's MCAR test p-value: {p_value:.5f}")
+        self.summary["Little's MCAR Test P-Value"] = p_value
+
+        if p_value > 0.05:
+            print("The data is likely MCAR (missing completely at random).")
+        else:
+            print("The data is NOT MCAR (probably MAR or MNAR).")
     
     def perform_imputation(self, k_neighbors):
         """
@@ -49,36 +66,55 @@ class ImputationValidator:
             for var in self.variables
         }
         
-        # Process each subject separately
-        for subject in self.data['SWANID'].unique():
-            subject_mask = self.data['SWANID'] == subject
-            subject_data = self.data.loc[subject_mask]
+        # Create all the imputed columns - initialize with original values
+        for var in self.variables:
+            self.imputed_data[f'{var}_imputed'] = self.imputed_data[var]
+        
+        # Process each variable separately to avoid dimensionality issues
+        for var in self.variables:
+            print(f"  Imputing {var}...")
             
-            if len(subject_data) < 2:
-                continue
-            
-            # Prepare features for imputation
-            features = pd.DataFrame({
-                'VISIT': subject_data['VISIT'],
-                'TOTIDE1': subject_data['TOTIDE1'],
-                'TOTIDE2': subject_data['TOTIDE2']
-            })
-            
-            # Initialize KNN imputer
-            imputer = KNNImputer(
-                n_neighbors=min(k_neighbors, len(features)),
-                weights='distance'
-            )
-            
-            # Perform imputation
-            imputed_values = imputer.fit_transform(features)
-
-            # Round imputed values to nearest integer due to the nature of the data
-            imputed_values = np.round(imputed_values)
-            
-            # Store imputed values in new columns
-            for idx, var in enumerate(['TOTIDE1', 'TOTIDE2'], 1):
-                self.imputed_data.loc[subject_mask, f'{var}_imputed'] = imputed_values[:, idx]
+            for subject in self.data['SWANID'].unique():
+                subject_mask = self.data['SWANID'] == subject
+                subject_data = self.data.loc[subject_mask]
+                
+                # Skip if there's not enough data for this subject
+                if len(subject_data) < 2:
+                    continue
+                    
+                # Skip if this variable has no missing values for this subject
+                if not subject_data[var].isna().any():
+                    continue
+                
+                # Prepare features for imputation - just use VISIT and the current variable
+                features = pd.DataFrame({
+                    'VISIT': subject_data['VISIT'],
+                    var: subject_data[var]
+                })
+                
+                # Skip if not enough non-missing values to impute
+                if features[var].notna().sum() < 1:
+                    continue
+                    
+                # Initialize KNN imputer
+                imputer = KNNImputer(
+                    n_neighbors=min(k_neighbors, features[var].notna().sum()),  # Use only as many neighbors as available
+                    weights='distance'
+                )
+                
+                try:
+                    # Perform imputation
+                    imputed_values = imputer.fit_transform(features)
+                    
+                    # Round imputed values to nearest integer
+                    imputed_values = np.round(imputed_values)
+                    
+                    # Store imputed values only for the variable being processed
+                    self.imputed_data.loc[subject_mask, f'{var}_imputed'] = imputed_values[:, 1]  # Index 1 is the variable (0 is VISIT)
+                except Exception as e:
+                    print(f"Error imputing {var} for subject {subject}: {e}")
+                    # If imputation fails, keep original values
+                    continue
         
         # Store imputed values that were originally missing
         self.imputed_values = {
@@ -94,32 +130,52 @@ class ImputationValidator:
         """
         print("\nChecking distributions...")
         
-        fig, axes = plt.subplots(2, 2, figsize=(15, 12))
+        # Calculate how many rows we need based on the number of variables
+        n_vars = len(self.variables)
+        n_rows = (n_vars + 1) // 2  # Ceiling division to get enough rows
+        
+        # Create a figure with enough subplots for all variables
+        fig, axes = plt.subplots(n_rows, 4, figsize=(20, 5 * n_rows))
+        
+        # If there's only one row, make sure axes is 2D
+        if n_rows == 1:
+            axes = axes.reshape(1, -1)
         
         for idx, var in enumerate(self.variables):
+            # Calculate row and column
+            row = idx // 2
+            col_start = (idx % 2) * 2  # Each variable gets 2 columns (0,1 or 2,3)
+            
             # Histogram
             sns.histplot(
                 data=self.original_values[var],
                 label='Original',
-                ax=axes[idx, 0],
+                ax=axes[row, col_start],
                 alpha=0.5
             )
             sns.histplot(
                 data=self.imputed_values[var],
                 label='Imputed',
-                ax=axes[idx, 0],
+                ax=axes[row, col_start],
                 alpha=0.5
             )
-            axes[idx, 0].set_title(f'{var} Distribution Comparison')
-            axes[idx, 0].legend()
+            axes[row, col_start].set_title(f'{var} Distribution Comparison')
+            axes[row, col_start].legend()
             
             # QQ plot
             stats.probplot(
                 self.original_values[var],
                 dist="norm",
-                plot=axes[idx, 1]
+                plot=axes[row, col_start + 1]
             )
-            axes[idx, 1].set_title(f'{var} Q-Q Plot')
+            axes[row, col_start + 1].set_title(f'{var} Q-Q Plot')
+        
+        # Hide any unused subplots
+        for i in range(n_vars, n_rows * 2):
+            row = i // 2
+            col_start = (i % 2) * 2
+            axes[row, col_start].axis('off')
+            axes[row, col_start + 1].axis('off')
         
         plt.tight_layout()
         plt.savefig(os.path.join(self.output_dir, 'distribution_checks.png'))
@@ -173,6 +229,7 @@ class ImputationValidator:
         
         for k in k_values:
             print(f"\nTesting k={k}")
+            self.mcar_test()
             self.perform_imputation(k_neighbors=k)
             self.check_distributions()
             self.analyze_distribution_shifts()

@@ -1,0 +1,16 @@
+graph LR
+    %% Predictor latent variables
+    social((Social))
+    emotional((Emotional))
+    social_health((Social Health))
+
+    %% Outcome latent variable
+    cognitive((Cognitive))
+
+    %% Structural Model: Relationships among latent variables
+
+    %% Style definitions
+    classDef predictor fill:#cde,stroke:#333,stroke-width:2px;
+    classDef outcome fill:#fde,stroke:#333,stroke-width:2px;
+    class social,emotional,social_health predictor;
+    class cognitive outcome;

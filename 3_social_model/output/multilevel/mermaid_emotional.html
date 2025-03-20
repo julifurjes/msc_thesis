@@ -1,0 +1,62 @@
+
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>SEM Path Diagram</title>
+            <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+            <script>
+                mermaid.initialize({
+                    startOnLoad: true,
+                    theme: 'default',
+                    flowchart: {
+                        curve: 'basis',
+                        nodeSpacing: 50,
+                        rankSpacing: 50,
+                        padding: 8
+                    }
+                });
+            </script>
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 20px;
+                    background-color: #f5f5f5;
+                }
+                .diagram-container {
+                    background-color: white;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
+                .mermaid {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 400px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="diagram-container">
+                <div class="mermaid">
+                    graph LR
+    %% Predictor latent variables
+    social((Social))
+    symptoms((Symptoms))
+    cognitive((Cognitive))
+
+    %% Outcome latent variable
+    emotional((Emotional))
+
+    %% Structural Model: Relationships among latent variables
+
+    %% Style definitions
+    classDef predictor fill:#cde,stroke:#333,stroke-width:2px;
+    classDef outcome fill:#fde,stroke:#333,stroke-width:2px;
+    class social,symptoms,cognitive predictor;
+    class emotional outcome;
+                </div>
+            </div>
+        </body>
+        </html>
+        
