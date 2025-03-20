@@ -35,7 +35,7 @@ class DataValidator:
         self.data = data
         self.variables = variables if variables is not None else data.columns.tolist()
         self.base_output_dir = output_dir if output_dir else '.'
-        self.output_dir = os.path.join(self.base_output_dir, 'data_validation')
+        self.output_dir = os.path.join(self.base_output_dir)
         os.makedirs(self.output_dir, exist_ok=True)
         self.plotting = plotting
         self.validation_results = {}
