@@ -21,9 +21,10 @@ class MenopauseCognitionAnalysis:
         self.data = pd.read_csv(file_path, low_memory=False)
         self.symptom_vars = ['HOTFLAS', 'NUMHOTF', 'BOTHOTF', 'NITESWE', 'NUMNITS', 'BOTNITS',
                             'COLDSWE', 'NUMCLDS', 'BOTCLDS', 'STIFF', 'IRRITAB', 'MOODCHG']
-        self.outcome_vars = ['TOTIDE1', 'TOTIDE2']
-        self.transformed_outcome_vars = ['TOTIDE1_log', 'TOTIDE2_log']
-        self.control_vars = ['STATUS', 'LANGCOG']
+        self.outcome_vars = ['TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
+        self.transformed_symptom_vars = []  # Will be populated after transformations
+        self.transformed_outcome_vars = []  # Will be populated after transformations
+        self.control_vars = ['STATUS', 'LANGCOG', 'AGE']
         self.mixed_model_results = {}
         self.var_labels = {
             'HOTFLAS': 'Hot Flashes',
@@ -38,15 +39,15 @@ class MenopauseCognitionAnalysis:
             'STIFF': 'Stiffness',
             'IRRITAB': 'Irritability',
             'MOODCHG': 'Mood Changes',
-            'TOTIDE1': 'Total IDE Score 1',
-            'TOTIDE2': 'Total IDE Score 2',
-            'TOTIDE1_log': 'Total IDE Score 1 (Log)',
-            'TOTIDE2_log': 'Total IDE Score 2 (Log)'
+            'TOTIDE_avg': 'Total IDE Score (averaged)',
+            'NERVES': 'Nervousness Score',
+            'SAD': 'Sadness Score',
+            'FEARFULA': 'Fearfulness Score', 
         }
         self.output_dir = get_output_dir('2_symptoms_model', 'longitudinal')
         
     def prepare_data(self):
-        """Prepare data including menopausal status categorization and manual log transformations."""
+        """Prepare data including menopausal status categorization and transformations."""
         self.data['STATUS'] = pd.to_numeric(self.data['STATUS'], errors='coerce')
         # Keep only statuses of interest (surgical: 1, 8; natural: 2,3,4,5)
         self.data = self.data[self.data['STATUS'].isin([1, 2, 3, 4, 5, 8])]
@@ -54,7 +55,8 @@ class MenopauseCognitionAnalysis:
         # Convert variables to numeric
         all_vars = self.symptom_vars + self.outcome_vars + self.control_vars + ['SWANID', 'VISIT']
         for var in all_vars:
-            self.data[var] = pd.to_numeric(self.data[var], errors='coerce')
+            if var in self.data.columns:
+                self.data[var] = pd.to_numeric(self.data[var], errors='coerce')
         
         # Map status to more descriptive labels for natural statuses and mark surgical statuses
         status_map = {
@@ -82,143 +84,111 @@ class MenopauseCognitionAnalysis:
         self.data[self.symptom_vars] = (self.data[self.symptom_vars] - 
                                        self.data[self.symptom_vars].mean()) / self.data[self.symptom_vars].std()
         
-        # MANUALLY CREATE LOG TRANSFORMATIONS
-        print("\nManually creating log transformations for outcome variables...")
-        
-        for outcome_var in self.outcome_vars:
-            log_var = f"{outcome_var}_log"
-            
-            # Check if the outcome variable has zeros or negative values
-            min_val = self.data[outcome_var].min()
-            
-            if min_val <= 0:
-                # Add a small constant to make all values positive
-                offset = abs(min_val) + 1
-                self.data[log_var] = np.log(self.data[outcome_var] + offset)
-                print(f"Applied log transformation to {outcome_var} with offset {offset}")
-            else:
-                # Simple log transformation if all values are positive
-                self.data[log_var] = np.log(self.data[outcome_var])
-                print(f"Applied log transformation to {outcome_var}")
-                
-            # Calculate distribution stats for original and transformed variables
-            orig_skew = stats.skew(self.data[outcome_var].dropna())
-            log_skew = stats.skew(self.data[log_var].dropna())
-            
-            print(f"  Original {outcome_var} skewness: {orig_skew:.3f}")
-            print(f"  Log-transformed {log_var} skewness: {log_skew:.3f}")
-        
-        # Create directory for distribution plots
-        dist_dir = os.path.join(self.output_dir, 'distribution_plots')
-        os.makedirs(dist_dir, exist_ok=True)
-        
-        # Create distribution plots for original and transformed variables
-        self.plot_transformation_comparison(dist_dir)
-        
-        # Reset index to avoid potential issues
-        self.data = self.data.reset_index(drop=True)
-        
-        print("Data shape after preprocessing:", self.data.shape)
-        return self.data
+        self.transform_variables()
     
-    def plot_transformation_comparison(self, output_dir):
-        """Create plots comparing original and log-transformed distributions."""
-        print("\nCreating distribution comparison plots...")
+    def transform_variables(self):
+        """Apply transformations to address heteroscedasticity and multicollinearity for outcome variables."""
+        # Variables needing log transformation (highest skewness)
+        log_transform_vars = ['NERVES', 'NUMHOTF', 'NUMNITS', 'COLDSWE', 'NUMCLDS']
         
-        for outcome_var in self.outcome_vars:
-            log_var = f"{outcome_var}_log"
-            
-            # Create a figure for comparing distributions
-            fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-            
-            # Plot original distribution
-            sns.histplot(self.data[outcome_var].dropna(), kde=True, ax=ax1)
-            ax1.set_title(f"Original Distribution: {self.var_labels[outcome_var]}")
-            
-            # Calculate and display statistics
-            skewness = stats.skew(self.data[outcome_var].dropna())
-            kurtosis = stats.kurtosis(self.data[outcome_var].dropna())
-            
-            # Sample for normality test
-            sample_data = self.data[outcome_var].dropna()
-            if len(sample_data) > 5000:
-                sample_data = sample_data.sample(5000)
-            _, normality_p = stats.shapiro(sample_data)
-            
-            ax1.text(0.05, 0.95, 
-                     f"N: {len(self.data[outcome_var].dropna())}\n"
-                     f"Skewness: {skewness:.3f}\n"
-                     f"Kurtosis: {kurtosis:.3f}\n"
-                     f"Shapiro p-value: {normality_p:.4f}",
-                     transform=ax1.transAxes, 
-                     verticalalignment='top',
-                     bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-            
-            # Plot log-transformed distribution
-            sns.histplot(self.data[log_var].dropna(), kde=True, ax=ax2)
-            ax2.set_title(f"Log-Transformed: {self.var_labels[log_var]}")
-            
-            # Calculate and display statistics for transformed data
-            log_skewness = stats.skew(self.data[log_var].dropna())
-            log_kurtosis = stats.kurtosis(self.data[log_var].dropna())
-            
-            # Sample for normality test
-            log_sample = self.data[log_var].dropna()
-            if len(log_sample) > 5000:
-                log_sample = log_sample.sample(5000)
-            _, log_normality_p = stats.shapiro(log_sample)
-            
-            ax2.text(0.05, 0.95, 
-                     f"N: {len(self.data[log_var].dropna())}\n"
-                     f"Skewness: {log_skewness:.3f}\n"
-                     f"Kurtosis: {log_kurtosis:.3f}\n"
-                     f"Shapiro p-value: {log_normality_p:.4f}",
-                     transform=ax2.transAxes, 
-                     verticalalignment='top',
-                     bbox=dict(boxstyle='round', facecolor='white', alpha=0.8))
-            
-            plt.tight_layout()
-            plt.savefig(os.path.join(output_dir, f"{outcome_var}_log_transformation.png"), dpi=300)
-            plt.close()
-            
-            print(f"  Created comparison plot for {outcome_var}")
+        # Variables needing sqrt transformation (moderately skewed)
+        sqrt_transform_vars = ['FEARFULA', 'SAD', 'NITESWE', 'HOTFLAS', 'MOODCHG', 'IRRITAB']
+        
+        # Variables to keep as-is (low skewness)
+        no_transform_vars = ['BOTHOTF', 'BOTNITS', 'BOTCLDS', 'STIFF']
+        
+        # Apply log transformations
+        for var in log_transform_vars:
+            if var in self.data.columns:
+                self.data[f"{var}_log"] = np.log1p(self.data[var])
+                self.transformed_symptom_vars.append(f"{var}_log")
+                self.var_labels[f"{var}_log"] = f"{self.var_labels.get(var, var)} (Log)"
+        
+        # Apply sqrt transformations
+        for var in sqrt_transform_vars:
+            if var in self.data.columns:
+                self.data[f"{var}_sqrt"] = np.sqrt(self.data[var])
+                self.transformed_symptom_vars.append(f"{var}_sqrt")
+                self.var_labels[f"{var}_sqrt"] = f"{self.var_labels.get(var, var)} (Sqrt)"
+        
+        # Add untransformed variables
+        for var in no_transform_vars:
+            if var in self.data.columns:
+                self.transformed_symptom_vars.append(var)
+        
+        # 2. TRANSFORM OUTCOME VARIABLES
+        
+        # Create TOTIDE average
+        if 'TOTIDE1' in self.data.columns and 'TOTIDE2' in self.data.columns:
+            self.data['TOTIDE_avg'] = (self.data['TOTIDE1'] + self.data['TOTIDE2']) / 2
+            self.var_labels['TOTIDE_avg'] = 'Total IDE Score (averaged)'
+        
+        # Apply transformations to other cognitive variables
+        self.transformed_outcome_vars = []
+        
+        # Add TOTIDE_avg to transformed outcomes
+        if 'TOTIDE_avg' in self.data.columns:
+            self.transformed_outcome_vars.append('TOTIDE_avg')
 
     def run_mixed_models(self):
         """
         Run linear mixed-effects models for symptom-cognition relationships.
-        Uses log-transformed outcome variables.
+        Uses transformed outcome variables and includes AGE and VISIT in the models.
+        Also includes weighting for unbalanced data.
         """
-        print("\nRunning linear mixed-effects models with log-transformed variables...")
+        print("\nRunning linear mixed-effects models with transformed variables...")
         
-        for outcome, transformed_outcome in zip(self.outcome_vars, self.transformed_outcome_vars):
-            print(f"Analyzing models for {self.var_labels[transformed_outcome]}")
+        # Loop through all transformed outcome variables
+        for transformed_outcome in self.transformed_outcome_vars:
+            print(f"Analyzing models for {self.var_labels.get(transformed_outcome, transformed_outcome)}")
             
+            # Get the original variable name (for results dictionary keys)
+            if transformed_outcome.endswith('_log'):
+                original_outcome = transformed_outcome.replace('_log', '')
+            elif transformed_outcome.endswith('_sqrt'):
+                original_outcome = transformed_outcome.replace('_sqrt', '')
+            elif transformed_outcome.endswith('_avg'):
+                original_outcome = 'TOTIDE'  # Special case for average
+            else:
+                original_outcome = transformed_outcome
+            
+            # Now loop through each symptom
             for symptom in self.symptom_vars:
-                # Create formula with status, symptom, and LANGCOG as control variables
-                # Use the transformed outcome variable
-                formula = f"{transformed_outcome} ~ {symptom} + C(STATUS_Label, Treatment('Pre-menopause')) + LANGCOG"
+                # Create formula with status, symptom, LANGCOG, AGE, and VISIT
+                formula = (f"{transformed_outcome} ~ {symptom} + C(STATUS_Label, Treatment('Pre-menopause')) + "
+                          f"LANGCOG + AGE + VISIT")
                 
                 try:
                     # Drop rows with missing values for the current variables
-                    analysis_data = self.data.dropna(subset=[transformed_outcome, symptom, 'STATUS_Label', 'LANGCOG'])
+                    analysis_data = self.data.dropna(subset=[transformed_outcome, symptom, 'STATUS_Label', 
+                                                             'LANGCOG', 'AGE', 'VISIT'])
                     
                     # Reset index to avoid potential index issues
                     analysis_data = analysis_data.reset_index(drop=True)
                     
-                    # Fit mixed model with random intercept for SWANID
+                    # Add weights to handle unbalanced data (from first model)
+                    status_counts = analysis_data['STATUS_Label'].value_counts()
+                    analysis_data['weights'] = analysis_data['STATUS_Label'].map(
+                        lambda x: 1 / (status_counts[x] / sum(status_counts))
+                    )
+                    
+                    # Fit mixed model with random intercept for SWANID and random slope for VISIT (from first model)
                     model = mixedlm(
                         formula=formula,
                         groups=analysis_data["SWANID"],
-                        data=analysis_data
+                        data=analysis_data,
+                        re_formula="~VISIT"  # Random slope for VISIT (from first model)
                     )
                     
-                    results = model.fit(reml=True)
-                    key = f"{outcome}_{symptom}"  # Still use original outcome name for consistency in results dictionary
+                    # Add weights and fit the model
+                    results = model.fit(reml=True, weights=analysis_data['weights'])
+                    key = f"{original_outcome}_{symptom}"
                     self.mixed_model_results[key] = results
                     
                     # Print detailed results
-                    print(f"\nMixed Model Results for {self.var_labels[symptom]} → {self.var_labels[outcome]}")
-                    print(f"Using log-transformed variable: {transformed_outcome}")
+                    print(f"\nMixed Model Results for {self.var_labels.get(symptom, symptom)} → "
+                          f"{self.var_labels.get(original_outcome, original_outcome)}")
+                    print(f"Using transformed variable: {transformed_outcome}")
                     print("=" * 50)
                     print(results.summary())
                     
@@ -245,10 +215,10 @@ class MenopauseCognitionAnalysis:
                         print(f"Error calculating R-squared: {str(e)}")
                     
                     # Check model diagnostics
-                    self.check_model_diagnostics(results, outcome, transformed_outcome, symptom, analysis_data)
+                    self.check_model_diagnostics(results, original_outcome, transformed_outcome, symptom, analysis_data)
                     
                 except Exception as e:
-                    print(f"Error in mixed model analysis for {symptom} → {outcome}: {str(e)}")
+                    print(f"Error in mixed model analysis for {symptom} → {original_outcome}: {str(e)}")
     
     def check_model_diagnostics(self, model_results, outcome, transformed_outcome, symptom, data):
         """Check model residuals and diagnostics for the mixed model."""
@@ -268,7 +238,8 @@ class MenopauseCognitionAnalysis:
             plt.subplot(2, 2, 1)
             plt.scatter(predicted, residuals, alpha=0.5)
             plt.axhline(y=0, color='r', linestyle='-')
-            plt.title(f'Residuals vs Fitted for {self.var_labels[outcome]} ~ {self.var_labels[symptom]} (Log)')
+            title_text = f'Residuals vs Fitted for {self.var_labels.get(outcome, outcome)} ~ {self.var_labels.get(symptom, symptom)}'
+            plt.title(title_text)
             plt.xlabel('Fitted values')
             plt.ylabel('Residuals')
             
@@ -282,10 +253,10 @@ class MenopauseCognitionAnalysis:
             plt.title('Q-Q Plot of Residuals')
             
             plt.subplot(2, 2, 4)
-            plt.scatter(data[symptom], residuals, alpha=0.5)
+            plt.scatter(range(len(residuals)), residuals, alpha=0.5)
             plt.axhline(y=0, color='r', linestyle='-')
-            plt.title(f'Residuals vs {self.var_labels[symptom]}')
-            plt.xlabel(f'{self.var_labels[symptom]} Values')
+            plt.title('Residuals vs Order')
+            plt.xlabel('Observation Order')
             plt.ylabel('Residuals')
             
             # Save the plot
@@ -331,10 +302,16 @@ class MenopauseCognitionAnalysis:
             print("No mixed model results available. Run run_mixed_models() first.")
             return
         
-        print("\nCreating forest plots for log-transformed models...")
+        print("\nCreating forest plots for transformed models...")
+        
+        # Get unique outcomes from the keys
+        unique_outcomes = set()
+        for key in self.mixed_model_results.keys():
+            outcome = key.split('_')[0]
+            unique_outcomes.add(outcome)
         
         # Group results by outcome variable
-        for outcome in self.outcome_vars:
+        for outcome in unique_outcomes:
             # Get all models for this outcome
             outcome_models = {k: v for k, v in self.mixed_model_results.items() if k.startswith(f"{outcome}_")}
             
@@ -361,7 +338,7 @@ class MenopauseCognitionAnalysis:
                 param_name = symptom
                 
                 if param_name in results.params.index:
-                    symptoms.append(self.var_labels[symptom])
+                    symptoms.append(self.var_labels.get(symptom, symptom))
                     coefs.append(results.params[param_name])
                     errors.append(results.bse[param_name])
                     pvalues.append(results.pvalues[param_name])
@@ -373,7 +350,7 @@ class MenopauseCognitionAnalysis:
                 continue
                 
             # Sort by coefficient magnitude for better visualization
-            sorted_indices = np.argsort(coefs)
+            sorted_indices = np.argsort(np.abs(coefs))[::-1]  # Sort by absolute value, descending
             symptoms = [symptoms[i] for i in sorted_indices]
             coefs = [coefs[i] for i in sorted_indices]
             errors = [errors[i] for i in sorted_indices]
@@ -397,7 +374,7 @@ class MenopauseCognitionAnalysis:
             
             # Customize plot
             plt.yticks(y_pos, symptoms, fontsize=12)
-            plt.title(f'Effects of Symptoms on {self.var_labels[outcome]} (Log Transformed)', fontsize=14)
+            plt.title(f'Effects of Symptoms on {self.var_labels.get(outcome, outcome)} (Transformed)', fontsize=14)
             plt.xlabel('Standardized Coefficient (95% CI)', fontsize=12)
             
             # Add text labels with p-values
@@ -409,7 +386,7 @@ class MenopauseCognitionAnalysis:
                 elif p < 0.05: stars = '*'
                 
                 # Position text based on coefficient sign
-                text_pos = coef + 0.05 if coef >= 0 else coef - 0.05
+                text_pos = coef + 0.02 * np.sign(coef) * max(abs(np.array(coefs)))
                 ha = 'left' if coef >= 0 else 'right'
                 
                 plt.text(
@@ -434,7 +411,7 @@ class MenopauseCognitionAnalysis:
             plt.tight_layout()
             
             # Save the plot
-            file_name = os.path.join(self.output_dir, f'{outcome}_symptom_effects_log.png')
+            file_name = os.path.join(self.output_dir, f'{outcome}_symptom_effects.png')
             plt.savefig(file_name, dpi=300, bbox_inches='tight')
             plt.close()
             
@@ -445,110 +422,110 @@ class MenopauseCognitionAnalysis:
         Create line plots showing trajectories of symptoms and cognitive measures across visits,
         grouped by menopausal status.
         """
-        # Create separate figures for outcomes and symptoms
-        for var_set, title in [(self.outcome_vars, 'Cognitive Measures'),
-                             (self.symptom_vars, 'Symptoms')]:
+        # Variables to plot (original variables, not transformed)
+        all_vars_to_plot = self.symptom_vars + self.outcome_vars
+        
+        # Create figures with 3 variables per row
+        n_vars = len(all_vars_to_plot)
+        n_cols = 3
+        n_rows = (n_vars + n_cols - 1) // n_cols
+        
+        fig, axes = plt.subplots(n_rows, n_cols, figsize=(18, 5*n_rows), squeeze=False)
+        axes = axes.flatten()
+        
+        for idx, var in enumerate(all_vars_to_plot):
+            # Get a subset of data for individual trajectories (100 random subjects)
+            subset_ids = np.random.choice(
+                self.data['SWANID'].unique(), 
+                min(100, len(self.data['SWANID'].unique())), 
+                replace=False
+            )
+            plot_data = self.data[self.data['SWANID'].isin(subset_ids)]
             
-            n_vars = len(var_set)
-            n_cols = min(3, n_vars)
-            n_rows = (n_vars + n_cols - 1) // n_cols
+            # Sort by SWANID and VISIT to ensure proper trajectory
+            plot_data = plot_data.sort_values(['SWANID', 'VISIT'])
             
-            fig, axes = plt.subplots(n_rows, n_cols, figsize=(6*n_cols, 5*n_rows), squeeze=False)
-            axes = axes.flatten()
+            # Create a spaghetti plot
+            ax = axes[idx]
             
-            for idx, var in enumerate(var_set):
-                # Get a subset of data for individual trajectories
-                subset_ids = np.random.choice(
-                    self.data['SWANID'].unique(), 
-                    min(100, len(self.data['SWANID'].unique())), 
-                    replace=False
-                )
-                plot_data = self.data[self.data['SWANID'].isin(subset_ids)]
-                
-                # Sort by SWANID and VISIT to ensure proper trajectory
-                plot_data = plot_data.sort_values(['SWANID', 'VISIT'])
-                
-                # Create a spaghetti plot
-                ax = axes[idx]
-                
-                # First plot average trajectories by status
-                sns.lineplot(
-                    data=self.data,
-                    x='VISIT', 
-                    y=var,
-                    hue='STATUS_Label',
-                    estimator='mean',
-                    errorbar=('ci', 95),
-                    ax=ax,
-                    linewidth=3,
-                    palette='coolwarm'
-                )
-                
-                # Add individual trajectories with low alpha for a subset
-                for swanid, group in plot_data.groupby('SWANID'):
-                    ax.plot(
-                        group['VISIT'], 
-                        group[var], 
-                        alpha=0.1, 
-                        color='gray',
-                        linewidth=0.5
-                    )
-                
-                # Customize the plot
-                ax.set_title(f'Trajectories for {self.var_labels.get(var, var)}', pad=20)
-                ax.set_xlabel('Visit')
-                ax.set_ylabel(self.var_labels.get(var, var))
-                
-                # Add summary statistics as text
-                summary_stats = self.data.groupby('STATUS_Label', observed=True)[var].agg([
-                    'count', 'mean', 'std', 'median'
-                ]).round(2)
-                
-                # Add summary statistics to the side of the plot
-                stat_text = "Summary by Status:\n"
-                for status, stats in summary_stats.iterrows():
-                    stat_text += f"\n{status}:\n"
-                    stat_text += f"n={stats['count']}, mean={stats['mean']}\n"
-                    stat_text += f"median={stats['median']}, sd={stats['std']}\n"
-                
-                # Position the text box outside the plot
-                text_box = ax.text(
-                    1.05,  # x position
-                    0.5,   # y position
-                    stat_text,
-                    fontsize=8,
-                    bbox=dict(facecolor='white', alpha=0.8),
-                    transform=ax.transAxes,  # Use axes coordinates
-                    verticalalignment='center'
-                )
-            
-            # Remove any unused subplots
-            for j in range(idx + 1, len(axes)):
-                axes[j].set_visible(False)
-            
-            # Add a main title
-            fig.suptitle(
-                f'{title} Trajectories by Menopausal Status',
-                y=1.02,
-                fontsize=14
+            # First plot average trajectories by status
+            sns.lineplot(
+                data=self.data,
+                x='VISIT', 
+                y=var,
+                hue='STATUS_Label',
+                estimator='mean',
+                errorbar=('ci', 95),
+                ax=ax,
+                linewidth=3,
+                palette='coolwarm'
             )
             
-            # Adjust layout and display
-            plt.tight_layout()
+            # Add individual trajectories with low alpha for a subset
+            for swanid, group in plot_data.groupby('SWANID'):
+                ax.plot(
+                    group['VISIT'], 
+                    group[var], 
+                    alpha=0.1, 
+                    color='gray',
+                    linewidth=0.5
+                )
             
-            # Save the plot
-            file_name = os.path.join(self.output_dir, f'{title.lower().replace(" ", "_")}_trajectories.png')
-            fig.savefig(
-                file_name,
-                dpi=300,
-                bbox_inches='tight'
+            # Customize the plot
+            ax.set_title(f'Trajectories for {self.var_labels.get(var, var)}', pad=20)
+            ax.set_xlabel('Visit')
+            ax.set_ylabel(self.var_labels.get(var, var))
+            
+            # Add summary statistics as text
+            summary_stats = self.data.groupby('STATUS_Label', observed=True)[var].agg([
+                'count', 'mean', 'std', 'median'
+            ]).round(2)
+            
+            # Add summary statistics to the side of the plot
+            stat_text = "Summary by Status:\n"
+            for status, stats in summary_stats.iterrows():
+                stat_text += f"\n{status}:\n"
+                stat_text += f"n={stats['count']}, mean={stats['mean']}\n"
+                stat_text += f"median={stats['median']}, sd={stats['std']}\n"
+            
+            # Position the text box outside the plot
+            text_box = ax.text(
+                1.05,  # x position
+                0.5,   # y position
+                stat_text,
+                fontsize=8,
+                bbox=dict(facecolor='white', alpha=0.8),
+                transform=ax.transAxes,  # Use axes coordinates
+                verticalalignment='center'
             )
-            
-            plt.close()
-            print(f"\nPlot saved as: {file_name}")
+        
+        # Remove any unused subplots
+        for j in range(idx + 1, len(axes)):
+            axes[j].set_visible(False)
+        
+        # Add a main title
+        fig.suptitle(
+            'Variable Trajectories by Menopausal Status',
+            y=1.02,
+            fontsize=14
+        )
+        
+        # Adjust layout and display
+        plt.tight_layout()
+        
+        # Save the plot
+        file_name = os.path.join(self.output_dir, 'all_variables_trajectories.png')
+        fig.savefig(
+            file_name,
+            dpi=300,
+            bbox_inches='tight'
+        )
+        
+        plt.close()
+        print(f"\nTrajectory plot saved as: {file_name}")
 
     def run_complete_analysis(self):
-        """Run the complete analysis pipeline with log-transformed variables."""
+        """Run the complete analysis pipeline with transformed variables."""
         # Create output directory if it doesn't exist
         os.makedirs(self.output_dir, exist_ok=True)
         
@@ -557,10 +534,10 @@ class MenopauseCognitionAnalysis:
         sys.stdout = output_capture
         
         try:
-            print("Preparing data and applying log transformations...")
+            print("\nRunning full analysis with transformations from both models...")
             self.prepare_data()
             
-            print("\nRunning mixed models analysis with log-transformed variables...")
+            print("\nRunning mixed models analysis with transformed variables...")
             self.run_mixed_models()
             
             print("\nCreating symptom effects plots...")

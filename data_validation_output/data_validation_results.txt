@@ -1,353 +1,21 @@
-Analysis Run: 2025-03-20 15:40:09
+Analysis Run: 2025-03-25 13:30:50
 ================================================================================
 
 === Data Validation Results ===
-DEBUG: Processing check: missing
-DEBUG: missing is a valid check
-DEBUG: missing completed successfully
 DEBUG: Processing check: distributions
-DEBUG: distributions is a valid check
 DEBUG: distributions completed successfully
 DEBUG: Processing check: group_sizes
-DEBUG: group_sizes is a valid check
-DEBUG: group_sizes needs grouping_var
 DEBUG: group_sizes completed successfully
-DEBUG: Processing check: homogeneity
-DEBUG: homogeneity is a valid check
-DEBUG: homogeneity needs grouping_var
-
-Levene's test for STATUS:
-Statistic: nan
-p-value: nan
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for TOTIDE1:
-Statistic: 21.5161
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for TOTIDE2:
-Statistic: 25.9756
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for NERVES:
-Statistic: 3.7660
-p-value: 0.0009
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 7.0, 8.0
-
-Levene's test for SAD:
-Statistic: 6.2092
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for FEARFULA:
-Statistic: 10.0902
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for HOTFLAS:
-Statistic: 286.2758
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for NUMHOTF:
-Statistic: 4.0109
-p-value: 0.0002
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for BOTHOTF:
-Statistic: 3.9790
-p-value: 0.0002
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for NITESWE:
-Statistic: 85.1133
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for NUMNITS:
-Statistic: 0.6381
-p-value: 0.7247
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for BOTNITS:
-Statistic: 1.9500
-p-value: 0.0579
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for COLDSWE:
-Statistic: 32.5353
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for NUMCLDS:
-Statistic: 1.4834
-p-value: 0.1795
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 7.0, 8.0
-
-Levene's test for BOTCLDS:
-Statistic: 5.0172
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 7.0, 8.0
-
-Levene's test for STIFF:
-Statistic: 43.7741
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for IRRITAB:
-Statistic: 24.2937
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for MOODCHG:
-Statistic: 24.5953
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for LANGCOG:
-Statistic: 3.5145
-p-value: 0.0018
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 7.0, 8.0
-
-Levene's test for LISTEN:
-Statistic: 1.5537
-p-value: 0.1442
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for TAKETOM:
-Statistic: 7.1379
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for HELPSIC:
-Statistic: 1.7269
-p-value: 0.0978
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for CONFIDE:
-Statistic: 0.6866
-p-value: 0.6836
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for EMOCTDW:
-Statistic: 4.2144
-p-value: 0.0001
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for EMOACCO:
-Statistic: 8.0274
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for EMOCARE:
-Statistic: 6.9840
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for INTERFR:
-Statistic: 15.8513
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for SOCIAL:
-Statistic: 9.7453
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for INCOME:
-Statistic: 50.3053
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for HOW_HAR:
-Statistic: 18.5951
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for BCINCML:
-Statistic: 5.7686
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-
-Levene's test for DEGREE:
-Statistic: 7.2004
-p-value: 0.0000
-Groups tested: 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0
-DEBUG: homogeneity completed successfully
 DEBUG: Processing check: multicollinearity
-DEBUG: multicollinearity is a valid check
 DEBUG: multicollinearity completed successfully
-DEBUG: Processing check: independence
-DEBUG: independence is a valid check
-
-Independence check for STATUS:
-Lag-1 correlation: 0.2082
-N observations: 24001
-
-Independence check for TOTIDE1:
-Lag-1 correlation: 0.0299
-N observations: 24081
-
-Independence check for TOTIDE2:
-Lag-1 correlation: 0.0362
-N observations: 24081
-
-Independence check for NERVES:
-Lag-1 correlation: -0.0146
-N observations: 13744
-
-Independence check for SAD:
-Lag-1 correlation: 0.0061
-N observations: 22917
-
-Independence check for FEARFULA:
-Lag-1 correlation: 0.0018
-N observations: 23347
-
-Independence check for HOTFLAS:
-Lag-1 correlation: 0.0446
-N observations: 23635
-
-Independence check for NUMHOTF:
-Lag-1 correlation: -0.0250
-N observations: 17139
-
-Independence check for BOTHOTF:
-Lag-1 correlation: 0.0234
-N observations: 17220
-
-Independence check for NITESWE:
-Lag-1 correlation: 0.0174
-N observations: 23612
-
-Independence check for NUMNITS:
-Lag-1 correlation: 0.0013
-N observations: 13693
-
-Independence check for BOTNITS:
-Lag-1 correlation: 0.0089
-N observations: 13760
-
-Independence check for COLDSWE:
-Lag-1 correlation: 0.0048
-N observations: 23253
-
-Independence check for NUMCLDS:
-Lag-1 correlation: -0.0331
-N observations: 5478
-
-Independence check for BOTCLDS:
-Lag-1 correlation: -0.0043
-N observations: 5541
-
-Independence check for STIFF:
-Lag-1 correlation: 0.0099
-N observations: 23631
-
-Independence check for IRRITAB:
-Lag-1 correlation: -0.0055
-N observations: 23612
-
-Independence check for MOODCHG:
-Lag-1 correlation: 0.0053
-N observations: 23622
-
-Independence check for LANGCOG:
-Lag-1 correlation: -0.0005
-N observations: 10085
-
-Independence check for LISTEN:
-Lag-1 correlation: -0.0056
-N observations: 19431
-
-Independence check for TAKETOM:
-Lag-1 correlation: 0.0049
-N observations: 19429
-
-Independence check for HELPSIC:
-Lag-1 correlation: 0.0056
-N observations: 19426
-
-Independence check for CONFIDE:
-Lag-1 correlation: 0.0072
-N observations: 19430
-
-Independence check for EMOCTDW:
-Lag-1 correlation: 0.0112
-N observations: 14905
-
-Independence check for EMOACCO:
-Lag-1 correlation: 0.0152
-N observations: 14911
-
-Independence check for EMOCARE:
-Lag-1 correlation: 0.0213
-N observations: 14905
-
-Independence check for INTERFR:
-Lag-1 correlation: 0.0160
-N observations: 14912
-
-Independence check for SOCIAL:
-Lag-1 correlation: 0.0173
-N observations: 14880
-
-Independence check for INCOME:
-Lag-1 correlation: 0.0314
-N observations: 21596
-
-Independence check for HOW_HAR:
-Lag-1 correlation: 0.0179
-N observations: 24025
-
-Independence check for BCINCML:
-Lag-1 correlation: 0.0136
-N observations: 16848
-
-Independence check for DEGREE:
-Lag-1 correlation: -0.0190
-N observations: 23942
-DEBUG: independence completed successfully
+DEBUG: Processing check: stationarity
+DEBUG: stationarity completed successfully
+DEBUG: Processing check: heteroscedasticity
+DEBUG: heteroscedasticity completed successfully
 === Data Validation Summary ===
 
 
-1. Missing Data Summary:
-STATUS: 0.33% missing
-TOTIDE1: 0.00% missing
-TOTIDE2: 0.00% missing
-NERVES: 42.93% missing
-SAD: 4.83% missing
-FEARFULA: 3.05% missing
-HOTFLAS: 1.85% missing
-NUMHOTF: 28.83% missing
-BOTHOTF: 28.49% missing
-NITESWE: 1.95% missing
-NUMNITS: 43.14% missing
-BOTNITS: 42.86% missing
-COLDSWE: 3.44% missing
-NUMCLDS: 77.25% missing
-BOTCLDS: 76.99% missing
-STIFF: 1.87% missing
-IRRITAB: 1.95% missing
-MOODCHG: 1.91% missing
-LANGCOG: 58.12% missing
-LISTEN: 19.31% missing
-TAKETOM: 19.32% missing
-HELPSIC: 19.33% missing
-CONFIDE: 19.31% missing
-EMOCTDW: 38.10% missing
-EMOACCO: 38.08% missing
-EMOCARE: 38.10% missing
-INTERFR: 38.08% missing
-SOCIAL: 38.21% missing
-INCOME: 10.32% missing
-HOW_HAR: 0.23% missing
-BCINCML: 30.04% missing
-DEGREE: 0.00% missing
-
-2. Distribution Summary:
+1. Distribution Summary:
 
 STATUS (numeric):
   Mean: 3.55
@@ -637,7 +305,7 @@ DEGREE (numeric):
   Shapiro-Wilk p-value: 2.13e-50
   D'Agostino p-value: 0.00e+00
 
-3. Group Size Analysis:
+2. Group Size Analysis:
 
 STATUS:
   Min group size: 3
@@ -646,580 +314,115 @@ STATUS:
   Balance status: Imbalanced
 
   Group counts:
-    1.0: 793
-    2.0: 7890
-    3.0: 1864
     4.0: 8576
-    5.0: 2840
-    6.0: 3
-    7.0: 1646
-    8.0: 389
-
-TOTIDE1:
-  Min group size: 3
-  Max group size: 8576
-  Max/Min ratio: 2858.67
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 793
     2.0: 7890
-    3.0: 1864
-    4.0: 8576
     5.0: 2840
-    6.0: 3
+    3.0: 1864
     7.0: 1646
-    8.0: 389
-
-TOTIDE2:
-  Min group size: 3
-  Max group size: 8576
-  Max/Min ratio: 2858.67
-  Balance status: Imbalanced
-
-  Group counts:
     1.0: 793
-    2.0: 7890
-    3.0: 1864
-    4.0: 8576
-    5.0: 2840
-    6.0: 3
-    7.0: 1646
     8.0: 389
-
-NERVES:
-  Min group size: 1
-  Max group size: 6552
-  Max/Min ratio: 6552.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 583
-    2.0: 6552
-    3.0: 1322
-    4.0: 3653
-    5.0: 398
-    6.0: 1
-    7.0: 909
-    8.0: 311
-
-SAD:
-  Min group size: 3
-  Max group size: 8486
-  Max/Min ratio: 2828.67
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 692
-    2.0: 7067
-    3.0: 1813
-    4.0: 8486
-    5.0: 2828
     6.0: 3
-    7.0: 1631
-    8.0: 370
-
-FEARFULA:
-  Min group size: 3
-  Max group size: 8360
-  Max/Min ratio: 2786.67
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 756
-    2.0: 7585
-    3.0: 1803
-    4.0: 8360
-    5.0: 2807
-    6.0: 3
-    7.0: 1607
-    8.0: 369
-
-HOTFLAS:
-  Min group size: 3
-  Max group size: 8433
-  Max/Min ratio: 2811.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 778
-    2.0: 7730
-    3.0: 1823
-    4.0: 8433
-    5.0: 2815
-    6.0: 3
-    7.0: 1619
-    8.0: 378
-
-NUMHOTF:
-  Min group size: 2
-  Max group size: 6169
-  Max/Min ratio: 3084.50
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 590
-    2.0: 5471
-    3.0: 1331
-    4.0: 6169
-    5.0: 1930
-    6.0: 2
-    7.0: 1310
-    8.0: 282
-
-BOTHOTF:
-  Min group size: 2
-  Max group size: 6184
-  Max/Min ratio: 3092.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 600
-    2.0: 5491
-    3.0: 1340
-    4.0: 6184
-    5.0: 1939
-    6.0: 2
-    7.0: 1317
-    8.0: 292
-
-NITESWE:
-  Min group size: 3
-  Max group size: 8423
-  Max/Min ratio: 2807.67
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 777
-    2.0: 7728
-    3.0: 1824
-    4.0: 8423
-    5.0: 2807
-    6.0: 3
-    7.0: 1617
-    8.0: 377
-
-NUMNITS:
-  Min group size: 2
-  Max group size: 4869
-  Max/Min ratio: 2434.50
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 427
-    2.0: 4385
-    3.0: 1032
-    4.0: 4869
-    5.0: 1598
-    6.0: 2
-    7.0: 1088
-    8.0: 246
-
-BOTNITS:
-  Min group size: 2
-  Max group size: 4888
-  Max/Min ratio: 2444.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 437
-    2.0: 4400
-    3.0: 1039
-    4.0: 4888
-    5.0: 1601
-    6.0: 2
-    7.0: 1101
-    8.0: 246
-
-COLDSWE:
-  Min group size: 3
-  Max group size: 8335
-  Max/Min ratio: 2778.33
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 754
-    2.0: 7574
-    3.0: 1802
-    4.0: 8335
-    5.0: 2765
-    6.0: 3
-    7.0: 1595
-    8.0: 370
-
-NUMCLDS:
-  Min group size: 0
-  Max group size: 1900
-  Max/Min ratio: inf
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 251
-    2.0: 1773
-    3.0: 458
-    4.0: 1900
-    5.0: 527
-    6.0: 0
-    7.0: 446
-    8.0: 104
-
-BOTCLDS:
-  Min group size: 0
-  Max group size: 1928
-  Max/Min ratio: inf
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 261
-    2.0: 1773
-    3.0: 464
-    4.0: 1928
-    5.0: 537
-    6.0: 0
-    7.0: 455
-    8.0: 104
-
-STIFF:
-  Min group size: 3
-  Max group size: 8426
-  Max/Min ratio: 2808.67
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 776
-    2.0: 7732
-    3.0: 1825
-    4.0: 8426
-    5.0: 2814
-    6.0: 3
-    7.0: 1619
-    8.0: 379
-
-IRRITAB:
-  Min group size: 3
-  Max group size: 8428
-  Max/Min ratio: 2809.33
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 777
-    2.0: 7722
-    3.0: 1823
-    4.0: 8428
-    5.0: 2812
-    6.0: 3
-    7.0: 1615
-    8.0: 375
-
-MOODCHG:
-  Min group size: 3
-  Max group size: 8425
-  Max/Min ratio: 2808.33
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 778
-    2.0: 7727
-    3.0: 1824
-    4.0: 8425
-    5.0: 2812
-    6.0: 3
-    7.0: 1618
-    8.0: 379
-
-LANGCOG:
-  Min group size: 0
-  Max group size: 4924
-  Max/Min ratio: inf
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 447
-    2.0: 4924
-    3.0: 953
-    4.0: 2603
-    5.0: 282
-    6.0: 0
-    7.0: 647
-    8.0: 225
-
-LISTEN:
-  Min group size: 3
-  Max group size: 7725
-  Max/Min ratio: 2575.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 549
-    2.0: 5144
-    3.0: 1452
-    4.0: 7725
-    5.0: 2778
-    6.0: 3
-    7.0: 1472
-    8.0: 276
-
-TAKETOM:
-  Min group size: 3
-  Max group size: 7724
-  Max/Min ratio: 2574.67
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 549
-    2.0: 5144
-    3.0: 1451
-    4.0: 7724
-    5.0: 2778
-    6.0: 3
-    7.0: 1472
-    8.0: 276
-
-HELPSIC:
-  Min group size: 3
-  Max group size: 7725
-  Max/Min ratio: 2575.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 549
-    2.0: 5139
-    3.0: 1452
-    4.0: 7725
-    5.0: 2778
-    6.0: 3
-    7.0: 1472
-    8.0: 276
-
-CONFIDE:
-  Min group size: 3
-  Max group size: 7725
-  Max/Min ratio: 2575.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 549
-    2.0: 5143
-    3.0: 1452
-    4.0: 7725
-    5.0: 2778
-    6.0: 3
-    7.0: 1472
-    8.0: 276
-
-EMOCTDW:
-  Min group size: 2
-  Max group size: 5836
-  Max/Min ratio: 2918.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 398
-    2.0: 3979
-    3.0: 976
-    4.0: 5836
-    5.0: 2505
-    6.0: 2
-    7.0: 971
-    8.0: 191
-
-EMOACCO:
-  Min group size: 2
-  Max group size: 5840
-  Max/Min ratio: 2920.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 398
-    2.0: 3980
-    3.0: 976
-    4.0: 5840
-    5.0: 2506
-    6.0: 2
-    7.0: 971
-    8.0: 191
-
-EMOCARE:
-  Min group size: 2
-  Max group size: 5837
-  Max/Min ratio: 2918.50
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 398
-    2.0: 3976
-    3.0: 976
-    4.0: 5837
-    5.0: 2507
-    6.0: 2
-    7.0: 971
-    8.0: 191
-
-INTERFR:
-  Min group size: 2
-  Max group size: 5836
-  Max/Min ratio: 2918.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 399
-    2.0: 3981
-    3.0: 977
-    4.0: 5836
-    5.0: 2508
-    6.0: 2
-    7.0: 970
-    8.0: 192
-
-SOCIAL:
-  Min group size: 2
-  Max group size: 5826
-  Max/Min ratio: 2913.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 397
-    2.0: 3969
-    3.0: 975
-    4.0: 5826
-    5.0: 2509
-    6.0: 2
-    7.0: 964
-    8.0: 192
 
 INCOME:
-  Min group size: 3
-  Max group size: 8024
-  Max/Min ratio: 2674.67
+  Min group size: 1978
+  Max group size: 7044
+  Max/Min ratio: 3.56
   Balance status: Imbalanced
 
   Group counts:
-    1.0: 653
-    2.0: 6562
-    3.0: 1694
-    4.0: 8024
-    5.0: 2721
-    6.0: 3
-    7.0: 1543
-    8.0: 347
-
-HOW_HAR:
-  Min group size: 3
-  Max group size: 8553
-  Max/Min ratio: 2851.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 793
-    2.0: 7869
-    3.0: 1861
-    4.0: 8553
-    5.0: 2837
-    6.0: 3
-    7.0: 1640
-    8.0: 389
-
-BCINCML:
-  Min group size: 2
-  Max group size: 6008
-  Max/Min ratio: 3004.00
-  Balance status: Imbalanced
-
-  Group counts:
-    1.0: 599
-    2.0: 5617
-    3.0: 1297
-    4.0: 6008
-    5.0: 1833
-    6.0: 2
-    7.0: 1172
-    8.0: 266
+    3.0: 7044
+    4.0: 6504
+    2.0: 6070
+    1.0: 1978
 
 DEGREE:
-  Min group size: 3
-  Max group size: 8576
-  Max/Min ratio: 2858.67
+  Min group size: 97
+  Max group size: 7160
+  Max/Min ratio: 73.81
   Balance status: Imbalanced
 
   Group counts:
-    1.0: 793
-    2.0: 7890
-    3.0: 1864
-    4.0: 8576
-    5.0: 2840
-    6.0: 3
-    7.0: 1646
-    8.0: 389
+    3: 7160
+    5: 5635
+    4: 4786
+    2: 3399
+    1: 897
+    3: 604
+    4: 549
+    5: 504
+    2: 311
+     : 139
+    1: 97
 
-4. Homogeneity of Variance:
-STATUS: p-value = nan (Non-homogeneous)
-TOTIDE1: p-value = 0.0000 (Non-homogeneous)
-TOTIDE2: p-value = 0.0000 (Non-homogeneous)
-NERVES: p-value = 0.0009 (Non-homogeneous)
-SAD: p-value = 0.0000 (Non-homogeneous)
-FEARFULA: p-value = 0.0000 (Non-homogeneous)
-HOTFLAS: p-value = 0.0000 (Non-homogeneous)
-NUMHOTF: p-value = 0.0002 (Non-homogeneous)
-BOTHOTF: p-value = 0.0002 (Non-homogeneous)
-NITESWE: p-value = 0.0000 (Non-homogeneous)
-NUMNITS: p-value = 0.7247 (Homogeneous)
-BOTNITS: p-value = 0.0579 (Homogeneous)
-COLDSWE: p-value = 0.0000 (Non-homogeneous)
-NUMCLDS: p-value = 0.1795 (Homogeneous)
-BOTCLDS: p-value = 0.0000 (Non-homogeneous)
-STIFF: p-value = 0.0000 (Non-homogeneous)
-IRRITAB: p-value = 0.0000 (Non-homogeneous)
-MOODCHG: p-value = 0.0000 (Non-homogeneous)
-LANGCOG: p-value = 0.0018 (Non-homogeneous)
-LISTEN: p-value = 0.1442 (Homogeneous)
-TAKETOM: p-value = 0.0000 (Non-homogeneous)
-HELPSIC: p-value = 0.0978 (Homogeneous)
-CONFIDE: p-value = 0.6836 (Homogeneous)
-EMOCTDW: p-value = 0.0001 (Non-homogeneous)
-EMOACCO: p-value = 0.0000 (Non-homogeneous)
-EMOCARE: p-value = 0.0000 (Non-homogeneous)
-INTERFR: p-value = 0.0000 (Non-homogeneous)
-SOCIAL: p-value = 0.0000 (Non-homogeneous)
-INCOME: p-value = 0.0000 (Non-homogeneous)
-HOW_HAR: p-value = 0.0000 (Non-homogeneous)
-BCINCML: p-value = 0.0000 (Non-homogeneous)
-DEGREE: p-value = 0.0000 (Non-homogeneous)
+3. Stationarity Test Results:
+STATUS: ADF p-value = 4.8780e-07, KPSS p-value = 1.0000e-02
+TOTIDE1: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+TOTIDE2: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+NERVES: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-01
+SAD: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+FEARFULA: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-01
+HOTFLAS: ADF p-value = 3.8992e-25, KPSS p-value = 1.0000e-02
+NUMHOTF: ADF p-value = 0.0000e+00, KPSS p-value = 7.4347e-02
+BOTHOTF: ADF p-value = 0.0000e+00, KPSS p-value = 6.0429e-02
+NITESWE: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+NUMNITS: ADF p-value = 1.1160e-29, KPSS p-value = 1.0000e-01
+BOTNITS: ADF p-value = 2.0253e-30, KPSS p-value = 1.0000e-01
+COLDSWE: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+NUMCLDS: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-01
+BOTCLDS: ADF p-value = 2.2503e-28, KPSS p-value = 1.0000e-01
+STIFF: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+IRRITAB: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+MOODCHG: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+LANGCOG: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-01
+LISTEN: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+TAKETOM: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+HELPSIC: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+CONFIDE: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+EMOCTDW: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+EMOACCO: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+EMOCARE: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+INTERFR: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+SOCIAL: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-02
+INCOME: ADF p-value = 1.5714e-28, KPSS p-value = 1.0000e-02
+HOW_HAR: ADF p-value = 0.0000e+00, KPSS p-value = 8.0035e-02
+BCINCML: ADF p-value = 0.0000e+00, KPSS p-value = 5.4907e-02
+DEGREE: ADF p-value = 0.0000e+00, KPSS p-value = 1.0000e-01
 
-5. Independence Check Results:
-STATUS: lag-1 correlation = 0.2082 (Independent)
-TOTIDE1: lag-1 correlation = 0.0299 (Independent)
-TOTIDE2: lag-1 correlation = 0.0362 (Independent)
-NERVES: lag-1 correlation = -0.0146 (Independent)
-SAD: lag-1 correlation = 0.0061 (Independent)
-FEARFULA: lag-1 correlation = 0.0018 (Independent)
-HOTFLAS: lag-1 correlation = 0.0446 (Independent)
-NUMHOTF: lag-1 correlation = -0.0250 (Independent)
-BOTHOTF: lag-1 correlation = 0.0234 (Independent)
-NITESWE: lag-1 correlation = 0.0174 (Independent)
-NUMNITS: lag-1 correlation = 0.0013 (Independent)
-BOTNITS: lag-1 correlation = 0.0089 (Independent)
-COLDSWE: lag-1 correlation = 0.0048 (Independent)
-NUMCLDS: lag-1 correlation = -0.0331 (Independent)
-BOTCLDS: lag-1 correlation = -0.0043 (Independent)
-STIFF: lag-1 correlation = 0.0099 (Independent)
-IRRITAB: lag-1 correlation = -0.0055 (Independent)
-MOODCHG: lag-1 correlation = 0.0053 (Independent)
-LANGCOG: lag-1 correlation = -0.0005 (Independent)
-LISTEN: lag-1 correlation = -0.0056 (Independent)
-TAKETOM: lag-1 correlation = 0.0049 (Independent)
-HELPSIC: lag-1 correlation = 0.0056 (Independent)
-CONFIDE: lag-1 correlation = 0.0072 (Independent)
-EMOCTDW: lag-1 correlation = 0.0112 (Independent)
-EMOACCO: lag-1 correlation = 0.0152 (Independent)
-EMOCARE: lag-1 correlation = 0.0213 (Independent)
-INTERFR: lag-1 correlation = 0.0160 (Independent)
-SOCIAL: lag-1 correlation = 0.0173 (Independent)
-INCOME: lag-1 correlation = 0.0314 (Independent)
-HOW_HAR: lag-1 correlation = 0.0179 (Independent)
-BCINCML: lag-1 correlation = 0.0136 (Independent)
-DEGREE: lag-1 correlation = -0.0190 (Independent)
+4. Heteroscedasticity Test Results:
+STATUS: ARCH LM p-value = 2.7651e-08, F-test p-value = 2.7089e-08
+TOTIDE1: ARCH LM p-value = 5.5239e-15, F-test p-value = 5.1766e-15
+TOTIDE2: ARCH LM p-value = 4.0897e-12, F-test p-value = 3.9171e-12
+NERVES: ARCH LM p-value = 2.2550e-03, F-test p-value = 2.2440e-03
+SAD: ARCH LM p-value = 3.6387e-01, F-test p-value = 3.6393e-01
+FEARFULA: ARCH LM p-value = 1.4551e-03, F-test p-value = 1.4503e-03
+HOTFLAS: ARCH LM p-value = 2.6014e-22, F-test p-value = 2.2585e-22
+NUMHOTF: ARCH LM p-value = 4.2314e-02, F-test p-value = 4.2279e-02
+BOTHOTF: ARCH LM p-value = 6.3052e-06, F-test p-value = 6.2150e-06
+NITESWE: ARCH LM p-value = 2.7867e-04, F-test p-value = 2.7725e-04
+NUMNITS: ARCH LM p-value = 7.6584e-01, F-test p-value = 7.6601e-01
+BOTNITS: ARCH LM p-value = 2.5666e-05, F-test p-value = 2.5302e-05
+COLDSWE: ARCH LM p-value = 2.5861e-01, F-test p-value = 2.5863e-01
+NUMCLDS: ARCH LM p-value = 1.2449e-02, F-test p-value = 1.2374e-02
+BOTCLDS: ARCH LM p-value = 6.8471e-02, F-test p-value = 6.8365e-02
+STIFF: ARCH LM p-value = 3.0154e-06, F-test p-value = 2.9803e-06
+IRRITAB: ARCH LM p-value = 2.7669e-02, F-test p-value = 2.7645e-02
+MOODCHG: ARCH LM p-value = 9.1762e-01, F-test p-value = 9.1767e-01
+LANGCOG: ARCH LM p-value = 6.6488e-04, F-test p-value = 6.5850e-04
+LISTEN: ARCH LM p-value = 8.4846e-01, F-test p-value = 8.4855e-01
+TAKETOM: ARCH LM p-value = 2.9667e-02, F-test p-value = 2.9638e-02
+HELPSIC: ARCH LM p-value = 7.8723e-01, F-test p-value = 7.8734e-01
+CONFIDE: ARCH LM p-value = 1.7709e-01, F-test p-value = 1.7710e-01
+EMOCTDW: ARCH LM p-value = 3.4737e-02, F-test p-value = 3.4698e-02
+EMOACCO: ARCH LM p-value = 5.5983e-02, F-test p-value = 5.5942e-02
+EMOCARE: ARCH LM p-value = 1.4922e-01, F-test p-value = 1.4921e-01
+INTERFR: ARCH LM p-value = 4.4564e-02, F-test p-value = 4.4523e-02
+SOCIAL: ARCH LM p-value = 6.7138e-01, F-test p-value = 6.7154e-01
+INCOME: ARCH LM p-value = 1.1196e-10, F-test p-value = 1.0782e-10
+HOW_HAR: ARCH LM p-value = 4.8385e-11, F-test p-value = 4.6669e-11
+BCINCML: ARCH LM p-value = 9.8720e-03, F-test p-value = 9.8503e-03
+DEGREE: ARCH LM p-value = 1.5058e-08, F-test p-value = 1.4731e-08
 
-6. Multicollinearity Analysis:
+5. Multicollinearity Analysis:
   Correlation matrix analysis:
   High correlations detected:
   High correlation between TOTIDE1 and TOTIDE2: 0.80

@@ -19,9 +19,23 @@ from utils.further_checks import FurtherChecks
 class MenopauseCognitionAnalysis:
     def __init__(self, file_path):
         self.data = pd.read_csv(file_path, low_memory=False)
-        self.cognitive_vars = ['TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
+        self.outcome_vars = ['TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
         self.mixed_model_results = {}
         self.output_dir = get_output_dir('1_stages_model', 'longitudinal')
+
+    def transform_variables(self):
+        """Apply transformations to address heteroscedasticity and multicollinearity."""
+        # Log transformation for heavily skewed variables
+        self.data['NERVES_log'] = np.log1p(self.data['NERVES'])  # log(x+1)
+
+        # Average for TOTIDE to reduce multicollinearity
+        self.data['TOTIDE_avg'] = (self.data['TOTIDE1'] + self.data['TOTIDE2']) / 2
+        
+        # Square root for moderately skewed variables
+        self.data['SAD_sqrt'] = np.sqrt(self.data['SAD'])
+        self.data['FEARFULA_sqrt'] = np.sqrt(self.data['FEARFULA'])
+
+        self.outcome_vars = ['TOTIDE_avg', 'NERVES_log', 'SAD_sqrt', 'FEARFULA_sqrt']
     
     def filter_status(self):
         """Include both natural and surgical menopause cases and create group labels."""
@@ -52,28 +66,17 @@ class MenopauseCognitionAnalysis:
             ordered=True
         )
 
-    def run_mixed_models(self, covariates=None):
+    def run_mixed_models(self):
         """
         Run linear mixed-effects models for each cognitive variable.
         This model includes random intercepts for each subject.
-        
-        Parameters:
-        -----------
-        covariates : list
-            List of additional covariate column names to include in the model
         """
         
-        # Ensure numeric types for cognitive variables and covariates
-        for var in self.cognitive_vars:
+        # Ensure numeric types for cognitive variables
+        for var in self.outcome_vars:
             self.data[var] = pd.to_numeric(self.data[var], errors='coerce')
         
-        if covariates:
-            for var in covariates:
-                self.data[var] = pd.to_numeric(self.data[var], errors='coerce')
-        
-        # Prepare covariates string for formula
-        if covariates is None:
-            covariates = []
+        covariates = ['AGE']
         
         # Handle covariates 
         covariate_str = ' + '.join(covariates) if covariates else ''
@@ -81,25 +84,30 @@ class MenopauseCognitionAnalysis:
         # Dictionary to store results
         self.mixed_model_results = {}
         
-        for outcome in self.cognitive_vars:
-            # Create formula using STATUS as categorical variable with random intercept for SWANID
-            if covariate_str:
-                formula = f"{outcome} ~ C(STATUS_Label, Treatment('Pre-menopause')) + {covariate_str}"
-            else:
-                formula = f"{outcome} ~ C(STATUS_Label, Treatment('Pre-menopause'))"
+        for outcome in self.outcome_vars:
+            # Create formula
+            formula = (f"{outcome} ~ C(STATUS_Label, Treatment('Pre-menopause')) + VISIT + {covariate_str}")
             
             try:
                 # Drop rows with missing values
                 analysis_data = self.data.dropna(subset=[outcome] + covariates if covariates else [outcome])
+
+                # Handling unbalanced data with weights
+                status_counts = analysis_data['STATUS_Label'].value_counts()
+                analysis_data['weights'] = analysis_data['STATUS_Label'].map(
+                    lambda x: 1 / (status_counts[x] / sum(status_counts))
+                )
                 
                 # Fit mixed model with random intercept for SWANID
                 model = mixedlm(
                     formula=formula,
                     groups=analysis_data["SWANID"],
-                    data=analysis_data
+                    data=analysis_data,
+                    re_formula="~VISIT"
                 )
                 
-                results = model.fit(reml=True)
+                # Add weights and fit the model
+                results = model.fit(reml=True, weights=analysis_data['weights'])
                 self.mixed_model_results[outcome] = results
                 
                 # Print detailed results
@@ -175,16 +183,6 @@ class MenopauseCognitionAnalysis:
             plt.tight_layout()
             plt.savefig(os.path.join(self.output_dir, f'{outcome}_mixed_diagnostics.png'))
             plt.close()
-            
-            # Check normality of residuals
-            _, normality_p = sm.stats.diagnostic.normal_ad(residuals.dropna())
-            
-            print(f"\nNormality test p-value: {normality_p:.4f}")
-            
-            # Suggest alternative approaches if needed
-            if normality_p < 0.05:
-                print("WARNING: Residuals are not normally distributed.")
-                print("Consider transforming the outcome variable or using a robust estimation method.")
             
         except Exception as e:
             print(f"Error in model diagnostics: {str(e)}")
@@ -314,22 +312,21 @@ class MenopauseCognitionAnalysis:
     def plot_cognitive_trajectories(self):
         """Create line plots showing individual trajectories by menopausal status."""
         var_labels = {
-            'TOTIDE1': 'Total IDE Score 1',
-            'TOTIDE2': 'Total IDE Score 2',
-            'NERVES': 'Nervousness Score',
-            'SAD': 'Sadness Score',
-            'FEARFULA': 'Fearfulness Score'
+            'TOTIDE_avg': 'Total IDE Score (averaged)',
+            'NERVES_log': 'Nervousness Score',
+            'SAD_sqrt': 'Sadness Score',
+            'FEARFULA_sqrt': 'Fearfulness Score'
         }
         
         # Create a figure with subplots
-        n_vars = len(self.cognitive_vars)
+        n_vars = len(self.outcome_vars)
         n_cols = min(3, n_vars)
         n_rows = (n_vars + n_cols - 1) // n_cols
         
         fig, axes = plt.subplots(n_rows, n_cols, figsize=(6*n_cols, 5*n_rows), squeeze=False)
         axes = axes.flatten()
         
-        for idx, var in enumerate(self.cognitive_vars):
+        for idx, var in enumerate(self.outcome_vars):
             # Get a subset of data for visualization (limit to 100 subjects)
             subset_ids = np.random.choice(
                 self.data['SWANID'].unique(), 
@@ -420,10 +417,13 @@ class MenopauseCognitionAnalysis:
         plt.close()
         print(f"\nPlot saved as: {file_name}")
 
-    def run_complete_analysis(self, covariates=None):
+    def run_complete_analysis(self):
         """Run the complete analysis pipeline with mixed models."""
         # Create output directory if it doesn't exist
         os.makedirs(self.output_dir, exist_ok=True)
+
+        print("Transforming variables for analysis...")
+        self.transform_variables()
 
         print("Filtering menopausal status...")
         self.filter_status()
@@ -432,13 +432,9 @@ class MenopauseCognitionAnalysis:
         output_capture = OutputCapture(self.output_dir)
         sys.stdout = output_capture
 
-        print("Running distribution checks...")
-        further_checks = FurtherChecks()
-        further_checks.examine_distributions(self.data, self.cognitive_vars, self.output_dir)
-
         try:
             print("\nRunning linear mixed-effects models...")
-            self.run_mixed_models(covariates=covariates)
+            self.run_mixed_models()
             
             print("\nPlotting mixed model results...")
             self.plot_forest_plots()
@@ -455,7 +451,4 @@ class MenopauseCognitionAnalysis:
 if __name__ == "__main__":
     # Initialize analysis with your data file
     analysis = MenopauseCognitionAnalysis("processed_combined_data.csv")
-    
-    # Run the complete analysis with optional covariates
-    covariates = ['AGE']
-    analysis.run_complete_analysis(covariates=covariates)
+    analysis.run_complete_analysis()

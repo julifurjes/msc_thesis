@@ -1,7 +1,15 @@
-from utils.data_validation import DataValidator
 import pandas as pd
 import warnings
 warnings.filterwarnings('ignore', category=FutureWarning)
+import os
+import sys
+
+# Add the project root to Python path
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+from utils.data_validation import DataValidator
 
 variables1 = ['STATUS', 'TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
 variables2 = ['HOTFLAS', 'NUMHOTF', 'BOTHOTF', 'NITESWE', 'NUMNITS', 'BOTNITS', 'COLDSWE', 'NUMCLDS', 'BOTCLDS', 'STIFF', 'IRRITAB', 'MOODCHG', 'LANGCOG']
@@ -20,6 +28,5 @@ validator = DataValidator(
 
 # Run validation checks
 validation_results = validator.run_checks(
-    checks=['missing', 'distributions', 'group_sizes', 'homogeneity', 'multicollinearity', 'independence'],
-    grouping_var='STATUS'
+    checks=['distributions', 'group_sizes', 'multicollinearity', 'stationarity', 'heteroscedasticity']
 )
