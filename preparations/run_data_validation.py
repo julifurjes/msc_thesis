@@ -12,7 +12,7 @@ if project_root not in sys.path:
 from utils.data_validation import DataValidator
 
 variables1 = ['STATUS', 'TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
-variables2 = ['HOTFLAS', 'NUMHOTF', 'BOTHOTF', 'NITESWE', 'NUMNITS', 'BOTNITS', 'COLDSWE', 'NUMCLDS', 'BOTCLDS', 'STIFF', 'IRRITAB', 'MOODCHG', 'LANGCOG']
+variables2 = ['HOTFLAS', 'NUMHOTF', 'BOTHOTF', 'NITESWE', 'NUMNITS', 'BOTNITS', 'COLDSWE', 'NUMCLDS', 'BOTCLDS', 'STIFF', 'IRRITAB', 'MOODCHG']
 variables3 = ['LISTEN', 'TAKETOM', 'HELPSIC', 'CONFIDE', 'EMOCTDW', 'EMOACCO', 'EMOCARE', 'INTERFR', 'SOCIAL', 'INCOME', 'HOW_HAR', 'BCINCML', 'DEGREE']
 
 data = pd.read_csv('processed_combined_data.csv')

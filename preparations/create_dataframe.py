@@ -70,6 +70,10 @@ class TSVDataProcessor:
         # Combine all dataframes vertically
         if combined_data:
             self.dataframes = pd.concat(combined_data, ignore_index=True)
+
+            # Get initial number of unique subjects
+            self.initial_subjects = self.dataframes['SWANID'].nunique()
+            self.initial_rows = len(self.dataframes)
             
             # Apply missing value handling one more time to the combined dataset
             self.handle_missing_values(self.dataframes)
@@ -175,8 +179,6 @@ class TSVDataProcessor:
         """
         Remove subjects who have both TOTIDE1 and TOTIDE2 missing for all their visits.
         """
-        # Get initial number of unique subjects
-        initial_subjects = self.dataframes['SWANID'].nunique()
         
         # For each subject, check if they have any non-missing TOTIDE1 or TOTIDE2 values
         totide_counts = self.dataframes.groupby('SWANID').agg({
@@ -188,7 +190,7 @@ class TSVDataProcessor:
         subjects_to_keep = totide_counts[
             (totide_counts['TOTIDE1'] >= 2) & (totide_counts['TOTIDE2'] >= 2)
         ].index
-                
+
         # Filter the dataframe to keep only these subjects
         self.dataframes = self.dataframes[
             self.dataframes['SWANID'].isin(subjects_to_keep)
@@ -196,12 +198,15 @@ class TSVDataProcessor:
         
         # Calculate and print summary statistics
         final_subjects = self.dataframes['SWANID'].nunique()
-        removed_subjects = initial_subjects - final_subjects
+        removed_subjects = self.initial_subjects - final_subjects
+        final_rows = len(self.dataframes)
         
         print(f"\nSummary of TOTIDE data cleaning:")
-        print(f"Initial number of subjects: {initial_subjects}")
+        print(f"Initial number of subjects: {self.initial_subjects}")
+        print(f"Initial number of rows: {self.initial_rows}")
         print(f"Subjects removed (missing TOTIDE data): {removed_subjects}")
         print(f"Final number of subjects: {final_subjects}")
+        print(f"Final number of rows: {final_rows}")
         
         return self.dataframes
     

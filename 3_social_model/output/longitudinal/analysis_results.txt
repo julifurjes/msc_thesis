@@ -1,0 +1,211 @@
+Analysis Run: 2025-05-27 09:52:15
+================================================================================
+
+================================================================================
+MENOPAUSE COGNITION MIXED-EFFECTS MODEL ANALYSIS
+================================================================================
+
+Preprocessing data...
+
+Variable Transformation Summary:
+Log transformed (6): NERVES, NUMHOTF, NUMNITS, COLDSWE, NUMCLDS, FEARFULA
+Square root transformed (10): SAD, HOTFLAS, NITESWE, IRRITAB, MOODCHG, EMOCTDW, EMOACCO, EMOCARE, INTERFR, SOCIAL
+Reflected and log transformed (5): TOTIDE1, TOTIDE2, LISTEN, TAKETOM, CONFIDE
+No transformation needed (8): BOTHOTF, BOTNITS, BOTCLDS, STIFF, HELPSIC, STATUS, INCOME, DEGREE
+
+Scale Reliability (Cronbach's alpha):
+Social Support: 0.837
+Emotional Struggle: 0.815
+Social Struggle: 0.785
+Cognitive Function: 0.888
+Symptom Severity: 0.788
+Socioeconomic Status: 0.674
+Final dataset has 12632 observations from 2287 subjects
+
+Descriptive Statistics for Composite Variables:
+       social_support  emotional_struggle  social_struggle  cognitive_function  symptom_severity  socioeconomic_status
+count    12632.000000        12632.000000     12632.000000        12632.000000      12632.000000          12632.000000
+mean         4.219390            1.173119         1.670123           10.181879          1.874521              2.853240
+std          0.753988            0.320018         0.857558            1.461278          0.639447              0.683050
+min          1.000000            1.000000         1.000000            0.000000          1.000000              1.000000
+25%          3.750000            1.000000         1.000000            9.500000          1.500000              2.333333
+50%          4.500000            1.000000         1.500000           10.500000          1.750000              3.000000
+75%          4.750000            1.333333         2.000000           11.000000          2.166667              3.333333
+max          5.000000            2.000000         5.000000           12.000000          9.600000              4.200000
+
+Fitting mixed-effects models...
+
+
+==================================================
+Modeling Cognitive Function
+==================================================
+
+Formula: cognitive_function ~ social_support + emotional_struggle + social_struggle + symptom_severity + INCOME_original + DEGREE_original + STATUS_Label + VISIT
+
+Model Summary:
+                  Mixed Linear Model Regression Results
+=========================================================================
+Model:               MixedLM    Dependent Variable:    cognitive_function
+No. Observations:    12632      Method:                REML              
+No. Groups:          2287       Scale:                 0.6487            
+Min. group size:     1          Log-Likelihood:        -18062.1065       
+Max. group size:     7          Converged:             Yes               
+Mean group size:     5.5                                                 
+-------------------------------------------------------------------------
+                               Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+-------------------------------------------------------------------------
+Intercept                       8.495    0.122 69.624 0.000  8.256  8.735
+STATUS_Label[T.Late Peri]       0.037    0.034  1.091 0.275 -0.029  0.103
+STATUS_Label[T.Post-menopause]  0.014    0.031  0.461 0.645 -0.046  0.074
+STATUS_Label[T.Pre-menopause]   0.072    0.026  2.778 0.005  0.021  0.123
+STATUS_Label[T.Surgical]       -0.101    0.057 -1.764 0.078 -0.212  0.011
+social_support                  0.060    0.016  3.737 0.000  0.029  0.092
+emotional_struggle             -0.027    0.033 -0.808 0.419 -0.091  0.038
+social_struggle                 0.008    0.013  0.611 0.541 -0.018  0.034
+symptom_severity               -0.032    0.023 -1.412 0.158 -0.076  0.012
+INCOME_original                 0.033    0.012  2.612 0.009  0.008  0.057
+DEGREE_original                 0.373    0.022 16.707 0.000  0.329  0.417
+VISIT                           0.015    0.004  4.080 0.000  0.008  0.022
+Group Var                       1.345    0.060                           
+=========================================================================
+
+
+Model Fit Statistics:
+RMSE: 0.7356
+MAE: 0.4933
+
+
+==================================================
+Modeling Emotional Struggle
+==================================================
+
+Formula: emotional_struggle ~ social_support + social_struggle + symptom_severity + INCOME_original + DEGREE_original + STATUS_Label + VISIT
+
+Model Summary:
+                  Mixed Linear Model Regression Results
+=========================================================================
+Model:               MixedLM    Dependent Variable:    emotional_struggle
+No. Observations:    12632      Method:                REML              
+No. Groups:          2287       Scale:                 0.0562            
+Min. group size:     1          Log-Likelihood:        -685.8988         
+Max. group size:     7          Converged:             Yes               
+Mean group size:     5.5                                                 
+-------------------------------------------------------------------------
+                               Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+-------------------------------------------------------------------------
+Intercept                       0.880    0.022 39.719 0.000  0.837  0.924
+STATUS_Label[T.Late Peri]      -0.011    0.009 -1.165 0.244 -0.029  0.007
+STATUS_Label[T.Post-menopause] -0.003    0.008 -0.367 0.714 -0.019  0.013
+STATUS_Label[T.Pre-menopause]   0.007    0.007  1.044 0.297 -0.006  0.020
+STATUS_Label[T.Surgical]        0.006    0.014  0.446 0.656 -0.021  0.034
+social_support                 -0.020    0.004 -5.513 0.000 -0.028 -0.013
+social_struggle                 0.178    0.003 56.260 0.000  0.172  0.184
+symptom_severity                0.056    0.005 12.029 0.000  0.047  0.065
+INCOME_original                -0.012    0.003 -3.948 0.000 -0.018 -0.006
+DEGREE_original                 0.005    0.003  1.731 0.083 -0.001  0.011
+VISIT                          -0.002    0.001 -2.082 0.037 -0.004 -0.000
+Group Var                       0.012    0.003                           
+=========================================================================
+
+
+Model Fit Statistics:
+RMSE: 0.2251
+MAE: 0.1534
+
+
+==================================================
+Modeling Social Struggle
+==================================================
+
+Formula: social_struggle ~ social_support + emotional_struggle + symptom_severity + INCOME_original + DEGREE_original + STATUS_Label + VISIT
+
+Model Summary:
+                  Mixed Linear Model Regression Results
+==========================================================================
+Model:                 MixedLM     Dependent Variable:     social_struggle
+No. Observations:      12632       Method:                 REML           
+No. Groups:            2287        Scale:                  0.3482         
+Min. group size:       1           Log-Likelihood:         -12467.7357    
+Max. group size:       7           Converged:              Yes            
+Mean group size:       5.5                                                
+--------------------------------------------------------------------------
+                               Coef.  Std.Err.    z    P>|z| [0.025 0.975]
+--------------------------------------------------------------------------
+Intercept                       0.743    0.062  11.983 0.000  0.621  0.864
+STATUS_Label[T.Late Peri]       0.000    0.024   0.003 0.998 -0.046  0.046
+STATUS_Label[T.Post-menopause]  0.027    0.020   1.329 0.184 -0.013  0.067
+STATUS_Label[T.Pre-menopause]  -0.040    0.017  -2.320 0.020 -0.074 -0.006
+STATUS_Label[T.Surgical]        0.133    0.036   3.633 0.000  0.061  0.204
+social_support                 -0.122    0.010 -12.614 0.000 -0.141 -0.103
+emotional_struggle              1.123    0.021  53.961 0.000  1.082  1.163
+symptom_severity                0.224    0.012  18.204 0.000  0.200  0.248
+INCOME_original                -0.046    0.008  -5.849 0.000 -0.061 -0.030
+DEGREE_original                -0.031    0.008  -3.772 0.000 -0.046 -0.015
+VISIT                          -0.014    0.003  -5.770 0.000 -0.019 -0.010
+Group Var                       0.116    0.011                            
+==========================================================================
+
+
+Model Fit Statistics:
+RMSE: 0.5549
+MAE: 0.4099
+
+
+==================================================
+Modeling Symptom Severity
+==================================================
+
+Formula: symptom_severity ~ social_support + emotional_struggle + social_struggle + INCOME_original + DEGREE_original + STATUS_Label + VISIT
+
+Model Summary:
+                  Mixed Linear Model Regression Results
+=========================================================================
+Model:                 MixedLM    Dependent Variable:    symptom_severity
+No. Observations:      12632      Method:                REML            
+No. Groups:            2287       Scale:                 0.0936          
+Min. group size:       1          Log-Likelihood:        -6241.4632      
+Max. group size:       7          Converged:             Yes             
+Mean group size:       5.5                                               
+-------------------------------------------------------------------------
+                               Coef.  Std.Err.   z    P>|z| [0.025 0.975]
+-------------------------------------------------------------------------
+Intercept                       1.824    0.048 37.797 0.000  1.729  1.918
+STATUS_Label[T.Late Peri]       0.148    0.013 11.532 0.000  0.123  0.173
+STATUS_Label[T.Post-menopause]  0.052    0.012  4.437 0.000  0.029  0.075
+STATUS_Label[T.Pre-menopause]  -0.059    0.010 -5.916 0.000 -0.078 -0.039
+STATUS_Label[T.Surgical]        0.111    0.022  5.063 0.000  0.068  0.154
+social_support                 -0.013    0.006 -2.116 0.034 -0.026 -0.001
+emotional_struggle              0.135    0.013 10.808 0.000  0.111  0.160
+social_struggle                 0.068    0.005 13.639 0.000  0.059  0.078
+INCOME_original                -0.003    0.005 -0.649 0.516 -0.013  0.006
+DEGREE_original                -0.051    0.010 -5.121 0.000 -0.071 -0.032
+VISIT                           0.004    0.001  2.681 0.007  0.001  0.007
+Group Var                       0.283    0.033                           
+=========================================================================
+
+
+Model Fit Statistics:
+RMSE: 0.2787
+MAE: 0.1991
+
+Creating visualizations...
+
+Creating visualizations...
+Coefficient table saved to: c:\Users\julif\Documents\GitHub\msc_thesis\3_social_model\output\longitudinal\coefficient_table.csv
+Time trend plots saved to: c:\Users\julif\Documents\GitHub\msc_thesis\3_social_model\output\longitudinal\time_trends.png
+Correlation network saved to: c:\Users\julif\Documents\GitHub\msc_thesis\3_social_model\output\longitudinal\correlation_network.png
+Edge correlation info:
+('social_support', 'emotional_struggle'): -0.182 (negative)
+('social_support', 'social_struggle'): -0.246 (negative)
+('social_support', 'cognitive_function'): 0.101 (positive)
+('emotional_struggle', 'social_struggle'): 0.567 (positive)
+('emotional_struggle', 'symptom_severity'): 0.260 (positive)
+('social_struggle', 'symptom_severity'): 0.311 (positive)
+('social_struggle', 'cognitive_function'): -0.104 (negative)
+Path coefficient forest plot saved to: c:\Users\julif\Documents\GitHub\msc_thesis\3_social_model\output\longitudinal\path_coefficient_forest.png
+Creating integrated visualization plots...
+Correlation heatmap saved to: c:\Users\julif\Documents\GitHub\msc_thesis\3_social_model\output\longitudinal\correlation_matrix.png
+Menopausal status effects saved to: c:\Users\julif\Documents\GitHub\msc_thesis\3_social_model\output\longitudinal\menopausal_status_effects.png
+
+Analysis completed successfully!
+Results saved to: c:\Users\julif\Documents\GitHub\msc_thesis\3_social_model\output\longitudinal

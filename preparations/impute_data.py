@@ -8,7 +8,7 @@ from pyampute.exploration.mcar_statistical_tests import MCARTest
 import os
 
 class ImputationValidator:
-    def __init__(self, input_file, output_file, output_dir='imputation_validation', only_run_sensitivity=False):
+    def __init__(self, input_file, output_file, run_sensitivity, output_dir='imputation_validation'):
         """
         Initialize the ImputationValidator.
         
@@ -25,7 +25,7 @@ class ImputationValidator:
         self.imputed_values = None
         self.input_file = input_file
         self.output_file = output_file
-        self.only_run_sensitivity = only_run_sensitivity
+        self.run_sensitivity = run_sensitivity
         
         # Create output directory if it doesn't exist
         os.makedirs(output_dir, exist_ok=True)
@@ -41,16 +41,150 @@ class ImputationValidator:
         mt = MCARTest(method = 'little')
 
         # Perform Little's MCAR test
-        p_value = mt(self.variables)
+        p_value = mt(self.data[self.variables])
 
         print(f"Little's MCAR test p-value: {p_value:.5f}")
-        self.summary["Little's MCAR Test P-Value"] = p_value
 
         if p_value > 0.05:
             print("The data is likely MCAR (missing completely at random).")
         else:
             print("The data is NOT MCAR (probably MAR or MNAR).")
-    
+
+    def check_missingness_patterns(self):
+        """
+        Check missingness patterns across variables and menopausal status.
+        """
+        print("\nChecking missingness patterns...")
+        
+        # Create binary indicators for missing values
+        for var in self.variables:
+            self.data[f'missing_{var}'] = self.data[var].isna().astype(int)
+        
+        # Calculate correlation between missing indicators
+        missing_corr = self.data[[f'missing_{var}' for var in self.variables]].corr()
+        
+        # Create mapping for proper variable names
+        variable_name_map = {
+            'TOTIDE1': 'Immediate Recall',
+            'TOTIDE2': 'Delayed Recall', 
+            'NUMHOTF': 'Hot Flash Count',
+            'BOTHOTF': 'Hot Flash Bother',
+            'NUMNITS': 'Night Sweat Count',
+            'BOTNITS': 'Night Sweat Bother',
+            'NUMCLDS': 'Cold Sweat Count',
+            'BOTCLDS': 'Cold Sweat Bother',
+            'HOW_HAR': 'Financial Strain',
+            'BCINCML': 'Income Discrimination'
+        }
+        
+        # Clean up variable names for display (remove 'missing_' prefix and use proper names)
+        clean_names = []
+        for var in missing_corr.columns:
+            var_clean = var.replace('missing_', '')
+            clean_names.append(variable_name_map.get(var_clean, var_clean))
+        
+        missing_corr.columns = clean_names
+        missing_corr.index = clean_names
+        
+        csv_path = os.path.join(self.output_dir, 'missingness_patterns.csv')
+        missing_corr.to_csv(csv_path)
+        print(f"Missingness patterns saved to: {csv_path}")
+        
+        # Create heatmap of missing correlations with improved formatting
+        green_palette = sns.color_palette("YlGn", n_colors=10)
+        plt.figure(figsize=(12, 10))
+        
+        # Create heatmap with larger fonts
+        ax = sns.heatmap(
+            missing_corr, 
+            annot=True, 
+            cmap=green_palette, 
+            vmin=-1, 
+            vmax=1,
+            annot_kws={'size': 14},  # Larger numbers in cells
+            cbar_kws={'shrink': 0.8}
+        )
+        
+        ax.set_xticklabels(ax.get_xticklabels(), fontsize=14, rotation=45, ha='right')
+        ax.set_yticklabels(ax.get_yticklabels(), fontsize=14, rotation=0)
+        plt.title('Correlation of Missing Data Patterns Between Variables', fontsize=16, pad=20)
+        
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.output_dir, 'missing_correlation_heatmap.png'), dpi=300, bbox_inches='tight')
+        plt.show()
+
+        # Using status labels
+        status_map = {
+            1: 'Surgical',
+            2: 'Post-menopause',
+            3: 'Late Peri',
+            4: 'Early Peri',
+            5: 'Pre-menopause',
+            8: 'Surgical'
+        }
+
+        self.data['STATUS_Label'] = self.data['STATUS'].map(status_map)
+        
+        # Calculate missing rates by STATUS category
+        missing_by_status = self.data.groupby('STATUS_Label')[
+            [f'missing_{var}' for var in self.variables]
+        ].mean().round(3) * 100  # Convert to percentage
+        
+        # Clean column names for display and apply proper variable names
+        clean_column_names = []
+        for col in missing_by_status.columns:
+            var_clean = col.replace('missing_', '')
+            clean_column_names.append(variable_name_map.get(var_clean, var_clean))
+        
+        missing_by_status.columns = clean_column_names
+        
+        csv_path = os.path.join(self.output_dir, 'missing_rates_by_status.csv')
+        missing_by_status.to_csv(csv_path)
+        print(f"Missing rates by menopausal status saved to: {csv_path}")
+        
+        # Create visualization of missing patterns with improved formatting
+        plt.figure(figsize=(15, 10))
+        
+        for i, var in enumerate(self.variables):
+            plt.subplot(3, 4, i+1)
+            
+            # Get proper variable name for plotting
+            var_clean = variable_name_map.get(var, var)
+            plot_data = missing_by_status[var_clean]
+            
+            # Create bar chart
+            plt.bar(plot_data.index, plot_data.values)
+            plt.title(f"{var_clean} Missing Rate (%)", fontsize=12)
+            plt.ylabel("Missing (%)", fontsize=11)
+            plt.xticks(rotation=45, ha='right', fontsize=10)
+            plt.yticks(fontsize=10)
+            plt.ylim(0, 100)
+        
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.output_dir, 'missingness_by_status.png'), dpi=300, bbox_inches='tight')
+        plt.show()
+        
+        # Statistical test for each variable
+        print("\nAssociation between missingness and menopausal status:")
+        for var in self.variables:
+            # Create contingency table
+            table = pd.crosstab(
+                self.data['STATUS_Label'],
+                self.data[f'missing_{var}'],
+                margins=False
+            )
+            
+            # Chi-square test
+            chi2, p, _, _ = stats.chi2_contingency(table)
+            
+            print(f"{var}: Chi-square = {chi2:.2f}, p-value = {p:.5f}")
+            
+            # Interpret the result
+            if p < 0.05:
+                print(f"  → Missing values for {var} are significantly associated with menopausal status")
+            else:
+                print(f"  → No significant association between {var} missingness and menopausal status")
+
     def perform_imputation(self, k_neighbors):
         """
         Perform KNN imputation and store both original and imputed values.
@@ -198,18 +332,20 @@ class ImputationValidator:
         
         # Original correlations
         original_corr = self.data[self.variables].corr()
+
+        green_palette = sns.color_palette("YlGn", n_colors=10)
         
-        # Imputed correlations
-        imputed_corr = self.imputed_data[[f'{var}_imputed' for var in self.variables]].corr()
-        
-        # Plot correlation matrices
-        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-        
-        sns.heatmap(original_corr, annot=True, ax=ax1)
-        ax1.set_title('Original Correlations')
-        
-        sns.heatmap(imputed_corr, annot=True, ax=ax2)
-        ax2.set_title('Imputed Correlations')
+        # Plot correlation matrix
+        plt.figure(figsize=(10, 8))
+        sns.heatmap(
+            original_corr,
+            annot=True,
+            fmt='.2f',
+            cmap=green_palette,
+            vmin=-1,
+            vmax=1
+        )
+        plt.title('Correlation Matrix')
         
         plt.tight_layout()
         plt.savefig(os.path.join(self.output_dir, 'correlation_checks.png'))
@@ -217,7 +353,6 @@ class ImputationValidator:
         
         print("\nCorrelation Comparison:")
         print("Original:\n", original_corr)
-        print("\nImputed:\n", imputed_corr)
     
     def perform_sensitivity_analysis(self, k_values=[2, 3, 4, 5]):
         """
@@ -226,10 +361,13 @@ class ImputationValidator:
         print("\nPerforming sensitivity analysis...")
         
         results = {var: [] for var in self.variables}
+
+        k_values = [4]
         
         for k in k_values:
             print(f"\nTesting k={k}")
             self.mcar_test()
+            self.check_missingness_patterns()
             self.perform_imputation(k_neighbors=k)
             self.check_distributions()
             self.analyze_distribution_shifts()
@@ -355,13 +493,6 @@ class ImputationValidator:
         Analyze changes in correlation structure after imputation.
         """
         print("\nAnalyzing correlation structure changes...")
-        
-        # Define relevant columns for correlation analysis
-        relevant_cols = [
-            'TOTIDE1', 'TOTIDE2',                      # Original variables
-            'TOTIDE1_imputed', 'TOTIDE2_imputed',      # Imputed variables
-            'VISIT'                                     # Important contextual variable
-        ]
         
         print("Calculating correlations for key variables...")
         
@@ -554,9 +685,8 @@ class ImputationValidator:
         """
         Run all validation checks and generate comprehensive report.
         """
-        if self.only_run_sensitivity:
-            self.perform_sensitivity_analysis()
-        else:
+        self.perform_sensitivity_analysis()
+        if not self.run_sensitivity:
             best_k = 4  # Best k value based on sensitivity analysis
             self.perform_imputation(best_k)
             self.check_distributions()
@@ -575,8 +705,8 @@ if __name__ == "__main__":
     validator = ImputationValidator(
         input_file="processed_data.csv",
         output_file="processed_combined_data.csv",
-        output_dir="imputation_validation",
-        only_run_sensitivity=False
+        run_sensitivity=True,
+        output_dir="imputation_validation"
     )
     
     # Run all validation checks

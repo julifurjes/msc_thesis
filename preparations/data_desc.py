@@ -28,34 +28,71 @@ class DemographicAnalyzer:
         except Exception as e:
             raise FileNotFoundError(f"Error loading data file: {e}")
 
-    def analyze_cross_sectional_data(self):
+    def analyze_demographics_of_actual_participants(self):
         """
-        Analyze the cross-sectional dataset for AGE, RACE, and DEGREE distributions.
+        Analyze demographic data (RACE, DEGREE, AGE) only for the participants
+        who actually appear in the longitudinal dataset.
         """
-        target_columns = ['RACE', 'DEGREE']
+        # Get the unique SWANID values from the longitudinal dataset
+        if 'SWANID' not in self.data.columns:
+            raise ValueError("SWANID column not found in the longitudinal dataset.")
+            
+        actual_participants = self.data['SWANID'].unique()
+        print(f"Total number of unique participants in longitudinal data: {len(actual_participants)}")
+        
+        # Filter the cross-sectional data to include only these participants
+        if 'SWANID' not in self.cross_data.columns:
+            raise ValueError("SWANID column not found in the cross-sectional dataset.")
+            
+        filtered_cross_data = self.cross_data[self.cross_data['SWANID'].isin(actual_participants)]
+        print(f"Number of participants found in cross-sectional data: {len(filtered_cross_data)}")
+        
+        # Analyze RACE distribution
+        if 'RACE' in filtered_cross_data.columns:
+            race_counts = filtered_cross_data['RACE'].value_counts(dropna=False)
+            race_percentages = (race_counts / len(filtered_cross_data) * 100).round(1)
+            
+            # Combine counts and percentages
+            race_distribution = pd.DataFrame({
+                'Count': race_counts,
+                'Percentage': race_percentages
+            })
+            
+            self.summary['RACE Distribution of Actual Participants'] = race_distribution.to_dict()
+            print("\nRACE Distribution of Actual Participants:")
+            print(race_distribution)
+        else:
+            print("Column 'RACE' not found in the cross-sectional dataset.")
+            
+        # Analyze DEGREE distribution
+        if 'DEGREE' in filtered_cross_data.columns:
+            degree_counts = filtered_cross_data['DEGREE'].value_counts(dropna=False)
+            degree_percentages = (degree_counts / len(filtered_cross_data) * 100).round(1)
+            
+            # Combine counts and percentages
+            degree_distribution = pd.DataFrame({
+                'Count': degree_counts,
+                'Percentage': degree_percentages
+            })
+            
+            self.summary['DEGREE Distribution of Actual Participants'] = degree_distribution.to_dict()
+            print("\nDEGREE Distribution of Actual Participants:")
+            print(degree_distribution)
+        else:
+            print("Column 'DEGREE' not found in the cross-sectional dataset.")
+            
+        # Analyze AGE distribution
+        if 'AGE' in filtered_cross_data.columns:
+            filtered_cross_data['AGE'] = pd.to_numeric(filtered_cross_data['AGE'], errors='coerce')
+            mean_age = filtered_cross_data['AGE'].mean()
+            sd_age = filtered_cross_data['AGE'].std()
+            self.summary['Mean Age of Actual Participants'] = mean_age
+            self.summary['Standard Deviation of Age of Actual Participants'] = sd_age
 
-        # Compute mean and standard deviation for AGE
-        if 'AGE' in self.cross_data.columns:
-            self.cross_data['AGE'] = pd.to_numeric(self.cross_data['AGE'], errors='coerce')
-            mean_age = self.cross_data['AGE'].mean()
-            sd_age = self.cross_data['AGE'].std()
-            self.summary['Cross-Sectional Mean Age'] = mean_age
-            self.summary['Cross-Sectional Standard Deviation of Age'] = sd_age
-
-            print(f"Cross-Sectional Mean Age: {mean_age:.2f}")
-            print(f"Cross-Sectional Standard Deviation of Age: {sd_age:.2f}\n")
+            print(f"\nMean Age of Actual Participants: {mean_age:.2f}")
+            print(f"Standard Deviation of Age of Actual Participants: {sd_age:.2f}")
         else:
             print("Column 'AGE' not found in the cross-sectional dataset.")
-
-        # Compute distributions for categorical variables
-        for col in target_columns:
-            if col in self.cross_data.columns:
-                value_counts = self.cross_data[col].value_counts(dropna=False)
-                self.summary[f'{col} Distribution'] = value_counts.to_dict()
-                print(f"{col} Distribution:")
-                print(value_counts, "\n")
-            else:
-                print(f"Column '{col}' not found in the cross-sectional dataset.")
 
     def analyze_status_distribution(self):
         """
@@ -64,8 +101,8 @@ class DemographicAnalyzer:
         if 'STATUS' in self.data.columns:
             status_counts = self.data['STATUS'].value_counts(dropna=False)
             self.summary['STATUS Distribution'] = status_counts.to_dict()
-            print("STATUS Distribution:")
-            print(status_counts, "\n")
+            print("\nSTATUS Distribution:")
+            print(status_counts)
         else:
             print("Column 'STATUS' not found in the longitudinal dataset.")
 
@@ -87,7 +124,7 @@ class DemographicAnalyzer:
         self.summary['Total Subjects'] = total_subjects
         self.summary['Visit Completion Distribution'] = visit_distribution.to_dict()
 
-        print(f"Total number of unique subjects: {total_subjects}")
+        print(f"\nTotal number of unique subjects: {total_subjects}")
         print("Visit Completion Distribution:")
 
         for visits, count in visit_distribution.items():
@@ -138,11 +175,10 @@ class DemographicAnalyzer:
         for col in target_columns:
             self.summary[f'{col} Missing'] = missing_data[col]
 
-
         self.summary['Total Rows'] = total_rows
-        print(f"Total number of rows in dataset: {total_rows}")
+        print(f"\nTotal number of rows in dataset: {total_rows}")
         print("Missing Data Summary:")
-        print(missing_data, "\n")
+        print(missing_data)
 
     def save_summary(self):
         """
@@ -150,14 +186,14 @@ class DemographicAnalyzer:
         """
         summary_df = pd.DataFrame.from_dict(self.summary, orient='index', columns=['Value'])
         summary_df.to_csv(self.output_file)
-        print(f"Demographic summary saved to {self.output_file}")
+        print(f"\nDemographic summary saved to {self.output_file}")
 
     def main(self):
         """
         Execute the demographic analysis workflow.
         """
         self.load_data()
-        self.analyze_cross_sectional_data()
+        self.analyze_demographics_of_actual_participants()
         self.count_complete_participants()
         self.missing_data_summary()
         self.save_summary()

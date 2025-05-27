@@ -13,8 +13,7 @@ project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-from utils.save_output import OutputCapture, get_output_dir 
-from utils.further_checks import FurtherChecks
+from utils.save_output import OutputCapture, get_output_dir
 
 class MenopauseCognitionAnalysis:
     def __init__(self, file_path):
@@ -24,7 +23,7 @@ class MenopauseCognitionAnalysis:
         self.outcome_vars = ['TOTIDE1', 'TOTIDE2', 'NERVES', 'SAD', 'FEARFULA']
         self.transformed_symptom_vars = []  # Will be populated after transformations
         self.transformed_outcome_vars = []  # Will be populated after transformations
-        self.control_vars = ['STATUS', 'LANGCOG', 'AGE']
+        self.control_vars = ['STATUS', 'AGE']
         self.mixed_model_results = {}
         self.var_labels = {
             'HOTFLAS': 'Hot Flashes',
@@ -72,7 +71,6 @@ class MenopauseCognitionAnalysis:
         # Create a new variable to distinguish natural vs. surgical menopause
         self.data['Menopause_Type'] = np.where(self.data['STATUS'].isin([1, 8]), 'Surgical', 'Natural')
         
-        # If you still need an ordering for the natural stages, you can keep the categorical for STATUS_Label
         natural_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause']
         self.data['STATUS_Label'] = pd.Categorical(
             self.data['STATUS_Label'],
@@ -83,6 +81,9 @@ class MenopauseCognitionAnalysis:
         # Standardize symptom variables
         self.data[self.symptom_vars] = (self.data[self.symptom_vars] - 
                                        self.data[self.symptom_vars].mean()) / self.data[self.symptom_vars].std()
+        
+        # Make langauge categorical
+        self.data['LANGCOG'] = self.data['LANGCOG'].astype('category')
         
         self.transform_variables()
     
@@ -116,8 +117,6 @@ class MenopauseCognitionAnalysis:
             if var in self.data.columns:
                 self.transformed_symptom_vars.append(var)
         
-        # 2. TRANSFORM OUTCOME VARIABLES
-        
         # Create TOTIDE average
         if 'TOTIDE1' in self.data.columns and 'TOTIDE2' in self.data.columns:
             self.data['TOTIDE_avg'] = (self.data['TOTIDE1'] + self.data['TOTIDE2']) / 2
@@ -137,6 +136,9 @@ class MenopauseCognitionAnalysis:
         Also includes weighting for unbalanced data.
         """
         print("\nRunning linear mixed-effects models with transformed variables...")
+
+        # Get the reference language for the model (the most common one)
+        reference_language = self.data['LANGCOG'].mode()[0]
         
         # Loop through all transformed outcome variables
         for transformed_outcome in self.transformed_outcome_vars:
@@ -152,16 +154,15 @@ class MenopauseCognitionAnalysis:
             else:
                 original_outcome = transformed_outcome
             
-            # Now loop through each symptom
+            # Loop through each symptom
             for symptom in self.symptom_vars:
-                # Create formula with status, symptom, LANGCOG, AGE, and VISIT
+                # Create formula with status, symptom, AGE, and VISIT
                 formula = (f"{transformed_outcome} ~ {symptom} + C(STATUS_Label, Treatment('Pre-menopause')) + "
-                          f"LANGCOG + AGE + VISIT")
+                          f"AGE + VISIT + C(LANGCOG, Treatment({reference_language}))")
                 
                 try:
                     # Drop rows with missing values for the current variables
-                    analysis_data = self.data.dropna(subset=[transformed_outcome, symptom, 'STATUS_Label', 
-                                                             'LANGCOG', 'AGE', 'VISIT'])
+                    analysis_data = self.data.dropna(subset=[transformed_outcome, symptom, 'STATUS_Label', 'AGE', 'VISIT', 'LANGCOG'])
                     
                     # Reset index to avoid potential index issues
                     analysis_data = analysis_data.reset_index(drop=True)
@@ -198,8 +199,6 @@ class MenopauseCognitionAnalysis:
                         resid_var = results.scale
                         # Random effects variance
                         re_var = results.cov_re.iloc[0, 0] if hasattr(results.cov_re, 'iloc') else results.cov_re[0][0]
-                        # Calculate total variance
-                        total_var = resid_var + re_var
                         # Variance explained by fixed effects (approximate)
                         var_fixed = np.var(results.predict(analysis_data))
                         
@@ -304,6 +303,22 @@ class MenopauseCognitionAnalysis:
         
         print("\nCreating forest plots for transformed models...")
         
+        # Import the palette and select distinct colors
+        green_palette = sns.color_palette("YlGn", n_colors=8)
+        # Create a larger palette to select from
+        selected_greens = [green_palette[1], green_palette[3], green_palette[5], green_palette[7]]  # Take every second color
+        
+        # Define color mapping for p-values using selected colors from YlGn palette
+        def get_color(p_value):
+            if p_value < 0.001:
+                return selected_greens[3], '***'  # Most significant: darkest green
+            elif p_value < 0.01:
+                return selected_greens[2], '**'   # Very significant: medium-dark green
+            elif p_value < 0.05:
+                return selected_greens[1], '*'    # Significant: light-medium green
+            else:
+                return 'gray', ''                 # Not significant: gray
+        
         # Get unique outcomes from the keys
         unique_outcomes = set()
         for key in self.mixed_model_results.keys():
@@ -322,13 +337,15 @@ class MenopauseCognitionAnalysis:
             print(f"Creating forest plot for {outcome} with {len(outcome_models)} symptoms")
             
             # Create figure for this outcome
-            plt.figure(figsize=(12, 10))
+            plt.figure(figsize=(12, 16))
             
             # Initialize lists to store plot data
             symptoms = []
             coefs = []
             errors = []
             pvalues = []
+            colors = []
+            stars = []
             
             # Extract coefficients for each symptom
             for key, results in outcome_models.items():
@@ -338,10 +355,15 @@ class MenopauseCognitionAnalysis:
                 param_name = symptom
                 
                 if param_name in results.params.index:
+                    p_value = results.pvalues[param_name]
+                    color, star = get_color(p_value)
+                    
                     symptoms.append(self.var_labels.get(symptom, symptom))
                     coefs.append(results.params[param_name])
                     errors.append(results.bse[param_name])
-                    pvalues.append(results.pvalues[param_name])
+                    pvalues.append(p_value)
+                    colors.append(color)
+                    stars.append(star)
                 else:
                     print(f"Warning: Coefficient for {symptom} not found in model results")
             
@@ -355,174 +377,467 @@ class MenopauseCognitionAnalysis:
             coefs = [coefs[i] for i in sorted_indices]
             errors = [errors[i] for i in sorted_indices]
             pvalues = [pvalues[i] for i in sorted_indices]
+            colors = [colors[i] for i in sorted_indices]
+            stars = [stars[i] for i in sorted_indices]
             
-            # Create forest plot
+            # Create forest plot with color-coded points
             y_pos = np.arange(len(symptoms))
             
-            plt.errorbar(
-                coefs, y_pos,
-                xerr=1.96 * np.array(errors),  # 95% CI
-                fmt='o',
-                capsize=5,
-                markersize=8,
-                elinewidth=2,
-                capthick=2
-            )
+            # Plot each point individually with its own color
+            for i, (coef, error, color) in enumerate(zip(coefs, errors, colors)):
+                plt.errorbar(
+                    coef, y_pos[i],
+                    xerr=1.96 * error,  # 95% CI
+                    fmt='o',
+                    color=color,
+                    capsize=5,
+                    markersize=8,
+                    elinewidth=2,
+                    capthick=2
+                )
             
             # Add vertical line at zero
             plt.axvline(x=0, color='gray', linestyle='--', alpha=0.5)
             
             # Customize plot
-            plt.yticks(y_pos, symptoms, fontsize=12)
-            plt.title(f'Effects of Symptoms on {self.var_labels.get(outcome, outcome)} (Transformed)', fontsize=14)
-            plt.xlabel('Standardized Coefficient (95% CI)', fontsize=12)
+            plt.yticks(y_pos, symptoms, fontsize=18)
+            plt.xticks(fontsize=18)
             
-            # Add text labels with p-values
-            for i, (coef, p) in enumerate(zip(coefs, pvalues)):
-                # Add asterisks for significance levels
-                stars = ''
-                if p < 0.001: stars = '***'
-                elif p < 0.01: stars = '**'
-                elif p < 0.05: stars = '*'
+            # Calculate reasonable x-axis limits based on coefficients and errors
+            all_values = []
+            for coef, error in zip(coefs, errors):
+                all_values.extend([coef - 1.96 * error, coef + 1.96 * error])
+            
+            x_min, x_max = min(all_values), max(all_values)
+            x_range = x_max - x_min
+            plt.xlim(x_min - 0.1 * x_range, x_max + 0.3 * x_range)  # Extra space on right for labels
+            
+            # Add text labels with p-values - aligned to the right
+            for i, (coef, error, p, star, color) in enumerate(zip(coefs, errors, pvalues, stars, colors)):
+                # Calculate the right edge of the error bar
+                upper_error = coef + 1.96 * error
                 
-                # Position text based on coefficient sign
-                text_pos = coef + 0.02 * np.sign(coef) * max(abs(np.array(coefs)))
-                ha = 'left' if coef >= 0 else 'right'
+                # Position label to the right of the error bar with some padding
+                label_x = upper_error + 0.02 * x_range
                 
                 plt.text(
-                    text_pos, y_pos[i],
-                    f"{coef:.3f}{stars} (p={p:.3f})",
+                    label_x, y_pos[i],
+                    f'{coef:.3f} {star}',
                     verticalalignment='center',
-                    horizontalalignment=ha,
-                    fontsize=10,
-                    bbox=dict(facecolor='white', alpha=0.7, pad=3, edgecolor='none')
+                    horizontalalignment='left',
+                    fontsize=18,
+                    color=color,
+                    fontweight='bold' if p < 0.05 else 'normal',
+                    bbox=dict(facecolor='white', alpha=0.7, boxstyle='round,pad=0.2', edgecolor='none')
                 )
             
             # Add gridlines
             plt.grid(True, axis='x', linestyle=':', alpha=0.6)
             
-            # Add legend for significance levels
-            plt.figtext(0.98, 0.02, 
-                    '* p<0.05   ** p<0.01   *** p<0.001',
-                    fontsize=11,
-                    horizontalalignment='right')
+            # Create custom legend for significance levels and colors
+            from matplotlib.patches import Patch
+            legend_elements = [
+                Patch(facecolor=selected_greens[3], label='p < 0.001 (***)', edgecolor='black'),
+                Patch(facecolor=selected_greens[2], label='p < 0.01 (**)', edgecolor='black'),
+                Patch(facecolor=selected_greens[1], label='p < 0.05 (*)', edgecolor='black'),
+                Patch(facecolor='gray', label='p ≥ 0.05 (n.s.)', edgecolor='black')
+            ]
+            
+            plt.legend(handles=legend_elements, loc='lower right', bbox_to_anchor=(0.98, 0.02))
             
             # Adjust layout
             plt.tight_layout()
             
             # Save the plot
-            file_name = os.path.join(self.output_dir, f'{outcome}_symptom_effects.png')
+            file_name = os.path.join(self.output_dir, f'{outcome}_forest_plot.png')
             plt.savefig(file_name, dpi=300, bbox_inches='tight')
             plt.close()
             
             print(f"Forest plot saved as: {file_name}")
-    
-    def plot_trajectory_patterns(self):
+
+    def analyze_symptom_intensity_by_stage(self):
         """
-        Create line plots showing trajectories of symptoms and cognitive measures across visits,
-        grouped by menopausal status.
+        Analyze how symptom intensity (frequency, daily count, bothersomeness) 
+        varies across different menopausal stages, including surgical menopause.
         """
-        # Variables to plot (original variables, not transformed)
-        all_vars_to_plot = self.symptom_vars + self.outcome_vars
+        print("\nAnalyzing symptom intensity variation across menopausal stages...")
         
-        # Create figures with 3 variables per row
-        n_vars = len(all_vars_to_plot)
-        n_cols = 3
-        n_rows = (n_vars + n_cols - 1) // n_cols
+        # Create output directory for these specific results
+        intensity_dir = os.path.join(self.output_dir, "symptom_intensity")
+        os.makedirs(intensity_dir, exist_ok=True)
         
-        fig, axes = plt.subplots(n_rows, n_cols, figsize=(18, 5*n_rows), squeeze=False)
-        axes = axes.flatten()
+        # Define the symptom groups to analyze
+        symptom_groups = {
+            'Hot Flashes': ['HOTFLAS', 'NUMHOTF', 'BOTHOTF'],
+            'Night Sweats': ['NITESWE', 'NUMNITS', 'BOTNITS'],
+            'Cold Sweats': ['COLDSWE', 'NUMCLDS', 'BOTCLDS'],
+            'Mood': ['IRRITAB', 'MOODCHG'],
+            'Stiffness': ['STIFF'],
+        }
         
-        for idx, var in enumerate(all_vars_to_plot):
-            # Get a subset of data for individual trajectories (100 random subjects)
-            subset_ids = np.random.choice(
-                self.data['SWANID'].unique(), 
-                min(100, len(self.data['SWANID'].unique())), 
-                replace=False
-            )
-            plot_data = self.data[self.data['SWANID'].isin(subset_ids)]
+        # Status order for plotting
+        status_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause', 'Surgical']
+        
+        # Initialize a DataFrame to store results
+        results_data = []
+        
+        # Analyze each symptom group
+        for symptom_group, symptom_vars in symptom_groups.items():
+            print(f"\nAnalyzing {symptom_group} symptoms...")
             
-            # Sort by SWANID and VISIT to ensure proper trajectory
-            plot_data = plot_data.sort_values(['SWANID', 'VISIT'])
+            # Create figure for this symptom group
+            fig, axes = plt.subplots(1, len(symptom_vars), figsize=(len(symptom_vars)*5, 6), squeeze=False)
+            axes = axes.flatten()
             
-            # Create a spaghetti plot
-            ax = axes[idx]
-            
-            # First plot average trajectories by status
-            sns.lineplot(
-                data=self.data,
-                x='VISIT', 
-                y=var,
-                hue='STATUS_Label',
-                estimator='mean',
-                errorbar=('ci', 95),
-                ax=ax,
-                linewidth=3,
-                palette='coolwarm'
-            )
-            
-            # Add individual trajectories with low alpha for a subset
-            for swanid, group in plot_data.groupby('SWANID'):
-                ax.plot(
-                    group['VISIT'], 
-                    group[var], 
-                    alpha=0.1, 
-                    color='gray',
-                    linewidth=0.5
+            # For each measure of the symptom
+            for i, symptom_var in enumerate(symptom_vars):
+                if symptom_var not in self.data.columns:
+                    print(f"Warning: {symptom_var} not found in data")
+                    continue
+                    
+                # Compute summary statistics
+                summary = self.data.groupby('STATUS_Label', observed=True)[symptom_var].agg([
+                    'count', 'mean', 'std', 'median', 'min', 'max'
+                ]).reset_index()
+                
+                # Convert summary to proper category type with correct order
+                summary['STATUS_Label'] = pd.Categorical(
+                    summary['STATUS_Label'],
+                    categories=status_order,
+                    ordered=True
                 )
+                
+                # Sort by the ordered category
+                summary = summary.sort_values('STATUS_Label')
+                
+                # Store results for later reporting
+                for _, row in summary.iterrows():
+                    results_data.append({
+                        'Symptom Group': symptom_group,
+                        'Symptom': self.var_labels.get(symptom_var, symptom_var),
+                        'Menopausal Stage': row['STATUS_Label'],
+                        'Count': row['count'],
+                        'Mean': row['mean'],
+                        'StdDev': row['std'],
+                        'Median': row['median'],
+                        'Min': row['min'],
+                        'Max': row['max']
+                    })
+                
+                # Create a bar plot
+                ax = axes[i]
+                
+                # Calculate standard error for error bars
+                summary['se'] = summary['std'] / np.sqrt(summary['count'])
+                
+                # Create the bar plot with error bars
+                bars = ax.bar(
+                    x=np.arange(len(summary)),
+                    height=summary['mean'],
+                    yerr=summary['se'],
+                    capsize=4,
+                    width=0.7,
+                    color=sns.color_palette("YlGnBu", n_colors=len(summary))
+                )
+                
+                # Add mean value labels on top of each bar
+                for j, bar in enumerate(bars):
+                    height = bar.get_height()
+                    ax.text(
+                        bar.get_x() + bar.get_width()/2.,
+                        height + 0.1,
+                        f'{summary["mean"].iloc[j]:.2f}',
+                        ha='center', 
+                        va='bottom',
+                        fontsize=9,
+                        rotation=0
+                    )
+                
+                # Set axis labels and title
+                ax.set_title(self.var_labels.get(symptom_var, symptom_var), fontsize=12)
+                ax.set_ylabel('Mean Score (with SE)', fontsize=10)
+                ax.set_xticks(np.arange(len(summary)))
+                ax.set_xticklabels(summary['STATUS_Label'], rotation=45, ha='right', fontsize=9)
             
-            # Customize the plot
-            ax.set_title(f'Trajectories for {self.var_labels.get(var, var)}', pad=20)
-            ax.set_xlabel('Visit')
-            ax.set_ylabel(self.var_labels.get(var, var))
+            # Add an overall title
+            fig.suptitle(f'{symptom_group} Intensity by Menopausal Stage', fontsize=14, y=1.05)
             
-            # Add summary statistics as text
-            summary_stats = self.data.groupby('STATUS_Label', observed=True)[var].agg([
-                'count', 'mean', 'std', 'median'
-            ]).round(2)
+            # Adjust layout to prevent overlap
+            plt.tight_layout()
             
-            # Add summary statistics to the side of the plot
-            stat_text = "Summary by Status:\n"
-            for status, stats in summary_stats.iterrows():
-                stat_text += f"\n{status}:\n"
-                stat_text += f"n={stats['count']}, mean={stats['mean']}\n"
-                stat_text += f"median={stats['median']}, sd={stats['std']}\n"
+            # Save the figure
+            plt.savefig(
+                os.path.join(intensity_dir, f'{symptom_group.lower().replace(" ", "_")}_intensity.png'),
+                dpi=300,
+                bbox_inches='tight'
+            )
+            plt.close()
+        
+        # Create a comprehensive summary table as a DataFrame
+        results_df = pd.DataFrame(results_data)
+        
+        # Create formatted tables for each symptom group
+        for symptom_group in results_df['Symptom Group'].unique():
+            group_data = results_df[results_df['Symptom Group'] == symptom_group]
             
-            # Position the text box outside the plot
-            text_box = ax.text(
-                1.05,  # x position
-                0.5,   # y position
-                stat_text,
-                fontsize=8,
-                bbox=dict(facecolor='white', alpha=0.8),
-                transform=ax.transAxes,  # Use axes coordinates
-                verticalalignment='center'
+            # Pivot the data to create a nicely formatted table
+            pivot_mean = pd.pivot_table(
+                group_data, 
+                values='Mean', 
+                index='Menopausal Stage',
+                columns='Symptom',
+                aggfunc='first'
+            )
+            
+            # Add count information (average across symptoms)
+            count_data = group_data.groupby('Menopausal Stage')['Count'].mean().astype(int)
+            pivot_mean['Sample Size'] = count_data
+            
+            # Sort rows by menopausal stage order
+            pivot_mean = pivot_mean.reindex(status_order)
+            
+            # Print the table
+            print(f"\n{symptom_group} Intensity by Menopausal Stage:")
+            print("=" * 80)
+            print(pivot_mean.round(2).to_string())
+            print("=" * 80)
+            
+            # Save the table to a CSV file
+            pivot_mean.to_csv(
+                os.path.join(intensity_dir, f'{symptom_group.lower().replace(" ", "_")}_intensity.csv')
             )
         
-        # Remove any unused subplots
-        for j in range(idx + 1, len(axes)):
-            axes[j].set_visible(False)
+        # Plot overall symptom intensity pattern
+        self.plot_overall_symptom_intensity_pattern(results_df, intensity_dir)
         
-        # Add a main title
-        fig.suptitle(
-            'Variable Trajectories by Menopausal Status',
-            y=1.02,
-            fontsize=14
+        print("Symptom intensity analysis complete. Results saved to:", intensity_dir)
+        return results_df
+
+    def plot_overall_symptom_intensity_pattern(self, results_df, output_dir):
+        """
+        Create a comprehensive visualization showing how symptom intensity 
+        patterns change across menopausal stages.
+        """
+        # Status order
+        status_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause', 'Surgical']
+        
+        # Create figure for the comprehensive visualization
+        plt.figure(figsize=(14, 12))
+        
+        # Add a subplot for symptom intensity patterns
+        plt.subplot(111)
+        
+        # Group by symptom group and menopausal stage, calculating mean intensity
+        intensity_pattern = results_df.groupby(['Symptom Group', 'Menopausal Stage'])['Mean'].mean().reset_index()
+        
+        # Convert to proper categorical type
+        intensity_pattern['Menopausal Stage'] = pd.Categorical(
+            intensity_pattern['Menopausal Stage'],
+            categories=status_order,
+            ordered=True
         )
         
-        # Adjust layout and display
+        # Sort by stage
+        intensity_pattern = intensity_pattern.sort_values('Menopausal Stage')
+        
+        # Use the YlGn color palette
+        green_palette = sns.color_palette("YlGn", n_colors=10)
+        
+        # Get unique symptom groups for custom color assignment
+        symptom_groups = intensity_pattern['Symptom Group'].unique()
+        
+        # Select specific colors from the palette for each symptom group
+        # Use indices that are well-spaced for visual distinction
+        color_indices = [1, 3, 5, 7, 9][:len(symptom_groups)]
+        custom_colors = [green_palette[i] for i in color_indices]
+        
+        # Create a color dictionary
+        color_dict = dict(zip(symptom_groups, custom_colors))
+        
+        # Create line plot with custom colors
+        sns.lineplot(
+            data=intensity_pattern,
+            x='Menopausal Stage',
+            y='Mean',
+            hue='Symptom Group',
+            marker='o',
+            markersize=10,
+            linewidth=3,
+            err_style='band',
+            palette=color_dict
+        )
+        
+        # Set title and labels
+        plt.xlabel('Menopausal Stage', fontsize=18)
+        plt.ylabel('Mean Intensity Score', fontsize=18)
+        plt.xticks(rotation=45, ha='right', fontsize=18)
+        plt.yticks(fontsize=18)
+        plt.grid(True, alpha=0.3, linestyle='--')
+        
+        # Enhance the legend
+        plt.legend(
+            title='Symptom Group',
+            fontsize=18,
+            title_fontsize=18,
+            bbox_to_anchor=(1.05, 1),
+            loc='upper left'
+        )
+        
+        # Adjust layout and save
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, 'overall_symptom_intensity_pattern.png'), dpi=300, bbox_inches='tight')
+        plt.close()
+    
+    def plot_symptom_intensity_heatmap(self):
+        """
+        Create a heat map showing symptom intensity across menopausal stages.
+        5 × 4 matrix: stage (rows) × symptom group (cols).
+        Color represents z-scored intensity values.
+        """
+        print("\nCreating symptom intensity heat map...")
+        
+        # Define symptom groups (matching your analyze_symptom_intensity_by_stage method)
+        symptom_groups = {
+            'Hot Flashes': ['HOTFLAS', 'NUMHOTF', 'BOTHOTF'],
+            'Night Sweats': ['NITESWE', 'NUMNITS', 'BOTNITS'], 
+            'Cold Sweats': ['COLDSWE', 'NUMCLDS', 'BOTCLDS'],
+            'Mood Symptoms': ['IRRITAB', 'MOODCHG'],
+            'Stiffness': ['STIFF']
+        }
+        
+        # Status order for the heat map (rows)
+        status_order = ['Pre-menopause', 'Early Peri', 'Late Peri', 'Post-menopause', 'Surgical']
+        
+        # Initialize matrix to store z-scored intensities
+        heatmap_data = pd.DataFrame(index=status_order, columns=list(symptom_groups.keys()))
+        
+        # Calculate mean intensity for each symptom group and menopausal stage
+        for group_name, symptom_vars in symptom_groups.items():
+            print(f"Processing {group_name}...")
+            
+            # Get available symptoms from this group
+            available_symptoms = [var for var in symptom_vars if var in self.data.columns]
+            
+            if not available_symptoms:
+                print(f"Warning: No symptoms found for {group_name}")
+                continue
+            
+            # Calculate mean intensity across symptoms in this group for each stage
+            group_means = []
+            for status in status_order:
+                # Get data for this status
+                status_data = self.data[self.data['STATUS_Label'] == status]
+                
+                if len(status_data) == 0:
+                    group_means.append(np.nan)
+                    continue
+                
+                # Calculate mean across all symptoms in this group for this status
+                symptom_means = []
+                for symptom in available_symptoms:
+                    symptom_mean = status_data[symptom].mean()
+                    if not np.isnan(symptom_mean):
+                        symptom_means.append(symptom_mean)
+                
+                if symptom_means:
+                    group_mean = np.mean(symptom_means)
+                    group_means.append(group_mean)
+                else:
+                    group_means.append(np.nan)
+            
+            # Store in heatmap data
+            heatmap_data[group_name] = group_means
+        
+        # Convert to numeric and calculate z-scores
+        heatmap_data = heatmap_data.astype(float)
+        
+        # Calculate z-scores for each symptom group (column-wise standardization)
+        heatmap_data_z = heatmap_data.copy()
+        for col in heatmap_data.columns:
+            col_data = heatmap_data[col].dropna()
+            if len(col_data) > 1:
+                mean_val = col_data.mean()
+                std_val = col_data.std()
+                if std_val > 0:
+                    heatmap_data_z[col] = (heatmap_data[col] - mean_val) / std_val
+                else:
+                    heatmap_data_z[col] = 0
+        
+        print("Z-scored intensity matrix:")
+        print(heatmap_data_z.round(2))
+        
+        # Create custom green palette
+        green_palette = sns.color_palette("YlGn", n_colors=8)
+        
+        # Create the Z-SCORED heat map
+        plt.figure(figsize=(12, 14))
+        
+        sns.heatmap(
+            heatmap_data_z,
+            annot=True,  # Show values in cells
+            fmt='.2f',   # Format to 2 decimal places
+            cmap=green_palette,
+            square=True, # Make cells square
+            linewidths=0.5,
+            cbar_kws={
+                'label': 'Z-scored Symptom Intensity',
+                'shrink': 0.8
+            },
+            annot_kws={'size': 18, 'weight': 'bold'}
+        )
+        
+        # Rotate x-axis labels for better readability
+        plt.xticks(rotation=45, ha='right', fontsize=18)
+        plt.yticks(rotation=0, fontsize=18)
+        
+        # Add a subtle grid
+        plt.grid(False)  # Remove default grid from heatmap
+        
+        # Adjust layout
         plt.tight_layout()
         
         # Save the plot
-        file_name = os.path.join(self.output_dir, 'all_variables_trajectories.png')
-        fig.savefig(
-            file_name,
-            dpi=300,
-            bbox_inches='tight'
+        file_name = os.path.join(self.output_dir, 'symptom_intensity_heatmap_zscore.png')
+        plt.savefig(file_name, dpi=300, bbox_inches='tight')
+        plt.close()
+        
+        print(f"Z-scored symptom intensity heat map saved as: {file_name}")
+        
+        # Create the RAW VALUES heat map
+        plt.figure(figsize=(12, 8))
+        
+        sns.heatmap(
+            heatmap_data,
+            annot=True,
+            fmt='.3f',
+            cmap=green_palette,
+            square=True,
+            linewidths=0.5,
+            cbar_kws={
+                'label': 'Mean Symptom Intensity',
+                'shrink': 0.8
+            },
+            annot_kws={'size': 12, 'weight': 'bold'}
         )
         
+        plt.title('Symptom Intensity Heat Map Across Menopausal Stages', 
+                fontsize=16, pad=20)
+        plt.xlabel('Symptom Groups', fontsize=14)
+        plt.ylabel('Menopausal Stage', fontsize=14)
+        plt.xticks(rotation=45, ha='right')
+        plt.yticks(rotation=0)
+        
+        plt.tight_layout()
+        
+        # Save the raw values version
+        file_name_raw = os.path.join(self.output_dir, 'symptom_intensity_heatmap_raw.png')
+        plt.savefig(file_name_raw, dpi=300, bbox_inches='tight')
         plt.close()
-        print(f"\nTrajectory plot saved as: {file_name}")
+        
+        print(f"Raw values heat map saved as: {file_name_raw}")
+        
+        # Return the data for further analysis if needed
+        return heatmap_data_z, heatmap_data
 
     def run_complete_analysis(self):
         """Run the complete analysis pipeline with transformed variables."""
@@ -542,9 +857,12 @@ class MenopauseCognitionAnalysis:
             
             print("\nCreating symptom effects plots...")
             self.plot_symptom_effects()
-            
-            print("\nCreating trajectory pattern plots...")
-            self.plot_trajectory_patterns()
+
+            print("\nAnalyzing symptom intensity by menopausal stage...")
+            self.analyze_symptom_intensity_by_stage()
+
+            print("\nCreating symptom intensity heat map...")
+            self.plot_symptom_intensity_heatmap()
 
             print("\nAnalysis complete")
 
