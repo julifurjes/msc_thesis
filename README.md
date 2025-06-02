@@ -13,8 +13,8 @@ This project requires Python 3.x and several libraries. A virtual environment ca
 Start by downloading the repository to your computer:
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/julifurjes/msc_thesis.git
+cd msc_thesis
 ```
 
 ### Creating a Virtual Environment
@@ -102,29 +102,6 @@ python longitudinal.py
 ```
 
 Repeat this process for each of the three model folders to complete the full analysis.
-
-## Project Organization
-
-The repository follows a clear structure:
-
-```
-├── preparations/              # Data preparation scripts
-│   ├── create_dataframe.py       # Main data structure creation
-│   ├── impute_data.py            # Missing data treatment
-│   ├── data_desc.py              # Descriptive analysis
-│   └── run_data_validation.py    # Quality checks
-├── [model-folder-1]/         # First modeling approach
-│   └── longitudinal.py
-├── [model-folder-2]/         # Second modeling approach
-│   └── longitudinal.py
-├── [model-folder-3]/         # Third modeling approach
-│   └── longitudinal.py
-├── data/                     # External dataset storage
-├── venv/                     # Virtual environment files
-├── requirements.txt          # Library dependencies
-├── AI_declaration.txt        # Documentation of AI assistance
-└── README.md                 # This documentation
-```
 
 ## AI Declaration
 
