@@ -106,5 +106,3 @@ Repeat this process for each of the three model folders to complete the full ana
 ## AI Declaration
 
 Details about AI assistance in development can be found in the `AI_declaration.txt` file in the main directory.
-```
-
